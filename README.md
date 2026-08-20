@@ -58,8 +58,8 @@ This repository is developed by ZAL GmbH in the scope of the [Aerospace-X](https
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-org/nq-cockpit.git
-cd nq-cockpit
+git clone https://github.com/zal/ax-nq-cockpit.git
+cd ax-nq-cockpit
 
 # 2. Start all services
 docker compose up --build
