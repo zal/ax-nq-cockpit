@@ -1,0 +1,823 @@
+{# SPDX-FileCopyrightText: 2026 ZAL GmbH #}
+{# SPDX-License-Identifier: Apache-2.0 #}
+{% extends "base.html" %}
+{% from "_field_info.html" import info, info_styles with context %}
+{% from "_disposition_widgets.html" import status_badge, disposition_widget_styles, proposal_section, disposition_common_fields, respond_buttons with context %}
+{% from "_progress.html" import progress_styles, progress_bar, progress_scripts %}
+{# Role-aware NQ detail view, rendered by both customer.view_nq and supplier.view_nq.
+   `role` comes from the global context processor (routes/auth.py). #}
+{% set is_customer = role == 'customer' %}
+{% if is_customer %}
+    {% set own_party = 'Customer' %}
+    {% set fetch_ep = 'customer.fetch_update' %}
+    {% set respond_ep = 'customer.respond_disposition' %}
+    {% set submit_disposition_ep = 'customer.submit_disposition' %}
+    {% set create_containment_ep = 'customer.create_containment' %}
+    {% set view_containment_ep = 'customer.view_containment_action' %}
+    {% set disposition_progress_ep = 'customer.progress_stream_disposition' %}
+    {% set pull_progress_ep = 'customer.progress_stream_pull' %}
+{% else %}
+    {% set own_party = 'Supplier' %}
+    {% set fetch_ep = 'supplier.fetch_nq_data' %}
+    {% set respond_ep = 'supplier.supplier_respond_disposition' %}
+    {% set submit_disposition_ep = 'supplier.supplier_submit_disposition' %}
+    {% set create_containment_ep = 'supplier.supplier_create_containment' %}
+    {% set view_containment_ep = 'supplier.view_containment_action' %}
+    {% set disposition_progress_ep = 'supplier.progress_stream_disposition' %}
+    {% set pull_progress_ep = 'supplier.progress_stream_nq' %}
+{% endif %}
+{% set publish_steps = ['Data Endpoint Creation', 'Asset Creation', 'Policy Creation', 'Contract Creation', 'Notification Delivery'] %}
+{% set pull_steps = ['Catalog Query', 'Contract Negotiation', 'Start Data Transfer', 'Fetch NQ Data'] %}
+{% block title %}NQ Detail{% endblock %}
+
+{% block head %}
+{{ info_styles() }}
+{{ disposition_widget_styles() }}
+{{ progress_styles() }}
+<style>
+    body {
+        padding: 60px 20px;
+        position: relative;
+    }
+    .closed-row {
+        opacity: 0.5;                  /* Makes it look faded */
+        background-color: #f0f0f0;     /* Light gray background */
+        font-style: italic;
+        pointer-events: none;
+    }
+    .close-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: whitesmoke;
+        color: black;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+        cursor: pointer;
+        text-align: center;
+        line-height: 40px;
+        text-decoration: none;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+        margin-top: 0;
+        color: #333;
+        border-bottom: 2px solid #009de0;
+        padding-bottom: 10px;
+    }
+    .section {
+        margin-bottom: 25px;
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        background-color: #fafafa;
+    }
+    .section-title {
+        font-size: 1.3em;
+        margin-top: 0;
+        color: #009de0;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 8px;
+        cursor: pointer;
+    }
+    .field {
+        margin-bottom: 15px;
+    }
+    .field-label {
+        font-weight: bold;
+        color: #555;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .field-label.required::after {
+        content: " *";
+        color: #c0392b;
+    }
+    .field-value {
+        background-color: white;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        min-height: 20px;
+    }
+    .image-container, .document-container {
+        margin-top: 10px;
+    }
+    .image-item, .document-item {
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 4px;
+    }
+    .image-item img {
+        max-width: 200px;
+        max-height: 200px;
+    }
+    .attachments-section {
+        margin-top: 20px;
+    }
+    .attachment-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .attachment-list {
+        margin-left: 20px;
+    }
+    .attachment-item {
+        margin-bottom: 5px;
+    }
+    .disposition-card {
+        background-color: #e8f4fc;
+        border: 1px solid #b3e0ff;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        margin-top: 30px;
+    }
+    .disposition-form {
+        display: none;
+        margin-top: 20px;
+    }
+    .disposition-form .section {
+        background-color: #f0f8ff;
+    }
+
+    /* ---------- DISPOSITION & IC FORM INPUTS (match NQ form style) ---------- */
+    #dispositionForm label.field-label,
+    #containmentForm label.field-label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #333;
+    }
+    #dispositionForm input[type="text"],
+    #dispositionForm input[type="email"],
+    #dispositionForm input[type="tel"],
+    #dispositionForm input[type="datetime-local"],
+    #dispositionForm input[type="date"],
+    #dispositionForm textarea,
+    #dispositionForm select,
+    #containmentForm input[type="text"],
+    #containmentForm input[type="date"],
+    #containmentForm textarea,
+    #containmentForm select {
+        width: 100%;
+        max-width: 500px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 1em;
+    }
+    #dispositionForm textarea,
+    #containmentForm textarea {
+        resize: vertical;
+    }
+    #dispositionForm input[type="checkbox"] {
+        width: auto;
+        margin-right: 8px;
+    }
+    #dispositionForm button[type="submit"],
+    #containmentForm button[type="submit"] {
+        padding: 12px 24px;
+        font-size: 1.1em;
+        background-color: rgb(0, 157, 224);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    #dispositionForm button[type="submit"]:hover,
+    #containmentForm button[type="submit"]:hover {
+        background-color: rgb(0, 140, 200);
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+{% if is_customer %}
+<a href="{{ url_for('customer.customer_home') }}" class="close-button">✕</a>
+{% endif %}
+
+<div class="container">
+    <h2>Non-Quality Details</h2>
+    {% if is_customer %}
+    <div style="margin-bottom: 20px;" class="{% if nq.NonQualityHeader.nonQualityStatus == 'CLOSED' %}closed-row{% endif %}">
+        <a href="{{ url_for('customer.edit_nq', nq_id=nq.NonQualityHeader.nonQualityId) }}" class="edit-button" style="padding: 10px 20px; background-color: #FFA500; color: white; text-decoration: none; border-radius: 5px;">Edit Non-Quality Report</a>
+    </div>
+    {% endif %}
+
+    {% if nq.PartnerUpdatePending %}
+    <div class="section" id="partnerUpdateSection" style="border: 1px solid #009de0; border-radius: 8px; padding: 15px; margin-bottom: 20px; background-color: #f8f9fa;">
+        <p style="margin: 0 0 10px 0;">
+            {% if pending_notification %}{{ pending_notification.message }}{% else %}The {{ 'supplier' if is_customer else 'customer' }} has submitted an update for this Non-Quality.{% endif %}
+        </p>
+        <div id="pullUpdateForm">
+            <form method="post" action="{{ url_for(fetch_ep, nq_id=nq.NonQualityHeader.nonQualityId) }}">
+                <button id="pull-submit-btn" type="submit" style="padding: 10px 20px; background-color: #009de0; color: white; border: none; border-radius: 6px; cursor: pointer;">Fetch update</button>
+            </form>
+        </div>
+        {{ progress_bar('pull-progress', pull_steps) }}
+    </div>
+    {% endif %}
+
+    <!-- Non-Quality Details Section -->
+    <div class="section" id="nqDetailsSection">
+        <h3 class="section-title" onclick="toggleSection('nqDetails')">
+            Non-Quality Details
+            <span id="nqDetailsToggleIcon">▼</span>
+        </h3>
+        <div id="nqDetailsContent" style="display: none;">
+            {% if not is_customer %}
+            <div style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+            <strong>Note:</strong> Non-Quality Details is a read-only view. Changes can only be made by the customer who created this Non-Quality.
+            </div>
+            {% endif %}
+            <!-- Non-Quality General Data -->
+            <div class="section">
+                <h3 class="section-title">Non-Quality General Data</h3>
+                <div class="field">
+                    <span class="field-label">Non-Quality Title:</span>
+                    <div class="field-value">{{ nq.NonQualityHeader.nonQualityTitle }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Non-Quality ID:</span>
+                    <div class="field-value">{{ nq.NonQualityHeader.nonQualityId }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Non-Quality Status:</span>
+                    <div class="field-value">{{ nq.NonQualityHeader.nonQualityStatus }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Traceability Type:</span>
+                    <div class="field-value">{{ (nq.PartIdentification or [{}])[0].traceabilityType }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Traceability Number:</span>
+                    <div class="field-value">{{ (nq.PartIdentification or [{}])[0].traceabilityNumber }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Customer Comment:</span>
+                    <div class="field-value">{{ nq.NonQualityHeader.customerComment }}</div>
+                </div>
+            </div>
+
+            <!-- Defect Description -->
+            <div class="section">
+                <h3 class="section-title">Defect Description</h3>
+                <div class="field">
+                    <span class="field-label">Problem Short Description:</span>
+                    <div class="field-value">{{ nq.NonQualityDescription.problemShortDescription }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Problem Long Description:</span>
+                    <div class="field-value">{{ nq.NonQualityDescription.problemLongDescription }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Issue Group:</span>
+                    <div class="field-value">{{ nq.NonQualityDescription.issueGroup }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Issue Code:</span>
+                    <div class="field-value">{{ nq.NonQualityDescription.issueCode }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Safety Related:</span>
+                    <div class="field-value">{{ nq.NonQualityDescription.safetyRelated }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Non-Quality Quantity:</span>
+                    <div class="field-value">{{ (nq.PartIdentification or [{}])[0].affectedQuantity }}</div>
+                </div>
+
+                <!-- Defect Images -->
+                {% if nq.NonQualityDescription.defectImage %}
+                <div class="image-container">
+                    <div class="attachment-title">Defect Images:</div>
+                    <div class="attachment-list" style="display: flex; flex-wrap: wrap; gap: 15px;">
+                        {% for image in nq.NonQualityDescription.defectImage %}
+                        <div class="attachment-item" style="background-color: #f9f9f9; border-radius: 4px; padding: 10px; display: flex; flex-direction: column; align-items: center;">
+                            {% if image.url %}
+                            <img src="{{ attachment_url(image) }}" alt="Defect Image" style="max-width: 200px; max-height: 200px; border-radius: 4px; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="field-value" style="margin-top: 8px; text-align: center; font-size: 0.9em; display: none;">Image failed to load</div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Defect Documents -->
+                {% if nq.NonQualityDescription.defectDocument %}
+                <div class="document-container">
+                    <div class="attachment-title">Defect Documents:</div>
+                    <div class="attachment-list" style="display: flex; flex-wrap: wrap; gap: 15px;">
+                        {% for document in nq.NonQualityDescription.defectDocument %}
+                        <div class="attachment-item" style="background-color: #f9f9f9; border-radius: 4px; padding: 10px; display: flex; flex-direction: column; align-items: center; min-width: 150px;">
+                            {% if document.url %}
+                            <a href="{{ attachment_url(document) }}" target="_blank" download style="text-decoration: none; color: #009de0;">
+                                <div style="font-size: 3em; margin-bottom: 5px;">📄</div>
+                                <div class="field-value" style="text-align: center; font-size: 0.9em; max-width: 150px; word-wrap: break-word;">{{ document.filename }}</div>
+                            </a>
+                            {% else %}
+                            <div class="field-value">{{ document.filename }}</div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Non-Quality Discovery -->
+            <div class="section">
+                <h3 class="section-title">Non-Quality Discovery</h3>
+                <div class="field">
+                    <span class="field-label">Step of Production:</span>
+                    <div class="field-value">{{ nq.NonQualityDiscovery.stepOfProduction }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">MSN:</span>
+                    <div class="field-value">{{ nq.NonQualityDiscovery.msn }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Version of Aircraft:</span>
+                    <div class="field-value">{{ nq.NonQualityDiscovery.versionOfAircraft }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">ATA Section:</span>
+                    <div class="field-value">{{ nq.NonQualityDiscovery.ataSection }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Detected How:</span>
+                    <div class="field-value">{{ nq.NonQualityDiscovery.detectedHow }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Detected When:</span>
+                    <div class="field-value">{{ nq.NonQualityDiscovery.detectedWhen }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Detected Where:</span>
+                    <div class="field-value">{{ nq.NonQualityDiscovery.detectedWhere }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Detected By Whom:</span>
+                    <div class="field-value">{{ nq.NonQualityDiscovery.detectedByWhom }}</div>
+                </div>
+            </div>
+
+            <!-- Product Scope -->
+            <div class="section">
+                <h3 class="section-title">Product Scope</h3>
+                <div class="field">
+                    <span class="field-label">Airline Customer:</span>
+                    <div class="field-value">{{ nq.ProductScope.airlineCustomer }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Final Customer:</span>
+                    <div class="field-value">{{ nq.ProductScope.finalCustomer }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Commodity:</span>
+                    <div class="field-value">{{ nq.ProductScope.commodity }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Sub Commodity:</span>
+                    <div class="field-value">{{ nq.ProductScope.subCommodity }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Program:</span>
+                    <div class="field-value">{{ nq.ProductScope.program }}</div>
+                </div>
+            </div>
+
+            <!-- Part Identification -->
+            <div class="section">
+                <h3 class="section-title">Part Identification</h3>
+                <div class="field">
+                    <span class="field-label">Customer Part Number:</span>
+                    <div class="field-value">{{ (nq.PartIdentification or [{}])[0].customerPartNumber }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Digital Nameplate:</span>
+                    <div class="field-value">{{ (nq.PartIdentification or [{}])[0].partDigitalNameplate or '' }}</div>
+                </div>
+            </div>
+
+            <!-- Product Features -->
+            <div class="section">
+            <h3 class="section-title">Quality Features</h3>
+
+            {% if nq.NonQualityDescription.subPartAffectedComponent %}
+                {% for component in nq.NonQualityDescription.subPartAffectedComponent %}
+                {% set parts = component.split(':', 1) %}
+                <div class="field">
+                    <span class="field-label">UUID:</span>
+                    <div class="field-value">{{ parts[0] }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Feature Name:</span>
+                    <div class="field-value">{{ parts[1] if parts|length > 1 else '' }}</div>
+                </div>
+                {% if not loop.last %}
+                    <hr class="feature-divider" />
+                {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="field">
+                <em>No features provided.</em>
+                </div>
+            {% endif %}
+            </div>
+
+            <!-- Impacted Purchase Order -->
+            <div class="section">
+                <h3 class="section-title">Impacted Purchase Order</h3>
+                <div class="field">
+                    <span class="field-label">Affected Purchase Order Number:</span>
+                    <div class="field-value">{{ nq.ImpactedPurchaseOrder.affectedPurchaseOrderNumber }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Purchase Order Position Number:</span>
+                    <div class="field-value">{{ nq.ImpactedPurchaseOrder.purchaseOrderPositionNumber }}</div>
+                </div>
+            </div>
+
+            <!-- Partner Collaboration -->
+            <div class="section">
+                <h3 class="section-title">Partner Collaboration</h3>
+                <div class="field">
+                    <span class="field-label">Customer Group Name:</span>
+                    <div class="field-value">{{ nq.CollaborationPartners.CustomerSite.customerGroupName }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Customer Organization Name:</span>
+                    <div class="field-value">{{ nq.CollaborationPartners.CustomerSite.customerOrganizationName }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Customer Plant Code:</span>
+                    <div class="field-value">{{ nq.CollaborationPartners.CustomerSite.customerPlantCode }}</div>
+                </div>
+                <div class="field">
+                    <span class="field-label">Customer Plant Name:</span>
+                    <div class="field-value">{{ nq.CollaborationPartners.CustomerSite.customerPlantName }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dispositions Section -->
+    <div class="section" id="dispositionSection">
+        <h3 class="section-title" onclick="toggleSection('disposition')">
+            Dispositions
+            <span id="dispositionToggleIcon">▼</span>
+        </h3>
+        <div id="dispositionContent" style="display: none;">
+            {% set has_final = (nq.Disposition or []) | selectattr("acceptanceStatus", "equalto", "accepted") | list %}
+            {% if nq.Disposition %}
+            {% if has_final %}
+            {% set final_disposition = has_final[0] %}
+            <div class="section" style="border: 2px solid #1e7e34; border-radius: 8px; padding: 15px; margin-bottom: 20px; background-color: #f1f9f3;">
+                <h4 style="margin-top: 0; color: #1e7e34;">
+                    Final Disposition {{ status_badge(final_disposition.acceptanceStatus) }}
+                </h4>
+                {{ disposition_common_fields(final_disposition) }}
+                {{ proposal_section(final_disposition) }}
+            </div>
+            {% if nq.Disposition|length > 1 %}
+            <details class="disposition-history">
+                <summary>Show negotiation history ({{ nq.Disposition|length - 1 }} other disposition{{ 's' if nq.Disposition|length > 2 else '' }})</summary>
+                {% for disposition in nq.Disposition %}
+                {% if disposition is not sameas final_disposition %}
+                <div class="section disposition-greyed" style="border: 1px solid #ccc; border-radius: 8px; padding: 15px; margin-bottom: 20px; background-color: #f8f9fa;">
+                    <h4 style="margin-top: 0; color: #666;">
+                        Disposition {{ loop.index }} {{ status_badge(disposition.acceptanceStatus or 'pending') }}
+                    </h4>
+                    {{ disposition_common_fields(disposition) }}
+                    {{ proposal_section(disposition) }}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </details>
+            {% endif %}
+            {% else %}
+            {% for diff_item in nq.Disposition|get_disposition_comparisons %}
+            <div class="section" style="border: 1px solid #009de0; border-radius: 8px; padding: 15px; margin-bottom: 20px; background-color: #f8f9fa;">
+                <h4 style="margin-top: 0; color: #009de0;">
+                    Disposition {{ loop.index }} {{ status_badge(diff_item.disposition.acceptanceStatus or 'pending') }}
+                    {% if not diff_item.is_first %}
+                        (Changes from previous disposition)
+                    {% else %}
+                        (Initial disposition)
+                    {% endif %}
+                </h4>
+                {{ disposition_common_fields(diff_item.disposition) }}
+                {{ proposal_section(diff_item.disposition, diff_item.fields if not diff_item.is_first else None) }}
+                {% if diff_item.disposition.dispositionCreator != own_party and (diff_item.disposition.acceptanceStatus or 'pending') == 'pending' %}
+                {{ respond_buttons(nq.NonQualityHeader.nonQualityId, loop.index0, respond_ep) }}
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% else %}
+            <p>No dispositions yet.</p>
+            {% endif %}
+
+            {% if not has_final %}
+            <!-- Create New Disposition -->
+            <div class="disposition-card">
+                <h3>Create New Disposition</h3>
+                <p>Click below to create a disposition for this Non-Quality report</p>
+                <button class="{% if nq.NonQualityHeader.nonQualityStatus == 'CLOSED' %}closed-row{% endif %}" onclick="showDispositionForm()" style="padding: 12px 24px; background-color: #009de0; color: white; border: none; border-radius: 8px; cursor: pointer;">Create New Disposition</button>
+            </div>
+
+            <div id="dispositionForm" class="disposition-form">
+                <form method="post" action="{{ url_for(submit_disposition_ep, nq_id=nq.NonQualityHeader.nonQualityId) }}" enctype="multipart/form-data">
+                    <input type="hidden" name="nq_id" value="{{ nq.NonQualityHeader.nonQualityId }}">
+
+                    <div class="section">
+                        <h3 class="section-title">Disposition Details</h3>
+                        <p style="color: #c0392b; font-size: 0.9em; margin-top: 0;">Fields marked with * are mandatory.</p>
+
+                        <div class="field">
+                            <span class="field-label">Non-Quality ID:</span>
+                            <div class="field-value">{{ nq.NonQualityHeader.nonQualityId }}</div>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Proposed Completion From: {{ info('proposedCompletionFrom') }}</label>
+                            <input type="datetime-local" name="proposedCompletionFrom">
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Proposed Completion To: {{ info('proposedCompletionTo') }}</label>
+                            <input type="datetime-local" name="proposedCompletionTo">
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label required">Contact Person Name: {{ info('contactPersonName') }}</label>
+                            <input type="text" name="contactPersonName" required>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Contact Person Email: {{ info('contactPersonEmail') }}</label>
+                            <input type="email" name="contactPersonEmail">
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Contact Person Phone Number: {{ info('contactPersonPhoneNumber') }}</label>
+                            <input type="tel" name="contactPersonPhoneNumber">
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Comment Date: {{ info('commentDate') }}</label>
+                            <input type="datetime-local" name="commentDate">
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Comment Content: {{ info('commentContent') }}</label>
+                            <textarea name="commentContent" rows="4"></textarea>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label required">Disposition Type: {{ info('dispositionType') }}</label>
+                            <select name="dispositionType" required>
+                                <option value="">-- Select --</option>
+                                <option value="AcceptAsIs">Accept As Is</option>
+                                <option value="RejectionReworkOnSite">Rejection — Rework On Site</option>
+                                <option value="RejectionReworkOffSite">Rejection — Rework Off Site</option>
+                                <option value="RejectionReplacement">Rejection — Replacement</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label required">Decision Reason: {{ info('decisionReason') }}</label>
+                            <input type="text" name="decisionReason" required>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Additional Information: {{ info('additionalInformationText') }}</label>
+                            <textarea name="AdditionalInformation" rows="4"></textarea>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Additional Document URL(s): {{ info('additionalDocument') }}</label>
+                            <div id="additional-document-urls">
+                                <input type="text" name="AdditionalDocumentUrl">
+                            </div>
+                            <button type="button" onclick="addAdditionalDocumentUrl()" style="margin-top: 5px;">+ Add another URL</button>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Request Description: {{ info('requestDescription') }}</label>
+                            <textarea name="requestDescription" rows="4"></textarea>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Information Data Format: {{ info('informationDataFormat') }}</label>
+                            <input type="text" name="informationDataFormat">
+                        </div>
+
+                        <button type="submit" id="disp-submit-btn">Send Disposition</button>
+                    </div>
+                </form>
+                {{ progress_bar('disp-progress', publish_steps) }}
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <!-- Immediate Containment Section -->
+    <div class="section" id="containmentSection">
+        <h3 class="section-title" onclick="toggleSection('containment')">
+            Immediate Containment
+            <span id="containmentToggleIcon">▼</span>
+        </h3>
+        <div id="containmentContent" style="display: none;">
+            <!-- Display existing containment actions in a table -->
+            {% if nq.ContainmentActions %}
+            <div class="section">
+                <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                    <thead>
+                        <tr style="background-color: #009de0; color: white;">
+                            <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Action ID</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Title</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Status</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Planned Date</th>
+                            <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for action in nq.ContainmentActions %}
+                        <tr style="border-bottom: 1px solid #ddd;">
+                            <td style="border: 1px solid #ddd; padding: 12px;">{{ action.actionId }}</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{{ action.title }}</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{{ action.status }}</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;">{{ action.plannedImplementationDate }}</td>
+                            <td style="border: 1px solid #ddd; padding: 12px;"><a href="{{ url_for(view_containment_ep, nq_id=nq.NonQualityHeader.nonQualityId, action_id=action.actionId) }}">Details</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p>No containment actions yet.</p>
+            {% endif %}
+
+            <!-- Create New Containment Action Form -->
+            <div class="disposition-card">
+                <h3>Create New Containment Action</h3>
+                <p>Click below to create a containment action for this Non-Quality report</p>
+                <button class="{% if nq.NonQualityHeader.nonQualityStatus == 'CLOSED' %}closed-row{% endif %}" onclick="showContainmentForm()" style="padding: 12px 24px; background-color: #009de0; color: white; border: none; border-radius: 8px; cursor: pointer;">Create New Containment Action</button>
+            </div>
+
+            <div id="containmentForm" class="disposition-form">
+                <form method="post" action="{{ url_for(create_containment_ep, nq_id=nq.NonQualityHeader.nonQualityId) }}">
+                    <input type="hidden" name="nq_id" value="{{ nq.NonQualityHeader.nonQualityId }}">
+
+                    <div class="section">
+                        <h3 class="section-title">Containment Action Details</h3>
+                        <p style="color: #c0392b; font-size: 0.9em; margin-top: 0;">Fields marked with * are mandatory.</p>
+
+                        <div class="field">
+                            <span class="field-label">nonQualityId:</span>
+                            <div class="field-value">{{ nq.NonQualityHeader.nonQualityId }}</div>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label required">Action Party: {{ info('actionParty') }}</label>
+                            <select name="actionParty">
+                                <option value="Customer" {% if is_customer %}selected{% endif %}>Customer</option>
+                                <option value="Supplier" {% if not is_customer %}selected{% endif %}>Supplier</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label required">Title: {{ info('title') }}</label>
+                            <input type="text" name="title" required>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label required">Description: {{ info('description') }}</label>
+                            <textarea name="description" rows="3" required></textarea>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label required">Responsible: {{ info('responsible') }}</label>
+                            <input type="text" name="responsible" required>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label required">Planned Implementation Date: {{ info('plannedImplementationDate') }}</label>
+                            <input type="date" name="plannedImplementationDate" required>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Actual Implementation Date: {{ info('actualImplementationDate') }}</label>
+                            <input type="datetime-local" name="actualImplementationDate">
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label required">Status: {{ info('status') }}</label>
+                            <select name="status">
+                                <option value="Open">Open</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Reference Type: {{ info('referenceType') }}</label>
+                            <input type="text" name="referenceType">
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Reference Number: {{ info('referenceNumber') }}</label>
+                            <input type="text" name="referenceNumber">
+                        </div>
+
+                        <div class="field">
+                            <label class="field-label">Reference File: {{ info('referenceFile') }}</label>
+                            <input type="file" name="referenceFile">
+                        </div>
+
+                        <button type="submit" id="cont-submit-btn" class="{% if nq.NonQualityHeader.nonQualityStatus == 'CLOSED' %}closed-row{% endif %}">Create Containment Action</button>
+                    </div>
+                </form>
+                {{ progress_bar('cont-progress', publish_steps) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% if is_customer %}
+<div class="container" style="display: flex; justify-content: center; align-items: center; height: 50px;">
+<form action="{{ url_for('customer.close_nq', nq_id=nq.NonQualityHeader.nonQualityId) }}" method="post" style="display:inline;">
+    <button class="{% if nq.NonQualityHeader.nonQualityStatus == 'CLOSED' %}closed-row{% endif %}" type="submit" class="action-link"
+        style="font-size: 20px; font-weight: bold; padding: 12px 24px; background-color: #fc1717; color: white; border: none; border-radius: 8px; cursor: pointer;">
+        Close Non-Quality
+    </button>
+</form>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function showDispositionForm() {
+        document.querySelector('.disposition-card').style.display = 'none';
+        document.getElementById('dispositionForm').style.display = 'block';
+    }
+
+    function addAdditionalDocumentUrl() {
+        const container = document.getElementById('additional-document-urls');
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.name = 'AdditionalDocumentUrl';
+        input.style.marginTop = '5px';
+        container.appendChild(input);
+    }
+
+    function showContainmentForm() {
+        document.querySelector('.disposition-card').style.display = 'none';
+        document.getElementById('containmentForm').style.display = 'block';
+    }
+
+    function toggleSection(sectionName) {
+        const content = document.getElementById(sectionName + 'Content');
+        const icon = document.getElementById(sectionName + 'ToggleIcon');
+        if (content.style.display === 'none') {
+            content.style.display = 'block';
+            icon.textContent = '▼';
+        } else {
+            content.style.display = 'none';
+            icon.textContent = '▶';
+        }
+    }
+</script>
+{{ progress_scripts() }}
+<script>
+    var _progressUrl = '{{ url_for(disposition_progress_ep) }}';
+    attachExchangeProgress(document.querySelector('#dispositionForm form'), 'disp-submit-btn', 'disp-progress', _progressUrl);
+    attachExchangeProgress(document.querySelector('#containmentForm form'), 'cont-submit-btn', 'cont-progress', _progressUrl);
+
+    {% for i in range((nq.Disposition or [])|length) %}
+    attachExchangeProgress(document.getElementById('respond-form-{{ i }}-accept'), 'respond-btn-{{ i }}-accept', 'respond-progress-{{ i }}-accept', _progressUrl);
+    attachExchangeProgress(document.getElementById('respond-form-{{ i }}-reject'), 'respond-btn-{{ i }}-reject', 'respond-progress-{{ i }}-reject', _progressUrl);
+    {% endfor %}
+
+    var _pullProgressUrl = '{{ url_for(pull_progress_ep) }}';
+    attachExchangeProgress(document.querySelector('#pullUpdateForm form'), 'pull-submit-btn', 'pull-progress', _pullProgressUrl);
+</script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{
+  "PartIdentification": {
+    "customerPartNumber": "BLD-ACTB-0003",
+    "customerPartName": "Compressor Blade",
+    "partClass": "Rotating Engine Component",
+    "DigitalNameplate": "https://digitalnameplate.example.com/compressor/blade/P22-2025-CB03L8U4",
+    "traceabilityType": "Serial Number",
+    "traceabilityNumber": "S/N-05092024-0103"
+  },
+  "NonQualityDiscovery": {
+    "stepOfProduction": "Incoming inspection",
+    "msn": "13808",
+    "versionOfAircraft": "C320",
+    "ataSection": "Engine"
+  },
+  "ImpactedPurchaseOrder": {
+    "affectedPurchaseOrderNumber": "AEPA-0028",
+    "purchaseOrderPositionNumber": "6"
+  },
+  "PartnerCollaboration": {
+    "customerACAGECode": "AX_0046",
+    "customerGroupName": "Aero Engine GmbH",
+    "customerOrganizationName": "Aero Engine Operations GmbH",
+    "customerPlantCode": "PLT-023",
+    "customerPlantName": "Highrise Hub",
+    "supplierACAGECode": "AX_0187"
+  },
+  "ProductScope": {
+    "airlineCustomer": "Christiana Airways",
+    "finalCustomer": "Skybound Aircraft Corporation",
+    "commodity": "Engine",
+    "subCommodity": "Compressor",
+    "program": "CRA Series"
+  }
+}

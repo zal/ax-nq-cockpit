@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
+  },
+  "@type": "ContractRequest",
+  "counterPartyAddress": "{{counterpartyConnectorHostname}}/api/v1/dsp",
+  "protocol": "dataspace-protocol-http",
+  "policy": {
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@id": "some-id",
+    "@type": "odrl:Offer",
+    "odrl:permission": [],
+    "odrl:prohibition": [],
+    "odrl:obligation": [],
+    "target": "some-id",
+    "assigner": "did:web:{{counterpartyIdentityHostname}}"
+  }
+}

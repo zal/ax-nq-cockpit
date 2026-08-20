@@ -1,0 +1,18 @@
+{
+  "company_name": "Aerospace Parts GmbH (Supplier)",
+  "company_id": "SUPP456",
+  "description": "Trusted supplier of mechanical components for aerospace systems.",
+  "partners": ["CUST123"],
+  "address": {
+    "street": "Zulieferstraße 5",
+    "zip": "52066",
+    "city": "Aachen",
+    "country": "Germany"
+  },
+  "collaboration_partners": {
+    "group_name": "Aerospace Parts GmbH",
+    "organization_name": "Aerospace Parts GmbH",
+    "plant_code": "AEPA-001",
+    "plant_name": "Zentrale Produktionseinheit"
+  }
+}

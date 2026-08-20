@@ -1,0 +1,254 @@
+{# SPDX-FileCopyrightText: 2026 ZAL GmbH #}
+{# SPDX-License-Identifier: Apache-2.0 #}
+{% extends "base.html" %}
+{% from "_field_info.html" import info, info_styles with context %}
+{% from "_progress.html" import progress_styles, progress_bar, progress_scripts %}
+{% set publish_steps = ['Data Endpoint Creation', 'Asset Creation', 'Policy Creation', 'Contract Creation', 'Notification Delivery'] %}
+{% block title %}Edit Non-Conformity{% endblock %}
+
+{% block head %}
+{{ info_styles() }}
+{{ progress_styles() }}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 120px;
+    }
+    h2 {
+        margin-bottom: 30px;
+    }
+    #edit-nq-form {
+        width: 100%;
+        max-width: 800px;
+    }
+    fieldset {
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: white;
+        width: 100%;
+        max-width: 800px;
+        text-align: center;
+    }
+    legend {
+        font-weight: bold;
+        font-size: 1.2em;
+        padding: 0 10px;
+    }
+    .hidden {
+        display: none;
+    }
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+    input[type="text"], textarea, select {
+        width: 100%;
+        max-width: 500px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    textarea {
+        resize: vertical;
+    }
+    button {
+        padding: 12px 24px;
+        font-size: 1.1em;
+        background-color: rgb(0, 157, 224);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    button:hover {
+        background-color: rgb(0, 150, 215);
+    }
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .checkbox-group input[type="checkbox"] {
+        width: auto;
+        margin-right: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Edit Non-Quality</h2>
+    <form id="edit-nq-form" method="post" enctype="multipart/form-data">
+        <!-- SECTION: Non-Quality General Data -->
+        <fieldset>
+            <legend>Non-Quality General Data</legend>
+            <label>Non-Quality Title: {{ info('nonQualityTitle') }}</label>
+            <input type="text" name="nonQualityTitle" value="{{ nq.NonQualityHeader.nonQualityTitle }}">
+            <label>Non-Quality Status: {{ info('nonQualityStatus') }}</label>
+            <select name="nonQualityStatus">
+                <option value="OPEN" {% if nq.NonQualityHeader.nonQualityStatus == 'OPEN' %}selected{% endif %}>OPEN</option>
+                <option value="CANCELLED" {% if nq.NonQualityHeader.nonQualityStatus == 'CANCELLED' %}selected{% endif %}>CANCELLED</option>
+                <option value="CLOSED" {% if nq.NonQualityHeader.nonQualityStatus == 'CLOSED' %}selected{% endif %}>CLOSED</option>
+            </select>
+            <label>Traceability Type: {{ info('traceabilityType') }}</label>
+            <select name="traceabilityType">
+                <option value="" disabled>Select</option>
+                <option value="Batch" {% if (nq.PartIdentification or [{}])[0].traceabilityType == 'Batch' %}selected{% endif %}>Batch</option>
+                <option value="Single Product" {% if (nq.PartIdentification or [{}])[0].traceabilityType == 'Single Product' %}selected{% endif %}>Single Product</option>
+            </select>
+            <label>Traceability Number: {{ info('traceabilityNumber') }}</label>
+            <input type="number" name="traceabilityNumber" value="{{ (nq.PartIdentification or [{}])[0].traceabilityNumber }}">
+            <label>Customer Comment: {{ info('customerComment') }}</label>
+            <textarea name="customerComment" rows="4">{{ nq.NonQualityHeader.customerComment }}</textarea>
+        </fieldset>
+
+        <!-- SECTION: Defect Description -->
+        <fieldset>
+            <legend>Defect Description</legend>
+            <label>Problem Short Description: {{ info('problemShortDescription') }}</label>
+            <textarea name="problemShortDescription" rows="2">{{ nq.NonQualityDescription.problemShortDescription }}</textarea>
+            <label>Problem Long Description: {{ info('problemLongDescription') }}</label>
+            <textarea name="problemLongDescription" rows="4">{{ nq.NonQualityDescription.problemLongDescription }}</textarea>
+            <label>Issue Group: {{ info('issueGroup') }}</label>
+            <input type="text" name="issueGroup" value="{{ nq.NonQualityDescription.issueGroup }}">
+            <label>Issue Code: {{ info('issueCode') }}</label>
+            <input type="text" name="issueCode" value="{{ nq.NonQualityDescription.issueCode }}">
+            <label>Defect Image(s): {{ info('defectImage') }}</label>
+            {% if nq.NonQualityDescription.defectImage %}
+            <div class="attachment-list" style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 10px;">
+                {% for image in nq.NonQualityDescription.defectImage %}
+                <div class="attachment-item" style="background-color: #f9f9f9; border-radius: 4px; padding: 10px; display: flex; flex-direction: column; align-items: center;">
+                    {% if image.url %}
+                    <img src="{{ image.url }}" alt="Defect Image" style="max-width: 120px; max-height: 120px; border-radius: 4px; object-fit: cover;">
+                    {% endif %}
+                    <label style="margin-top: 6px; font-size: 0.85em; font-weight: normal;">
+                        <input type="checkbox" name="removeImage" value="{{ image.url }}"> Remove
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <input type="file" name="defectImage" multiple>
+            <label>Defect Document(s): {{ info('defectDocument') }}</label>
+            {% if nq.NonQualityDescription.defectDocument %}
+            <div class="attachment-list" style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 10px;">
+                {% for document in nq.NonQualityDescription.defectDocument %}
+                <div class="attachment-item" style="background-color: #f9f9f9; border-radius: 4px; padding: 10px; display: flex; flex-direction: column; align-items: center; min-width: 150px;">
+                    <div style="font-size: 2em;">📄</div>
+                    <div style="text-align: center; font-size: 0.85em; word-wrap: break-word; max-width: 150px;">{{ document.filename }}</div>
+                    <label style="margin-top: 6px; font-size: 0.85em; font-weight: normal;">
+                        <input type="checkbox" name="removeDocument" value="{{ document.url }}"> Remove
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <input type="file" name="defectDocument" multiple>
+            <div class="checkbox-group">
+                <input type="checkbox" name="safetyRelated" id="safetyRelated" {% if nq.NonQualityDescription.safetyRelated %}checked{% endif %}>
+                <label for="safetyRelated">Safety Related {{ info('safetyRelated') }}</label>
+            </div>
+            <label>Non-Quality Quantity: {{ info('affectedQuantity') }}</label>
+            <input type="number" name="NonQualityQuantity" value="{{ (nq.PartIdentification or [{}])[0].affectedQuantity }}">
+        </fieldset>
+
+        <!-- SECTION: Non-Quality Discovery -->
+        <fieldset>
+            <legend>Non-Quality Discovery</legend>
+            <label>Step of Production: {{ info('stepOfProduction') }}</label>
+            <input type="text" name="stepOfProduction" value="{{ nq.NonQualityDiscovery.stepOfProduction }}">
+            <label>Number of the Aircraft (MSN): {{ info('msn') }}</label>
+            <input type="text" name="msn" value="{{ nq.NonQualityDiscovery.msn }}">
+            <label>Version of Aircraft: {{ info('versionOfAircraft') }}</label>
+            <input type="text" name="versionOfAircraft" value="{{ nq.NonQualityDiscovery.versionOfAircraft }}">
+            <label>ATA Section: {{ info('ataSection') }}</label>
+            <input type="text" name="ataSection" value="{{ nq.NonQualityDiscovery.ataSection }}">
+            <label>Detected How: {{ info('detectedHow') }}</label>
+            <input type="text" name="detectedHow" value="{{ nq.NonQualityDiscovery.detectedHow }}">
+            <label>Detected When: {{ info('detectedWhen') }}</label>
+            <input type="datetime-local" name="detectedWhen" value="{{ nq.NonQualityDiscovery.detectedWhen }}">
+            <label>Detected Where: {{ info('detectedWhere') }}</label>
+            <input type="text" name="detectedWhere" value="{{ nq.NonQualityDiscovery.detectedWhere }}">
+            <label>Detected by whom: {{ info('detectedByWhom') }}</label>
+            <input type="text" name="detectedByWhom" value="{{ nq.NonQualityDiscovery.detectedByWhom }}">
+        </fieldset>
+
+        <!-- SECTION: Product Scope -->
+        <fieldset>
+            <legend>Product Scope</legend>
+            <label>Airline Customer: {{ info('airlineCustomer') }}</label>
+            <input type="text" name="airlineCustomer" id="airlineCustomer" value="{{ nq.ProductScope.airlineCustomer }}">
+            <label>Final Customer: {{ info('finalCustomer') }}</label>
+            <input type="text" name="finalCustomer" id="finalCustomer" value="{{ nq.ProductScope.finalCustomer }}">
+            <label>Commodity: {{ info('commodity') }}</label>
+            <input type="text" name="commodity" id="commodity" value="{{ nq.ProductScope.commodity }}">
+            <label>Sub Commodity: {{ info('subCommodity') }}</label>
+            <input type="text" name="subCommodity" id="subCommodity" value="{{ nq.ProductScope.subCommodity }}">
+            <label>Program: {{ info('program') }}</label>
+            <input type="text" name="program" id="program" value="{{ nq.ProductScope.program }}">
+        </fieldset>
+
+        <!-- SECTION: Part Identification -->
+        <fieldset>
+            <legend>Part Identification</legend>
+            <label>Customer Part: {{ info('customerPartNumber') }}</label>
+            {# The customer part is fixed once the NQ exists — shown read-only. The
+               disabled <select> doesn't submit, so a hidden input preserves the value. #}
+            <select id="customerPartNumber" disabled
+                    title="The customer part cannot be changed after the Non-Quality has been created"
+                    style="background-color: #eee; color: #777; cursor: not-allowed;">
+                <option selected>{{ (nq.PartIdentification or [{}])[0].customerPartNumber }}</option>
+            </select>
+            <input type="hidden" name="customerPartNumber" value="{{ (nq.PartIdentification or [{}])[0].customerPartNumber }}">
+            <label>Customer Part Name {{ info('customerPartName') }}</label>
+            <input type="text" name="customerPartName" id="customerPartName" value="{{ (nq.PartIdentification or [{}])[0].customerPartName }}">
+            <label>Part Class {{ info('partClass') }}</label>
+            <input type="text" name="partClass" id="partClass" value="{{ (nq.PartIdentification or [{}])[0].partClass }}">
+            <label>Digital Nameplate: {{ info('partDigitalNameplate') }}</label>
+            <input type="url" name="DigitalNameplate" value="{{ (nq.PartIdentification or [{}])[0].partDigitalNameplate or '' }}">
+        </fieldset>
+
+        <!-- SECTION: Impacted Purchase Order -->
+        <fieldset>
+            <legend>Impacted Purchase Order:</legend>
+            <label>Affected Purchase Order Number: {{ info('affectedPurchaseOrderNumber') }}</label>
+            <input type="number" name="affectedPurchaseOrderNumber" value="{{ nq.ImpactedPurchaseOrder.affectedPurchaseOrderNumber }}">
+            <label>Purchase Order Position Number: {{ info('purchaseOrderPositionNumber') }}</label>
+            <input type="number" name="purchaseOrderPositionNumber" value="{{ nq.ImpactedPurchaseOrder.purchaseOrderPositionNumber }}">
+        </fieldset>
+
+        <!-- SECTION: Collaboration Partners -->
+        <fieldset>
+            <legend>Partner Collaboration</legend>
+            <label>Customer Group Name: {{ info('customerGroupName') }}</label>
+            <input type="text" name="customerGroupName" id="customerGroupName" value="{{ nq.CollaborationPartners.CustomerSite.customerGroupName }}">
+            <label>Customer Organization Name: {{ info('customerOrganizationName') }}</label>
+            <input type="text" name="customerOrganizationName" id="customerOrganizationName" value="{{ nq.CollaborationPartners.CustomerSite.customerOrganizationName }}">
+            <label>Customer Plant Code: {{ info('customerPlantCode') }}</label>
+            <input type="text" name="customerPlantCode" id="customerPlantCode" value="{{ nq.CollaborationPartners.CustomerSite.customerPlantCode }}">
+            <label>Customer Plant Name: {{ info('customerPlantName') }}</label>
+            <input type="text" name="customerPlantName" id="customerPlantName" value="{{ nq.CollaborationPartners.CustomerSite.customerPlantName }}">
+        </fieldset>
+        <div style="text-align: center;">
+            <button type="submit" id="edit-submit-btn">Update Non-Quality</button>
+        </div>
+    </form>
+    {{ progress_bar('edit-progress', publish_steps) }}
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ progress_scripts() }}
+<script>
+    attachExchangeProgress(document.getElementById('edit-nq-form'), 'edit-submit-btn',
+                           'edit-progress', '{{ url_for("customer.progress_stream_nq") }}');
+</script>
+{% endblock %}

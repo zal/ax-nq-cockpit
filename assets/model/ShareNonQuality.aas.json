@@ -1,0 +1,4749 @@
+{
+  "assetAdministrationShells": [
+    {
+      "modelType": "AssetAdministrationShell",
+      "assetInformation": {
+        "assetKind": "Type"
+      },
+      "submodels": [
+        {
+          "keys": [
+            {
+              "type": "Submodel",
+              "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ShareNonQuality/submodel"
+            }
+          ],
+          "type": "ModelReference"
+        }
+      ],
+      "administration": {},
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ShareNonQuality",
+      "description": [
+        {
+          "language": "en",
+          "text": "defaultAdminShell"
+        }
+      ],
+      "idShort": "defaultAdminShell"
+    }
+  ],
+  "conceptDescriptions": [
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "definition": [
+              {
+                "language": "en",
+                "text": "A structured set of data describing an identified non-quality event in the aerospace supply chain, exchanged between customer and supplier. It covers the problem, the affected product and its traceability, the discovery context, and the collaborating partners."
+              },
+              {
+                "language": "de",
+                "text": "Ein strukturierter Datensatz, der ein identifiziertes Non-Quality Ereignis in der Luftfahrtlieferkette beschreibt und zwischen Kunde und Lieferant ausgetauscht wird. Er umfasst das Problem, das betroffene Produkt mit seiner Rückverfolgbarkeit, den Entdeckungskontext und die beteiligten Partner."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Share Non Quality"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "ShareNonQuality"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ShareNonQuality",
+      "category": "APPLICATION_CLASS",
+      "description": [
+        {
+          "language": "en",
+          "text": "A structured set of data describing an identified non-quality event in the aerospace supply chain, exchanged between customer and supplier. It covers the problem, the affected product and its traceability, the discovery context, and the collaborating partners."
+        },
+        {
+          "language": "de",
+          "text": "Ein strukturierter Datensatz, der ein identifiziertes Non-Quality Ereignis in der Luftfahrtlieferkette beschreibt und zwischen Kunde und Lieferant ausgetauscht wird. Er umfasst das Problem, das betroffene Produkt mit seiner Rückverfolgbarkeit, den Entdeckungskontext und die beteiligten Partner."
+        }
+      ],
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Share Non Quality"
+        }
+      ],
+      "idShort": "ShareNonQuality"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Global eindeutige Kennung (UUID) des Non-Quality Berichts zur Referenzierung über alle zugehörigen Datensätze hinweg während seines gesamten Lebenszyklus."
+              },
+              {
+                "language": "en",
+                "text": "Globally unique identifier (UUID) of the non-quality report, used to reference it across all related records throughout its lifecycle."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Non Quality Id"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "nonQualityId"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityId",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Non Quality Id"
+        }
+      ],
+      "idShort": "nonQualityId"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Kurzer, beschreibender Titel, der das Non-Quality Ereignis zur schnellen Identifikation zusammenfasst (z.B. 'Maßabweichung an bearbeiteter Oberfläche')."
+              },
+              {
+                "language": "en",
+                "text": "Short, descriptive title summarising the non-quality event for quick identification (e.g. 'Dimensional out-of-tolerance on machined surface')."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Non Quality Title"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "nonQualityTitle"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityTitle",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Non Quality Title"
+        }
+      ],
+      "idShort": "nonQualityTitle"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Aktueller Lebenszyklusstatus des Non-Quality Berichts. Zulässige Werte: OPEN (gemeldet, Maßnahme ausstehend), CANCELLED (aufgehoben, keine weitere Maßnahme), CLOSED (gelöst und verifiziert)."
+              },
+              {
+                "language": "en",
+                "text": "Current lifecycle status of the non-quality report. Permitted values: OPEN (reported, awaiting action), CANCELLED (voided, no further action), CLOSED (resolved and verified)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Non Quality Status"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "nonQualityStatus"
+              }
+            ],
+            "valueList": {
+              "valueReferencePairs": [
+                {
+                  "value": "OPEN",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#NonQualityStatus:_OPEN6e10953f"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "CANCELLED",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#NonQualityStatus:_CANCELLED8ab6812a"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "CLOSED",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#NonQualityStatus:_CLOSEDf6deab2b"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityStatus",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Non Quality Status"
+        }
+      ],
+      "idShort": "nonQualityStatus"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "TIMESTAMP",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Zeitstempel (YYYY-MM-DD hh:mm), zu dem der Non-Quality Bericht erstmals erstellt wurde."
+              },
+              {
+                "language": "en",
+                "text": "Timestamp (YYYY-MM-DD hh:mm) when the non-quality report was first created."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Non Quality Creation Date"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "nonQualityCreationDate"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityCreationDate",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Non Quality Creation Date"
+        }
+      ],
+      "idShort": "nonQualityCreationDate"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "TIMESTAMP",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Timestamp (YYYY-MM-DD hh:mm) of the most recent change to the non-quality report."
+              },
+              {
+                "language": "de",
+                "text": "Zeitstempel (YYYY-MM-DD hh:mm) der jüngsten Änderung am Non-Quality Bericht."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Non Quality Last Update Date"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "nonQualityLastUpdateDate"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityLastUpdateDate",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Non Quality Last Update Date"
+        }
+      ],
+      "idShort": "nonQualityLastUpdateDate"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Free-text remarks from the customer on the non-quality event, e.g. contact details, special instructions, or additional observations relevant to the supplier's disposition."
+              },
+              {
+                "language": "de",
+                "text": "Freitextanmerkungen des Kunden zum Non-Quality Ereignis, z.B. Ansprechpartner, besondere Hinweise oder zusätzliche Beobachtungen, die für die Disposition des Lieferanten relevant sind."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Customer Comment"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "customerComment"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerComment",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Customer Comment"
+        }
+      ],
+      "idShort": "customerComment"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Kopfinformationen zur Identifikation und Verfolgung eines Non-Quality Berichts: eindeutige Kennung, Titel, aktueller Status, Erstellungsdatum und Zeitstempel der letzten Aktualisierung."
+              },
+              {
+                "language": "en",
+                "text": "Header information identifying and tracking a non-quality report: its unique identifier, title, current status, creation date, and last update timestamp."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Non Quality Header"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "nonQualityHeader"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityHeader",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Non Quality Header"
+        }
+      ],
+      "idShort": "nonQualityHeader"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Brief one-to-three sentence summary of the problem capturing the essential 'what' and 'where' (e.g. 'Cracking on bearing seat diameter of part X')."
+              },
+              {
+                "language": "de",
+                "text": "Kurze ein- bis dreisätzige Zusammenfassung des Problems mit dem wesentlichen 'Was' und 'Wo' (z.B. 'Rissbildung am Lagerpassdurchmesser von Teil X')."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Problem Short Description"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "problemShortDescription"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#problemShortDescription",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Problem Short Description"
+        }
+      ],
+      "idShort": "problemShortDescription"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Ausführliche Beschreibung des Problems, einschließlich beobachteter Symptome, Mess- oder Prüfergebnisse und bereits ergriffener Sofort-Eindämmungsmaßnahmen. Dient als primäre Referenz für die Ursachenanalyse und Disposition des Lieferanten."
+              },
+              {
+                "language": "en",
+                "text": "Detailed description of the problem, including observed symptoms, measurement or inspection findings, and any immediate containment already taken. Serves as the primary reference for the supplier's root cause analysis and disposition."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Problem Long Description"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "problemLongDescription"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#problemLongDescription",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Problem Long Description"
+        }
+      ],
+      "idShort": "problemLongDescription"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "High-level category grouping the non-quality by its general nature (e.g. dimensional, visual, material, functional, missing/incomplete, contamination)."
+              },
+              {
+                "language": "de",
+                "text": "Übergeordnete Kategorie, die die Non-Quality nach ihrer allgemeinen Art gruppiert (z.B. dimensional, visuell, Material, funktional, fehlend/unvollständig, Kontamination)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Issue Group"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "issueGroup"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#issueGroup",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Issue Group"
+        }
+      ],
+      "idShort": "issueGroup"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Spezifischer Code, der den genauen Problemtyp innerhalb seiner IssueGroup gemäß dem Klassifizierungsschema der Organisation identifiziert."
+              },
+              {
+                "language": "en",
+                "text": "Specific code identifying the precise issue type within its IssueGroup, following the organisation's classification scheme."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Issue Code"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "issueCode"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#issueCode",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Issue Code"
+        }
+      ],
+      "idShort": "issueCode"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "IRI",
+            "definition": [
+              {
+                "language": "en",
+                "text": "A digital image file (JPEG, PNG, or TIFF format) capturing visual evidence of the defect or non-quality condition. Modeled as a resource reference (path or URL)."
+              },
+              {
+                "language": "de",
+                "text": "Eine digitale Bilddatei (JPEG-, PNG- oder TIFF-Format), die visuelle Beweise des Defekts oder Non-Quality Zustands festhält. Modelliert als Ressourcenverweis (Pfad oder URL)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Defect Image"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "defectImage"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#defectImage",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Defect Image"
+        }
+      ],
+      "idShort": "defectImage"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "IRI",
+            "definition": [
+              {
+                "language": "en",
+                "text": "A reference to formal documentation supporting the defect report. This may include inspection reports, test certificates, non-conformance reports (NCR), material certification documents, process deviation records, or customer-specific forms. Modeled as a resource reference (path or URL)."
+              },
+              {
+                "language": "de",
+                "text": "Ein Verweis auf eine offizielle Dokumentation, die den Defektbericht unterstützt. Dies kann Inspektionsberichte, Zertifikate, Nichtkonformitätsberichte (NCR), Werkstoffzertifikate, Prozessabweichungsdokumente oder kundenspezifische Formulare umfassen. Modelliert als Ressourcenverweis (Pfad oder URL)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Defect Document"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "defectDocument"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#defectDocument",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Defect Document"
+        }
+      ],
+      "idShort": "defectDocument"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "BOOLEAN",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Boolescher Indikator, der angibt, ob das betroffene Teil oder Bauteil sicherheitskritisch ist, d.h. ein Defekt die Lufttüchtigkeit beeinträchtigen könnte. Dient zur Priorisierung der Bearbeitung und Eskalation."
+              },
+              {
+                "language": "en",
+                "text": "Boolean flag indicating whether the affected part or component is safety-critical, i.e. a defect could affect airworthiness. Used to prioritise handling and escalation."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Safety Related"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "safetyRelated"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#safetyRelated",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Safety Related"
+        }
+      ],
+      "idShort": "safetyRelated"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "A list of UUIDs or part names identifying sub-components or assemblies that are affected by the non-quality. This field enables impact analysis and eases root cause analysis."
+              },
+              {
+                "language": "de",
+                "text": "Eine Liste von UUIDs oder Teilnamen, die Unterbauteile oder Baugruppen identifiziert, die von der Non-Quality betroffen sind. Dieses Feld ermöglicht Auswirkungsanalysen und vereinfacht die Ursachenanalyse."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Sub Part Affected Component"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "subPartAffectedComponent"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#subPartAffectedComponent",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Sub Part Affected Component"
+        }
+      ],
+      "idShort": "subPartAffectedComponent"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Beschreibende Inhalte des Non-Quality Ereignisses: kurze und ausführliche Problembeschreibung, Problemklassifizierung (IssueGroup/IssueCode), unterstützende Nachweise (Bilder, Dokumente) und Sicherheitsrelevanz."
+              },
+              {
+                "language": "en",
+                "text": "Descriptive content of the non-quality event: short and long problem descriptions, issue classification (IssueGroup/IssueCode), supporting evidence (images, documents), and safety relevance."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Non Quality Description"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "nonQualityDescription"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityDescription",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Non Quality Description"
+        }
+      ],
+      "idShort": "nonQualityDescription"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Die Phase im Fertigungs- oder Lieferkettenprozess, in der die Non-Quality erstmals identifiziert wurde (z.B. Eingangsprüfung, Prozess, finale Qualitätsprüfung, Montage, Versand)."
+              },
+              {
+                "language": "en",
+                "text": "The stage in the manufacturing or supply chain process at which the non-quality was first identified (e.g. incoming inspection, in-process, final quality review, assembly, shipping)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Step Of Production"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "stepOfProduction"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#stepOfProduction",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Step Of Production"
+        }
+      ],
+      "idShort": "stepOfProduction"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "INTEGER_COUNT",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Manufacturer Serial Number (MSN), auch Line Number genannt, die den spezifischen Flugzeugrumpf eindeutig identifiziert, an dem das betroffene Teil installiert ist oder werden soll."
+              },
+              {
+                "language": "en",
+                "text": "Manufacturer Serial Number (MSN), also called Line Number, uniquely identifying the specific aircraft airframe on which the affected part is or will be installed."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "MSN"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "msn"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#msn",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "MSN"
+        }
+      ],
+      "idShort": "msn"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "The model variant or configuration of the aircraft, relevant because the same part number may differ in specification or approval status across variants."
+              },
+              {
+                "language": "de",
+                "text": "Die Modellvariante oder Konfiguration des Flugzeugs; relevant, da dieselbe Teilenummer je nach Variante in Spezifikation oder Genehmigungsstatus abweichen kann."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Version Of Aircraft"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "versionOfAircraft"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#versionOfAircraft",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Version Of Aircraft"
+        }
+      ],
+      "idShort": "versionOfAircraft"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Das ATA-Kapitel (gemäß ATA-100-Standard), das das Flugzeugsystem oder die Komponentengruppe des betroffenen Teils identifiziert und standardisierte Querverweise in der technischen Dokumentation ermöglicht."
+              },
+              {
+                "language": "en",
+                "text": "The ATA chapter (per the ATA 100 standard) identifying the aircraft system or component group to which the affected part belongs, enabling standardised cross-referencing in technical documentation."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "ATA Section"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "ataSection"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ataSection",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "ATA Section"
+        }
+      ],
+      "idShort": "ataSection"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "The detection method, inspection, or test that revealed the non-quality (e.g. visual inspection, dimensional measurement, non-destructive testing, functional test, process monitoring, customer complaint)."
+              },
+              {
+                "language": "de",
+                "text": "Die Entdeckungsmethode, Prüfung oder Test, die die Non-Quality aufgedeckt hat (z.B. Sichtprüfung, Maßmessung, zerstörungsfreie Prüfung, Funktionstest, Prozessüberwachung, Kundenbeschwerde)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Detected How"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "detectedHow"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#detectedHow",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Detected How"
+        }
+      ],
+      "idShort": "detectedHow"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "TIMESTAMP",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Date and time when the non-quality was first observed."
+              },
+              {
+                "language": "de",
+                "text": "Datum und Uhrzeit, zu der die Non-Quality erstmals beobachtet wurde."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Detected When"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "detectedWhen"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#detectedWhen",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Detected When"
+        }
+      ],
+      "idShort": "detectedWhen"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Physical location or workstation where the non-quality was identified (e.g. facility, production line, or inspection station)."
+              },
+              {
+                "language": "de",
+                "text": "Physischer Ort oder Arbeitsplatz, an dem die Non-Quality identifiziert wurde (z.B. Standort, Produktionslinie oder Prüfstation)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Detected Where"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "detectedWhere"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#detectedWhere",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Detected Where"
+        }
+      ],
+      "idShort": "detectedWhere"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Die Person, Rolle, Abteilung oder Organisation, die die Non-Quality erstmals entdeckt und gemeldet hat."
+              },
+              {
+                "language": "en",
+                "text": "The person, role, department, or organisation that first discovered and reported the non-quality."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Detected By Whom"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "detectedByWhom"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#detectedByWhom",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Detected By Whom"
+        }
+      ],
+      "idShort": "detectedByWhom"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Kontextinformationen dazu, wie, wann, wo und von wem die Non-Quality entdeckt wurde, einschließlich Produktionsschritt und Flugzeugreferenz (MSN, Version, ATA-Abschnitt). Unterstützt die Ursachenanalyse und Prozessverbesserung."
+              },
+              {
+                "language": "en",
+                "text": "Contextual information on how, when, where, and by whom the non-quality was discovered, including the production step and aircraft reference (MSN, version, ATA section). Supports root cause analysis and process improvement."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Non Quality Discovery"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "nonQualityDiscovery"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityDiscovery",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Non Quality Discovery"
+        }
+      ],
+      "idShort": "nonQualityDiscovery"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Name der kommerziellen Fluggesellschaft oder des Endverbraucher-Betreibers des Flugzeugs, an dem das betroffene Teil installiert ist."
+              },
+              {
+                "language": "en",
+                "text": "Name of the commercial airline or end-user operator of the aircraft on which the affected part is installed."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Airline Customer"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "airlineCustomer"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#airlineCustomer",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Airline Customer"
+        }
+      ],
+      "idShort": "airlineCustomer"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Der Originalausrüstungshersteller (OEM) oder Hauptauftragnehmer, der der endgültige Empfänger des Teils ist."
+              },
+              {
+                "language": "en",
+                "text": "The original equipment manufacturer (OEM) or prime contractor that is the ultimate recipient of the part."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Final Customer"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "finalCustomer"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#finalCustomer",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Final Customer"
+        }
+      ],
+      "idShort": "finalCustomer"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Breite Produktkategorie des betroffenen Teils für Beschaffung und Lieferkettenklassifizierung (z.B. Befestigungselemente, Lager, Hydraulikkomponenten, Avionik, Strukturteile)."
+              },
+              {
+                "language": "en",
+                "text": "Broad product category of the affected part used for procurement and supply chain classification (e.g. fasteners, bearings, hydraulic components, avionics, structural parts)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Commodity"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "commodity"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#commodity",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Commodity"
+        }
+      ],
+      "idShort": "commodity"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Feinere Klassifizierung innerhalb der Warengruppe (z.B. unter 'Befestigungselemente': Bolzen, Muttern, Nieten, Clips, Stifte)."
+              },
+              {
+                "language": "en",
+                "text": "More granular classification within the commodity group (e.g. under 'fasteners': bolts, nuts, rivets, clips, pins)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Sub Commodity"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "subCommodity"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#subCommodity",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Sub Commodity"
+        }
+      ],
+      "idShort": "subCommodity"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "The aircraft program or project for which the affected part is intended. May differ from the actual aircraft version."
+              },
+              {
+                "language": "de",
+                "text": "Das Flugzeugprogramm oder Projekt, für das das betroffene Teil bestimmt ist. Kann von der tatsächlichen Flugzeugversion abweichen."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Program"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "program"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#program",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Program"
+        }
+      ],
+      "idShort": "program"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Defines the scope and context of the products affected by the non-quality, including end-user (airline, OEM), product classification (commodity/sub-commodity), and aircraft program."
+              },
+              {
+                "language": "de",
+                "text": "Definiert den Umfang und Kontext der von der Non-Quality betroffenen Produkte, einschließlich Endverbraucher (Fluggesellschaft, OEM), Produktklassifizierung (Warengruppe/Untergruppe) und Flugzeugprogramm."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Product Scope"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "productScope"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#productScope",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Product Scope"
+        }
+      ],
+      "idShort": "productScope"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "IRI",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Referenz zum Digital Nameplate Submodell für das betroffene Teil, modelliert als Ressourcenverweis (URI/Pfad zum referenzierten Submodell)."
+              },
+              {
+                "language": "en",
+                "text": "Reference to the Digital Nameplate submodel for the affected part, modeled as a resource reference (URI/path to the referenced submodel)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Part Digital Nameplate"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "partDigitalNameplate"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#partDigitalNameplate",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Part Digital Nameplate"
+        }
+      ],
+      "idShort": "partDigitalNameplate"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "INTEGER_COUNT",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Number of units affected for this specific part and traceability number."
+              },
+              {
+                "language": "de",
+                "text": "Anzahl der betroffenen Einheiten für dieses spezifische Teil und diese Rückverfolgungsnummer."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Affected Quantity"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "affectedQuantity"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#affectedQuantity",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Affected Quantity"
+        }
+      ],
+      "idShort": "affectedQuantity"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Art der Rückverfolgbarkeit für dieses Teil (Serialisiert, Charge, Los, Einzelprodukt usw.)."
+              },
+              {
+                "language": "en",
+                "text": "Type of traceability for this part (Serialised, Batch, Lot, Single Product etc.)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Traceability Type"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "traceabilityType"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#traceabilityType",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Traceability Type"
+        }
+      ],
+      "idShort": "traceabilityType"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Eindeutige Kennung für diese Rückverfolgbarkeit."
+              },
+              {
+                "language": "en",
+                "text": "Unique identifier for this traceability."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Traceability Number"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "traceabilityNumber"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#traceabilityNumber",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Traceability Number"
+        }
+      ],
+      "idShort": "traceabilityNumber"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Classification of the part type (e.g., mechanical, electrical, structural)."
+              },
+              {
+                "language": "de",
+                "text": "Klassifizierung des Teiletyps (z.B. mechanisch, elektrisch, strukturell)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Part Class"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "partClass"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#partClass",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Part Class"
+        }
+      ],
+      "idShort": "partClass"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Customer Part Number."
+              },
+              {
+                "language": "de",
+                "text": "Kundenteilenummer."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Customer Part Number"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "customerPartNumber"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerPartNumber",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Customer Part Number"
+        }
+      ],
+      "idShort": "customerPartNumber"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Kundenteilename."
+              },
+              {
+                "language": "en",
+                "text": "Customer Part Name."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Customer Part Name"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "customerPartName"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerPartName",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Customer Part Name"
+        }
+      ],
+      "idShort": "customerPartName"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Mandatory entity holding the core identification and traceability data for the affected part: digital nameplate reference, traceability type and number, affected quantity, and part classification."
+              },
+              {
+                "language": "de",
+                "text": "Verpflichtende Entität mit den Kern-Identifikations- und Rückverfolgbarkeitsdaten des betroffenen Teils: Digital-Nameplate-Verweis, Rückverfolgbarkeitstyp und -nummer, betroffene Menge und Teileklassifizierung."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Part Identification"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "partIdentification"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#partIdentification",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Part Identification"
+        }
+      ],
+      "idShort": "partIdentification"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Die Bestellnummer des Kunden, unter der die betroffenen Teile geliefert wurden und die die Non-Quality mit Beschaffungsunterlagen verknüpft."
+              },
+              {
+                "language": "en",
+                "text": "The customer's purchase order number under which the affected parts were supplied, linking the non-quality to procurement records."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Affected Purchase Order Number"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "affectedPurchaseOrderNumber"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#affectedPurchaseOrderNumber",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Affected Purchase Order Number"
+        }
+      ],
+      "idShort": "affectedPurchaseOrderNumber"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "INTEGER_COUNT",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Die Position (Zeile) innerhalb der Bestellung, die den spezifischen Eintrag identifiziert, unter dem das betroffene Teil bestellt wurde."
+              },
+              {
+                "language": "en",
+                "text": "The line item (position) within the purchase order identifying the specific row on which the affected part was ordered."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Purchase Order Position Number"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "purchaseOrderPositionNumber"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#purchaseOrderPositionNumber",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Purchase Order Position Number"
+        }
+      ],
+      "idShort": "purchaseOrderPositionNumber"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Bestellinformationen, die die Non-Quality mit der kommerziellen Transaktion verknüpfen, über die die betroffenen Teile beschafft wurden, einschließlich Bestellnummer und Positionsnummer."
+              },
+              {
+                "language": "en",
+                "text": "Purchase order information linking the non-quality to the commercial transaction that sourced the affected parts, including the purchase order number and line item position."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Impacted Purchase Order"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "impactedPurchaseOrder"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#impactedPurchaseOrder",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Impacted Purchase Order"
+        }
+      ],
+      "idShort": "impactedPurchaseOrder"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Der von Aerospace-X vergebene Identifikationscode (ACAGE) des Kunden."
+              },
+              {
+                "language": "en",
+                "text": "The Aerospace-X assigned identification code (ACAGE) of the customer."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Customer ACAGE Code"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "customerACAGECode"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerACAGECode",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Customer ACAGE Code"
+        }
+      ],
+      "idShort": "customerACAGECode"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Der Name der Gruppe, der die Kundenorganisation angehört (falls anwendbar)."
+              },
+              {
+                "language": "en",
+                "text": "The name of the group the customer organization belongs to (if applicable)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Customer Group Name"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "customerGroupName"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerGroupName",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Customer Group Name"
+        }
+      ],
+      "idShort": "customerGroupName"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Der vollständige rechtliche Name der Kundenentität, die die Non-Quality meldet, wie in Verträgen und behördlichen Einreichungen registriert."
+              },
+              {
+                "language": "en",
+                "text": "The full legal name of the customer entity reporting the non-quality, as registered in contracts and regulatory filings."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Customer Organization Name"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "customerOrganizationName"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerOrganizationName",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Customer Organization Name"
+        }
+      ],
+      "idShort": "customerOrganizationName"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "A code assigned by the customer to identify the specific facility where the non-quality was discovered (e.g. 'HAM01' for the Hamburg site)."
+              },
+              {
+                "language": "de",
+                "text": "Ein vom Kunden vergebener Code zur Identifikation der spezifischen Einrichtung, in der die Non-Quality entdeckt wurde (z.B. 'HAM01' für den Standort Hamburg)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Customer Plant Code"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "customerPlantCode"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerPlantCode",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Customer Plant Code"
+        }
+      ],
+      "idShort": "customerPlantCode"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "The human-readable name of the customer facility where the non-quality occurred, complementing the plant code."
+              },
+              {
+                "language": "de",
+                "text": "Der menschenlesbare Name der Kundeneinrichtung, in der die Non-Quality auftrat, ergänzend zum Werks-Code."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Customer Plant Name"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "customerPlantName"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerPlantName",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Customer Plant Name"
+        }
+      ],
+      "idShort": "customerPlantName"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Die spezifische Kundenorganisation und der physische Standort, der für die Meldung der Non-Quality verantwortlich ist; macht den Meldestandort bei Unternehmen mit mehreren Standorten eindeutig."
+              },
+              {
+                "language": "en",
+                "text": "The specific customer organisation and physical site responsible for reporting the non-quality, disambiguating the reporting location for companies operating multiple facilities."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Customer Site"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "customerSite"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerSite",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Customer Site"
+        }
+      ],
+      "idShort": "customerSite"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Der von Aerospace-X vergebene Identifikationscode (ACAGE) des Lieferanten."
+              },
+              {
+                "language": "en",
+                "text": "The Aerospace-X assigned identification code (ACAGE) of the supplier."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Supplier ACAGE Code"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "supplierACAGECode"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#supplierACAGECode",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Supplier ACAGE Code"
+        }
+      ],
+      "idShort": "supplierACAGECode"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "The specific supplier organisation and physical site responsible for manufacturing, delivering, or servicing the affected part, disambiguating the location for suppliers operating multiple facilities."
+              },
+              {
+                "language": "de",
+                "text": "Die spezifische Lieferantenorganisation und der physische Standort, der für Fertigung, Lieferung oder Wartung des betroffenen Teils verantwortlich ist; macht den Standort bei Lieferanten mit mehreren Standorten eindeutig."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Supplier Site"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "supplierSite"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#supplierSite",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Supplier Site"
+        }
+      ],
+      "idShort": "supplierSite"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Identifiziert den Kunden (der die Non-Quality meldet) und den Lieferanten (verantwortlich für Disposition und Korrekturmaßnahmen), einschließlich ACAGE-Codes, Werk-Identifikatoren, Organisationsnamen und Gruppenbezeichnungen beider Parteien."
+              },
+              {
+                "language": "en",
+                "text": "Identifies the customer (reporting the non-quality) and the supplier (responsible for disposition and corrective action), including ACAGE codes, plant identifiers, organisation names, and group designations for both parties."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Collaboration Partners"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "collaborationPartners"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#collaborationPartners",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Collaboration Partners"
+        }
+      ],
+      "idShort": "collaborationPartners"
+    }
+  ],
+  "submodels": [
+    {
+      "modelType": "Submodel",
+      "kind": "Template",
+      "semanticId": {
+        "keys": [
+          {
+            "type": "GlobalReference",
+            "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ShareNonQuality"
+          }
+        ],
+        "type": "ExternalReference"
+      },
+      "administration": {},
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ShareNonQuality/submodel",
+      "description": [
+        {
+          "language": "en",
+          "text": "A structured set of data describing an identified non-quality event in the aerospace supply chain, exchanged between customer and supplier. It covers the problem, the affected product and its traceability, the discovery context, and the collaborating partners."
+        },
+        {
+          "language": "de",
+          "text": "Ein strukturierter Datensatz, der ein identifiziertes Non-Quality Ereignis in der Luftfahrtlieferkette beschreibt und zwischen Kunde und Lieferant ausgetauscht wird. Er umfasst das Problem, das betroffene Produkt mit seiner Rückverfolgbarkeit, den Entdeckungskontext und die beteiligten Partner."
+        }
+      ],
+      "idShort": "ShareNonQuality",
+      "submodelElements": [
+        {
+          "modelType": "SubmodelElementCollection",
+          "description": [
+            {
+              "language": "de",
+              "text": "Kopfinformationen zur Identifikation und Verfolgung eines Non-Quality Berichts: eindeutige Kennung, Titel, aktueller Status, Erstellungsdatum und Zeitstempel der letzten Aktualisierung."
+            },
+            {
+              "language": "en",
+              "text": "Header information identifying and tracking a non-quality report: its unique identifier, title, current status, creation date, and last update timestamp."
+            }
+          ],
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Non Quality Header"
+            }
+          ],
+          "idShort": "NonQualityHeader",
+          "value": [
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityId"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Non Quality Id"
+                }
+              ],
+              "idShort": "nonQualityId",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityTitle"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Non Quality Title"
+                }
+              ],
+              "idShort": "nonQualityTitle",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityStatus"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Non Quality Status"
+                }
+              ],
+              "idShort": "nonQualityStatus",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityCreationDate"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:dateTime",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Non Quality Creation Date"
+                }
+              ],
+              "idShort": "nonQualityCreationDate",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityLastUpdateDate"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:dateTime",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Non Quality Last Update Date"
+                }
+              ],
+              "idShort": "nonQualityLastUpdateDate",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerComment"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Customer Comment"
+                }
+              ],
+              "idShort": "customerComment",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "ZeroToOne",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "SubmodelElementCollection",
+          "description": [
+            {
+              "language": "de",
+              "text": "Beschreibende Inhalte des Non-Quality Ereignisses: kurze und ausführliche Problembeschreibung, Problemklassifizierung (IssueGroup/IssueCode), unterstützende Nachweise (Bilder, Dokumente) und Sicherheitsrelevanz."
+            },
+            {
+              "language": "en",
+              "text": "Descriptive content of the non-quality event: short and long problem descriptions, issue classification (IssueGroup/IssueCode), supporting evidence (images, documents), and safety relevance."
+            }
+          ],
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Non Quality Description"
+            }
+          ],
+          "idShort": "NonQualityDescription",
+          "value": [
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#problemShortDescription"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Problem Short Description"
+                }
+              ],
+              "idShort": "problemShortDescription",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#problemLongDescription"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Problem Long Description"
+                }
+              ],
+              "idShort": "problemLongDescription",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#issueGroup"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Issue Group"
+                }
+              ],
+              "idShort": "issueGroup",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#issueCode"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Issue Code"
+                }
+              ],
+              "idShort": "issueCode",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "SubmodelElementList",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#defectImage"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "description": [
+                {
+                  "language": "en",
+                  "text": "A digital image file (JPEG, PNG, or TIFF format) capturing visual evidence of the defect or non-quality condition. Modeled as a resource reference (path or URL)."
+                },
+                {
+                  "language": "de",
+                  "text": "Eine digitale Bilddatei (JPEG-, PNG- oder TIFF-Format), die visuelle Beweise des Defekts oder Non-Quality Zustands festhält. Modelliert als Ressourcenverweis (Pfad oder URL)."
+                }
+              ],
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Defect Image"
+                }
+              ],
+              "idShort": "defectImage",
+              "orderRelevant": false,
+              "typeValueListElement": "SubmodelElementCollection",
+              "value": [
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#defectImage"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:anyURI",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Defect Image"
+                    }
+                  ],
+                  "idShort": "defectImage"
+                }
+              ],
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "ZeroToMany",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "SubmodelElementList",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#defectDocument"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "description": [
+                {
+                  "language": "en",
+                  "text": "A reference to formal documentation supporting the defect report. This may include inspection reports, test certificates, non-conformance reports (NCR), material certification documents, process deviation records, or customer-specific forms. Modeled as a resource reference (path or URL)."
+                },
+                {
+                  "language": "de",
+                  "text": "Ein Verweis auf eine offizielle Dokumentation, die den Defektbericht unterstützt. Dies kann Inspektionsberichte, Zertifikate, Nichtkonformitätsberichte (NCR), Werkstoffzertifikate, Prozessabweichungsdokumente oder kundenspezifische Formulare umfassen. Modelliert als Ressourcenverweis (Pfad oder URL)."
+                }
+              ],
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Defect Document"
+                }
+              ],
+              "idShort": "defectDocument",
+              "orderRelevant": false,
+              "typeValueListElement": "SubmodelElementCollection",
+              "value": [
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#defectDocument"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:anyURI",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Defect Document"
+                    }
+                  ],
+                  "idShort": "defectDocument"
+                }
+              ],
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "ZeroToMany",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#safetyRelated"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:boolean",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Safety Related"
+                }
+              ],
+              "idShort": "safetyRelated",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "SubmodelElementList",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#subPartAffectedComponent"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "description": [
+                {
+                  "language": "en",
+                  "text": "A list of UUIDs or part names identifying sub-components or assemblies that are affected by the non-quality. This field enables impact analysis and eases root cause analysis."
+                },
+                {
+                  "language": "de",
+                  "text": "Eine Liste von UUIDs oder Teilnamen, die Unterbauteile oder Baugruppen identifiziert, die von der Non-Quality betroffen sind. Dieses Feld ermöglicht Auswirkungsanalysen und vereinfacht die Ursachenanalyse."
+                }
+              ],
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Sub Part Affected Component"
+                }
+              ],
+              "idShort": "subPartAffectedComponent",
+              "orderRelevant": false,
+              "typeValueListElement": "SubmodelElementCollection",
+              "value": [
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#subPartAffectedComponent"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Sub Part Affected Component"
+                    }
+                  ],
+                  "idShort": "subPartAffectedComponent"
+                }
+              ],
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "ZeroToMany",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "SubmodelElementCollection",
+          "description": [
+            {
+              "language": "de",
+              "text": "Kontextinformationen dazu, wie, wann, wo und von wem die Non-Quality entdeckt wurde, einschließlich Produktionsschritt und Flugzeugreferenz (MSN, Version, ATA-Abschnitt). Unterstützt die Ursachenanalyse und Prozessverbesserung."
+            },
+            {
+              "language": "en",
+              "text": "Contextual information on how, when, where, and by whom the non-quality was discovered, including the production step and aircraft reference (MSN, version, ATA section). Supports root cause analysis and process improvement."
+            }
+          ],
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Non Quality Discovery"
+            }
+          ],
+          "idShort": "NonQualityDiscovery",
+          "value": [
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#stepOfProduction"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Step Of Production"
+                }
+              ],
+              "idShort": "stepOfProduction",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#msn"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:integer",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "MSN"
+                }
+              ],
+              "idShort": "msn",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "ZeroToOne",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#versionOfAircraft"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Version Of Aircraft"
+                }
+              ],
+              "idShort": "versionOfAircraft",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "ZeroToOne",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ataSection"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "ATA Section"
+                }
+              ],
+              "idShort": "ataSection",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "ZeroToOne",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#detectedHow"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Detected How"
+                }
+              ],
+              "idShort": "detectedHow",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#detectedWhen"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:dateTime",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Detected When"
+                }
+              ],
+              "idShort": "detectedWhen",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#detectedWhere"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Detected Where"
+                }
+              ],
+              "idShort": "detectedWhere",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#detectedByWhom"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Detected By Whom"
+                }
+              ],
+              "idShort": "detectedByWhom",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "SubmodelElementCollection",
+          "description": [
+            {
+              "language": "en",
+              "text": "Defines the scope and context of the products affected by the non-quality, including end-user (airline, OEM), product classification (commodity/sub-commodity), and aircraft program."
+            },
+            {
+              "language": "de",
+              "text": "Definiert den Umfang und Kontext der von der Non-Quality betroffenen Produkte, einschließlich Endverbraucher (Fluggesellschaft, OEM), Produktklassifizierung (Warengruppe/Untergruppe) und Flugzeugprogramm."
+            }
+          ],
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Product Scope"
+            }
+          ],
+          "idShort": "ProductScope",
+          "value": [
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#airlineCustomer"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Airline Customer"
+                }
+              ],
+              "idShort": "airlineCustomer",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "ZeroToOne",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#finalCustomer"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Final Customer"
+                }
+              ],
+              "idShort": "finalCustomer",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "ZeroToOne",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#commodity"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Commodity"
+                }
+              ],
+              "idShort": "commodity",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "ZeroToOne",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#subCommodity"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Sub Commodity"
+                }
+              ],
+              "idShort": "subCommodity",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "ZeroToOne",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#program"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Program"
+                }
+              ],
+              "idShort": "program",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "ZeroToOne",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "ZeroToOne",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "SubmodelElementList",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#partIdentification"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "description": [
+            {
+              "language": "en",
+              "text": "Mandatory entity holding the core identification and traceability data for the affected part: digital nameplate reference, traceability type and number, affected quantity, and part classification."
+            },
+            {
+              "language": "de",
+              "text": "Verpflichtende Entität mit den Kern-Identifikations- und Rückverfolgbarkeitsdaten des betroffenen Teils: Digital-Nameplate-Verweis, Rückverfolgbarkeitstyp und -nummer, betroffene Menge und Teileklassifizierung."
+            }
+          ],
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Part Identification"
+            }
+          ],
+          "idShort": "PartIdentification",
+          "orderRelevant": false,
+          "typeValueListElement": "SubmodelElementCollection",
+          "value": [
+            {
+              "modelType": "SubmodelElementCollection",
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Mandatory entity holding the core identification and traceability data for the affected part: digital nameplate reference, traceability type and number, affected quantity, and part classification."
+                },
+                {
+                  "language": "de",
+                  "text": "Verpflichtende Entität mit den Kern-Identifikations- und Rückverfolgbarkeitsdaten des betroffenen Teils: Digital-Nameplate-Verweis, Rückverfolgbarkeitstyp und -nummer, betroffene Menge und Teileklassifizierung."
+                }
+              ],
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Part Identification"
+                }
+              ],
+              "idShort": "PartIdentification",
+              "value": [
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#partDigitalNameplate"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:anyURI",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Part Digital Nameplate"
+                    }
+                  ],
+                  "idShort": "partDigitalNameplate",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#affectedQuantity"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:integer",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Affected Quantity"
+                    }
+                  ],
+                  "idShort": "affectedQuantity",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#traceabilityType"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Traceability Type"
+                    }
+                  ],
+                  "idShort": "traceabilityType",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "ZeroToOne",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#traceabilityNumber"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Traceability Number"
+                    }
+                  ],
+                  "idShort": "traceabilityNumber",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "ZeroToOne",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#partClass"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Part Class"
+                    }
+                  ],
+                  "idShort": "partClass",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "ZeroToOne",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerPartNumber"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Customer Part Number"
+                    }
+                  ],
+                  "idShort": "customerPartNumber",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "ZeroToOne",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerPartName"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Customer Part Name"
+                    }
+                  ],
+                  "idShort": "customerPartName",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "ZeroToOne",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "OneToMany",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "SubmodelElementCollection",
+          "description": [
+            {
+              "language": "de",
+              "text": "Bestellinformationen, die die Non-Quality mit der kommerziellen Transaktion verknüpfen, über die die betroffenen Teile beschafft wurden, einschließlich Bestellnummer und Positionsnummer."
+            },
+            {
+              "language": "en",
+              "text": "Purchase order information linking the non-quality to the commercial transaction that sourced the affected parts, including the purchase order number and line item position."
+            }
+          ],
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Impacted Purchase Order"
+            }
+          ],
+          "idShort": "ImpactedPurchaseOrder",
+          "value": [
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#affectedPurchaseOrderNumber"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Affected Purchase Order Number"
+                }
+              ],
+              "idShort": "affectedPurchaseOrderNumber",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#purchaseOrderPositionNumber"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:integer",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Purchase Order Position Number"
+                }
+              ],
+              "idShort": "purchaseOrderPositionNumber",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "SubmodelElementCollection",
+          "description": [
+            {
+              "language": "de",
+              "text": "Identifiziert den Kunden (der die Non-Quality meldet) und den Lieferanten (verantwortlich für Disposition und Korrekturmaßnahmen), einschließlich ACAGE-Codes, Werk-Identifikatoren, Organisationsnamen und Gruppenbezeichnungen beider Parteien."
+            },
+            {
+              "language": "en",
+              "text": "Identifies the customer (reporting the non-quality) and the supplier (responsible for disposition and corrective action), including ACAGE codes, plant identifiers, organisation names, and group designations for both parties."
+            }
+          ],
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Collaboration Partners"
+            }
+          ],
+          "idShort": "CollaborationPartners",
+          "value": [
+            {
+              "modelType": "SubmodelElementCollection",
+              "description": [
+                {
+                  "language": "de",
+                  "text": "Die spezifische Kundenorganisation und der physische Standort, der für die Meldung der Non-Quality verantwortlich ist; macht den Meldestandort bei Unternehmen mit mehreren Standorten eindeutig."
+                },
+                {
+                  "language": "en",
+                  "text": "The specific customer organisation and physical site responsible for reporting the non-quality, disambiguating the reporting location for companies operating multiple facilities."
+                }
+              ],
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Customer Site"
+                }
+              ],
+              "idShort": "CustomerSite",
+              "value": [
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerACAGECode"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Customer ACAGE Code"
+                    }
+                  ],
+                  "idShort": "customerACAGECode",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerGroupName"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Customer Group Name"
+                    }
+                  ],
+                  "idShort": "customerGroupName",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "ZeroToOne",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerOrganizationName"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Customer Organization Name"
+                    }
+                  ],
+                  "idShort": "customerOrganizationName",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerPlantCode"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Customer Plant Code"
+                    }
+                  ],
+                  "idShort": "customerPlantCode",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#customerPlantName"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Customer Plant Name"
+                    }
+                  ],
+                  "idShort": "customerPlantName",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ],
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "SubmodelElementCollection",
+              "description": [
+                {
+                  "language": "en",
+                  "text": "The specific supplier organisation and physical site responsible for manufacturing, delivering, or servicing the affected part, disambiguating the location for suppliers operating multiple facilities."
+                },
+                {
+                  "language": "de",
+                  "text": "Die spezifische Lieferantenorganisation und der physische Standort, der für Fertigung, Lieferung oder Wartung des betroffenen Teils verantwortlich ist; macht den Standort bei Lieferanten mit mehreren Standorten eindeutig."
+                }
+              ],
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Supplier Site"
+                }
+              ],
+              "idShort": "SupplierSite",
+              "value": [
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#supplierACAGECode"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Supplier ACAGE Code"
+                    }
+                  ],
+                  "idShort": "supplierACAGECode",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ],
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

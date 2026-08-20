@@ -1,0 +1,79 @@
+{# SPDX-FileCopyrightText: 2026 ZAL GmbH #}
+{# SPDX-License-Identifier: Apache-2.0 #}
+{#
+  Reusable info-icon tooltip for input forms.
+
+  Usage in a template:
+    {% from "_field_info.html" import info, info_styles with context %}
+    ... inside <head> ...
+    {{ info_styles() }}
+    ... next to a form label ...
+    <label>Non-Quality Title: {{ info('nonQualityTitle') }}</label>
+
+  The tooltip text is pulled from the AAS ConceptDescriptions (aas/concept_descriptions.py),
+  exposed to every template as `field_info` via a context processor in app.py.
+  `with context` on the import is required so the macro can see `field_info`.
+#}
+
+{% macro info_styles() %}
+<style>
+    .info-icon {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 16px;
+        height: 16px;
+        line-height: 14px;
+        text-align: center;
+        border-radius: 50%;
+        background-color: #009de0;
+        color: #fff;
+        font-size: 11px;
+        font-weight: bold;
+        font-style: normal;
+        font-family: Georgia, "Times New Roman", serif;
+        cursor: help;
+        margin-left: 6px;
+        position: relative;
+        vertical-align: middle;
+    }
+    .info-icon .tooltip-text {
+        visibility: hidden;
+        opacity: 0;
+        width: 260px;
+        background-color: #333;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 8px 10px;
+        position: absolute;
+        z-index: 1000;
+        bottom: 150%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12px;
+        font-weight: normal;
+        font-style: normal;
+        line-height: 1.4;
+        transition: opacity 0.15s ease-in-out;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        white-space: normal;
+    }
+    .info-icon .tooltip-text::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #333 transparent transparent transparent;
+    }
+    .info-icon:hover .tooltip-text,
+    .info-icon:focus .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
+{% endmacro %}
+
+{% macro info(key) %}{% if field_info.get(key) %}<span class="info-icon" tabindex="0" aria-label="Info: {{ field_info[key] }}">i<span class="tooltip-text">{{ field_info[key] }}</span></span>{% endif %}{% endmacro %}

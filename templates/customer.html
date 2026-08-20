@@ -1,0 +1,387 @@
+{# SPDX-FileCopyrightText: 2026 ZAL GmbH #}
+{# SPDX-License-Identifier: Apache-2.0 #}
+{% extends "base.html" %}
+{% from "_field_info.html" import info, info_styles with context %}
+{% from "_progress.html" import progress_styles, progress_bar, progress_scripts %}
+{% set publish_steps = ['Data Endpoint Creation', 'Asset Creation', 'Policy Creation', 'Contract Creation', 'Notification Delivery'] %}
+{% block title %}Report Non-Conformity{% endblock %}
+
+{% block head %}
+{{ info_styles() }}
+{{ progress_styles() }}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 120px;
+        padding: 20px;
+    }
+    h2 {
+        margin-bottom: 30px;
+    }
+    fieldset {
+        margin-bottom: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background-color: white;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    legend {
+        font-weight: bold;
+        font-size: 1.2em;
+        padding: 0 10px;
+    }
+    .hidden {
+        display: none;
+    }
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+        align-items: center;
+    }
+    label.required::after {
+        content: " *";
+        color: #c0392b;
+    }
+    input[type="text"], textarea, select {
+        width: 100%;
+        max-width: 500px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    textarea {
+        resize: vertical;
+    }
+    button {
+        padding: 12px 24px;
+        font-size: 1.1em;
+        background-color: rgb(0, 157, 224);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    button:hover {
+        background-color: rgb(0, 150, 215);
+    }
+    .checkbox-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .checkbox-group input[type="checkbox"] {
+        width: auto;
+        margin-right: 10px;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Populate the part dropdown dynamically
+        fetch('{{ url_for("customer.get_available_parts") }}')
+            .then(response => response.json())
+            .then(parts => {
+                const partSelect = document.getElementById('customerPartNumber');
+
+                // Clear existing options (except the default one)
+                while (partSelect.options.length > 1) {
+                    partSelect.remove(1);
+                }
+
+                // Add new options
+                parts.forEach(part => {
+                    const option = document.createElement('option');
+                    option.value = part.value;
+                    option.textContent = part.value;
+                    partSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading parts:', error);
+            });
+    });
+</script>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Report Non-Quality</h2>
+    <form method="post" enctype="multipart/form-data">
+        <!-- SECTION: Non-Quality General Data -->
+        <fieldset>
+            <legend>Non-Quality General Data</legend>
+            <label class="required">Non-Quality Title: {{ info('nonQualityTitle') }}</label>
+            <input type="text" name="nonQualityTitle" required>
+            <label>Customer Comment: {{ info('customerComment') }}</label>
+            <textarea name="customerComment" rows="4"></textarea>
+        </fieldset>
+        <!-- SECTION: Part Identification -->
+        <fieldset>
+            <legend>Part Identification</legend>
+            <label>Customer Part: {{ info('customerPartNumber') }}</label>
+            <select name="customerPartNumber" id="customerPartNumber">
+                <option value="" disabled selected>Select</option>
+            </select>
+            <label>Customer Part Name {{ info('customerPartName') }}</label>
+            <input type="text" name="customerPartName" id="customerPartName">
+            <label class="required">Digital Nameplate: {{ info('partDigitalNameplate') }}</label>
+            <input type="url" name="DigitalNameplate" id="DigitalNameplate" required>
+            <label class="required">Non-Quality Quantity: {{ info('affectedQuantity') }}</label>
+            <input type="number" name="NonQualityQuantity" required>
+            <label>Traceability Type: {{ info('traceabilityType') }}</label>
+            <select name="traceabilityType" id="traceabilityType">
+                <option value="" disabled selected>Select</option>
+                <option value="Serial Number">Serial Number</option>
+            </select>
+            <label>Traceability Number: {{ info('traceabilityNumber') }}</label>
+            <input type="text" name="traceabilityNumber" id="traceabilityNumber">
+            <label>Part Class {{ info('partClass') }}</label>
+            <input type="text" name="partClass" id="partClass">
+        </fieldset>
+
+        <!-- SECTION: Defect Description -->
+        <fieldset>
+            <legend>Defect Description</legend>
+            <label class="required">Problem Short Description: {{ info('problemShortDescription') }}</label>
+            <textarea name="problemShortDescription" id="problemShortDescription" rows="2" required></textarea>
+            <label class="required">Problem Long Description: {{ info('problemLongDescription') }}</label>
+            <textarea name="problemLongDescription" id="problemLongDescription" rows="4" required></textarea>
+            <label class="required">Issue Group: {{ info('issueGroup') }}</label>
+            <input type="text" name="issueGroup" id="issueGroup" required>
+            <label class="required">Issue Code: {{ info('issueCode') }}</label>
+            <input type="text" name="issueCode" id="issueCode" required>
+            <label>Defect Image(s): {{ info('defectImage') }}</label>
+            <input type="file" name="defectImage" multiple>
+            <label>Defect Document(s): {{ info('defectDocument') }}</label>
+            <input type="file" name="defectDocument" multiple>
+            <div class="checkbox-group">
+                <input type="checkbox" name="safetyRelated" id="safetyRelated">
+                <label for="safetyRelated" >Safety Related {{ info('safetyRelated') }}</label>
+            </div>
+            <label>Sub Part Affected Component: {{ info('SubPartAffectedComponent') }}</label>
+            <div id="featuresContainer" style="text-align: center;"></div>
+            <button type="button" class="button" id="addFeatureBtn">+ Add Quality Feature</button>
+        </fieldset>
+
+        <!-- SECTION: Defect Discovery -->
+        <fieldset>
+            <legend>Defect Discovery</legend>
+            <label class="required">Step of Production: {{ info('stepOfProduction') }}</label>
+            <input type="text" name="stepOfProduction" id="stepOfProduction" required>
+            <label>Number of the Aircraft (MSN): {{ info('msn') }}</label>
+            <input type="text" name="msn" id="msn">
+            <label>Version of Aircraft: {{ info('versionOfAircraft') }}</label>
+            <input type="text" name="versionOfAircraft" id="versionOfAircraft">
+            <label>ATA Section: {{ info('ataSection') }}</label>
+            <input type="text" name="ataSection" id="ataSection">
+            <label class="required">Detected How: {{ info('detectedHow') }}</label>
+            <input type="text" name="detectedHow" required>
+            <label class="required">Detected When: {{ info('detectedWhen') }}</label>
+            <input type="datetime-local" name="detectedWhen" required>
+            <label class="required">Detected Where: {{ info('detectedWhere') }}</label>
+            <input type="text" name="detectedWhere" required>
+            <label class="required">Detected by whom: {{ info('detectedByWhom') }}</label>
+            <input type="text" name="detectedByWhom" required>
+        </fieldset>
+
+        <!-- SECTION: Impacted Purchase Order -->
+        <fieldset>
+            <legend>Impacted Purchase Order:</legend>
+            <label class="required">Affected Purchase Order Number: {{ info('affectedPurchaseOrderNumber') }}</label>
+            <input type="text" name="affectedPurchaseOrderNumber" id="affectedPurchaseOrderNumber" required>
+            <label class="required">Purchase Order Position Number: {{ info('purchaseOrderPositionNumber') }}</label>
+            <input type="number" name="purchaseOrderPositionNumber" id="purchaseOrderPositionNumber" required>
+        </fieldset>
+
+        <!-- SECTION: Collaboration Partners -->
+        <fieldset>
+            <legend>Partner Collaboration</legend>
+            <label class="required">Customer ACAGE Code: {{ info('customerACAGECode') }}</label>
+            <input type="text" name="customerACAGECode" id="customerACAGECode" required>
+            <label class="required">Customer Group Name: {{ info('customerGroupName') }}</label>
+            <input type="text" name="customerGroupName" id="customerGroupName" required>
+            <label class="required">Customer Organization Name: {{ info('customerOrganizationName') }}</label>
+            <input type="text" name="customerOrganizationName" id="customerOrganizationName" required>
+            <label class="required">Customer Plant Code: {{ info('customerPlantCode') }}</label>
+            <input type="text" name="customerPlantCode" id="customerPlantCode" required>
+            <label class="required">Customer Plant Name: {{ info('customerPlantName') }}</label>
+            <input type="text" name="customerPlantName" id="customerPlantName" required>
+            <label class="required">Supplier ACAGE Code: {{ info('supplierACAGECode') }}</label>
+            <input type="text" name="supplierACAGECode" id="supplierACAGECode" required>
+        </fieldset>
+
+        <!-- SECTION: Product Scope -->
+        <fieldset>
+            <legend>Product Scope</legend>
+            <label>Airline Customer: {{ info('airlineCustomer') }}</label>
+            <input type="text" name="airlineCustomer" id="airlineCustomer">
+            <label>Final Customer: {{ info('finalCustomer') }}</label>
+            <input type="text" name="finalCustomer" id="finalCustomer">
+            <label>Commodity: {{ info('commodity') }}</label>
+            <input type="text" name="commodity" id="commodity">
+            <label>Sub Commodity: {{ info('subCommodity') }}</label>
+            <input type="text" name="subCommodity" id="subCommodity">
+            <label>Program: {{ info('program') }}</label>
+            <input type="text" name="program" id="program">
+        </fieldset>
+
+        <!-- SECTION: Access Control -->
+        <fieldset>
+            <legend>Access Control</legend>
+            {% if transport_mode == "mock" %}
+            <label for="PartnerDID">Supplier (mock partner this NQ will be shared with):</label>
+            <select name="PartnerDID" id="PartnerDID" style="width:100%;max-width:500px;">
+                <option value="{{ partner_url }}" selected>Mock Supplier ({{ partner_url }})</option>
+            </select>
+            <p style="font-size:0.85em;color:#666;margin-top:6px;">
+                Running in Mock mode — the partner instance at <strong>{{ partner_url }}</strong> will receive the notification and can pull this NQ.
+            </p>
+            {% else %}
+            <label for="PartnerDID">Supplier (who may fetch this NQ via EDC and receive the notification):</label>
+            <select name="PartnerDID" id="PartnerDID" style="width:100%;max-width:500px;">
+                <option value="">— select a registered supplier —</option>
+            </select>
+            <p style="font-size:0.85em;color:#666;margin-top:6px;">
+                Only the selected supplier's EDC connector will be authorized to access the data endpoint. Register suppliers under Settings → Partner Management.
+            </p>
+            <script>
+                fetch('{{ url_for("edc.list_partners") }}')
+                    .then(r => r.json())
+                    .then(data => {
+                        const sel = document.getElementById('PartnerDID');
+                        (data.partners || []).forEach(p => {
+                            const opt = document.createElement('option');
+                            opt.value = p.edc_connector_did;
+                            opt.textContent = p.label ? `${p.label} (${p.edc_connector_did})` : p.edc_connector_did;
+                            sel.appendChild(opt);
+                        });
+                    })
+                    .catch(() => {});
+            </script>
+            {% endif %}
+        </fieldset>
+
+        <div style="text-align: center; margin: 20px 0;">
+            {% if transport_mode == "mock" %}
+            <p style="background-color: #e7f3ff; border-left: 6px solid #2196F3; padding: 15px; margin: 0 auto; max-width: 800px;">
+                Note: Running in Mock mode. When you share this Non-Quality, a mock dataspace offer will be created and a notification sent directly to the partner instance. The partner can then pull the NQ data without a real contract negotiation.
+            </p>
+            {% else %}
+            <p style="background-color: #e7f3ff; border-left: 6px solid #2196F3; padding: 15px; margin: 0 auto; max-width: 800px;">
+                Note: When you share this Non-Quality, an asset with a data endpoint URL, a policy and a contract will be created in your Aerospace-X dataspace catalog. In addition to that, a notification will be sent to the supplier that this asset exists. This will be followed by a contract negotiation phase before the supplier can access this Non-Quality information.
+            </p>
+            {% endif %}
+        </div>
+        <div style="text-align: center;">
+            <button type="submit" id="submitBtn">Share Non-Quality</button>
+        </div>
+    </form>
+    <!-- Progress bar -->
+    {{ progress_bar('share-progress', publish_steps) }}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const container = document.getElementById('featuresContainer');
+    const addButton = document.getElementById('addFeatureBtn');
+
+    // Add a new feature input row
+    function addFeatureRow(uuid = '', name = '') {
+        const div = document.createElement('div');
+        div.className = 'feature-entry';
+        div.style.display = 'flex';
+        div.style.gap = '10px';
+        div.style.marginBottom = '10px';
+        div.style.alignItems = 'flex-end';
+
+        div.innerHTML = `
+        <input type="text" name="uuid[]" placeholder="Enter UUID" value="${uuid}" />
+        <input type="text" name="featureName[]" placeholder="Enter Feature Name" value="${name}" />
+        <button type="button" class="remove-btn" style="
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            display: flex;
+            height: 30px;
+            padding: 0 10px; /* reduce vertical padding to match input */
+            align-items: center;
+            cursor: pointer;">Remove</button>
+        `;
+
+        div.querySelector('.remove-btn').addEventListener('click', () => div.remove());
+        container.appendChild(div);
+    }
+
+    // Add feature when button clicked
+    addButton.addEventListener('click', () => addFeatureRow());
+
+    // Optionally, start with one blank row
+    addFeatureRow();
+</script>
+<script>
+    var partInput = document.getElementById('customerPartNumber');
+    if (partInput){
+        partInput.addEventListener('change', function() {
+            var customerPartNumber = this.value;
+            console.log(customerPartNumber)
+
+            fetch('{{ url_for("customer.get_part_info") }}?customerPartNumber=' + encodeURIComponent(customerPartNumber))
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok: ' + response.status + ' ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data)
+                    document.getElementById('customerPartName').value = data.customerPartName || '';
+                    document.getElementById('partClass').value = data.partClass || '';
+                    document.getElementById('DigitalNameplate').value = data.DigitalNameplate || '';
+                    document.getElementById('traceabilityType').value = data.traceabilityType || '';
+                    document.getElementById('traceabilityNumber').value = data.traceabilityNumber || '';
+                    document.getElementById('stepOfProduction').value = data.stepOfProduction || '';
+                    document.getElementById('msn').value = data.msn || '';
+                    document.getElementById('versionOfAircraft').value = data.versionOfAircraft || '';
+                    document.getElementById('ataSection').value = data.ataSection || '';
+                    // The defect itself (description / issue code) is left blank on purpose —
+                    // the customer documents that after finding the defect.
+                    document.getElementById('affectedPurchaseOrderNumber').value = data.affectedPurchaseOrderNumber || '';
+                    document.getElementById('purchaseOrderPositionNumber').value = data.purchaseOrderPositionNumber || '';
+                    document.getElementById('customerACAGECode').value = data.customerACAGECode || '';
+                    document.getElementById('customerGroupName').value = data.customerGroupName || '';
+                    document.getElementById('customerOrganizationName').value = data.customerOrganizationName || '';
+                    document.getElementById('customerPlantCode').value = data.customerPlantCode || '';
+                    document.getElementById('customerPlantName').value = data.customerPlantName || '';
+                    document.getElementById('supplierACAGECode').value = data.supplierACAGECode || '';
+                    document.getElementById('airlineCustomer').value = data.airlineCustomer || '';
+                    document.getElementById('finalCustomer').value = data.finalCustomer || '';
+                    document.getElementById('commodity').value = data.commodity || '';
+                    document.getElementById('subCommodity').value = data.subCommodity || '';
+                    document.getElementById('program').value = data.program || '';
+
+                })
+                .catch(error => {
+                    console.error('Error fetching part info:', error);
+                });
+        })};
+</script>
+{{ progress_scripts() }}
+<script>
+    // Sharing a brand-new NQ always streams the full 5-step publish; on success
+    // the POST returns the rendered dashboard, so navigate there explicitly.
+    attachExchangeProgress(
+        document.querySelector('form'), 'submitBtn', 'share-progress',
+        '{{ url_for("customer.progress_stream_nq") }}',
+        '{{ url_for("customer.customer_home") }}');
+</script>
+{% endblock %}

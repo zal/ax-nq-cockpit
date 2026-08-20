@@ -1,0 +1,292 @@
+{# SPDX-FileCopyrightText: 2026 ZAL GmbH #}
+{# SPDX-License-Identifier: Apache-2.0 #}
+{#
+  Shared disposition widgets: acceptance-status badge + git-style side-by-side
+  diff table styling.
+
+  Usage in a template:
+    {% from "_disposition_widgets.html" import status_badge, disposition_widget_styles with context %}
+    ... inside <head> ...
+    {{ disposition_widget_styles() }}
+    ... next to a disposition heading ...
+    {{ status_badge(disposition.acceptanceStatus) }}
+
+  The badge tooltip text is pulled from the AAS ConceptDescription for
+  `acceptanceStatus` (assets/model/Disposition.aas.json), exposed to every
+  template as `field_info` via the context processor in app.py. `with context`
+  on the import is required so the macro can see `field_info`.
+#}
+
+{% macro disposition_widget_styles() %}
+<style>
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 3px 12px;
+        border-radius: 12px;
+        font-size: 0.85em;
+        font-weight: bold;
+        text-transform: capitalize;
+        vertical-align: middle;
+        cursor: help;
+        position: relative;
+    }
+    .status-badge.status-pending { background-color: #fff3cd; color: #8a6d1a; }
+    .status-badge.status-accepted { background-color: #d4edda; color: #1e7e34; }
+    .status-badge.status-rejected { background-color: #f8d7da; color: #a71d2a; }
+    .status-badge .tooltip-text {
+        visibility: hidden;
+        opacity: 0;
+        width: 260px;
+        background-color: #333;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 8px 10px;
+        position: absolute;
+        z-index: 1000;
+        bottom: 140%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12px;
+        font-weight: normal;
+        text-transform: none;
+        line-height: 1.4;
+        transition: opacity 0.15s ease-in-out;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        white-space: normal;
+    }
+    .status-badge:hover .tooltip-text,
+    .status-badge:focus .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .diff-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+    }
+    .diff-table th {
+        text-align: left;
+        padding: 6px 10px;
+        font-size: 0.85em;
+        color: #555;
+        border-bottom: 1px solid #ddd;
+    }
+    .diff-table td {
+        padding: 6px 10px;
+        vertical-align: top;
+        border-bottom: 1px solid #eee;
+    }
+    .diff-table .diff-label {
+        font-weight: bold;
+        color: #333;
+        white-space: nowrap;
+        width: 1%;
+    }
+    .diff-table .diff-old {
+        background-color: #fdecea;
+    }
+    .diff-table .diff-new {
+        background-color: #e6f4ea;
+    }
+
+    .disposition-history {
+        margin-top: 10px;
+    }
+    .disposition-history summary {
+        cursor: pointer;
+        color: #009de0;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .disposition-greyed {
+        opacity: 0.55;
+        filter: grayscale(40%);
+    }
+</style>
+{% endmacro %}
+
+{% macro status_badge(status) %}
+{% set s = (status or 'pending')|lower %}
+<span class="status-badge status-{{ s }}" tabindex="0" aria-label="{{ field_info.get('acceptanceStatus', '') }}">
+    {{ s }}
+    {% if field_info.get('acceptanceStatus') %}<span class="tooltip-text">{{ field_info['acceptanceStatus'] }}</span>{% endif %}
+</span>
+{% endmacro %}
+
+{#
+  Renders "Proposed Completion Details" + "Disposition Proposal" — the only two
+  sections that get git-style diff highlighting. Pass `fields` (from
+  filters.get_disposition_comparisons) for a side-by-side Previous/Current diff
+  table; omit it (or pass none) to render the current values plainly (used for
+  the first-ever disposition, and for the final/greyed-out cards where there's
+  nothing left to negotiate).
+#}
+{% macro proposal_section(disposition, fields=None) %}
+<br>
+<label class="field-label">Proposed Completion Details</label>
+<br>
+{% if fields %}
+<table class="diff-table">
+    <tr><th></th><th>Previous</th><th>Current</th></tr>
+    <tr>
+        <td class="diff-label">Proposed Completion From:</td>
+        <td class="{% if fields.proposedCompletionFrom.changed %}diff-old{% endif %}">{{ fields.proposedCompletionFrom.old or 'Not specified' }}</td>
+        <td class="{% if fields.proposedCompletionFrom.changed %}diff-new{% endif %}">{{ fields.proposedCompletionFrom.new or 'Not specified' }}</td>
+    </tr>
+    <tr>
+        <td class="diff-label">Proposed Completion To:</td>
+        <td class="{% if fields.proposedCompletionTo.changed %}diff-old{% endif %}">{{ fields.proposedCompletionTo.old or 'Not specified' }}</td>
+        <td class="{% if fields.proposedCompletionTo.changed %}diff-new{% endif %}">{{ fields.proposedCompletionTo.new or 'Not specified' }}</td>
+    </tr>
+</table>
+<br>
+<label class="field-label">Disposition Proposal:</label>
+<br>
+<table class="diff-table">
+    <tr><th></th><th>Previous</th><th>Current</th></tr>
+    <tr>
+        <td class="diff-label">Disposition Type:</td>
+        <td class="{% if fields.dispositionType.changed %}diff-old{% endif %}">{{ fields.dispositionType.old or 'Not specified' }}</td>
+        <td class="{% if fields.dispositionType.changed %}diff-new{% endif %}">{{ fields.dispositionType.new or 'Not specified' }}</td>
+    </tr>
+    <tr>
+        <td class="diff-label">Decision Reason:</td>
+        <td class="{% if fields.decisionReason.changed %}diff-old{% endif %}">{{ fields.decisionReason.old or 'Not specified' }}</td>
+        <td class="{% if fields.decisionReason.changed %}diff-new{% endif %}">{{ fields.decisionReason.new or 'Not specified' }}</td>
+    </tr>
+</table>
+{% else %}
+<div class="field">
+    <span class="field-label">Proposed Completion From:</span>
+    <div class="field-value">{{ disposition.ProposedCompletionPeriod.proposedCompletionFrom }}</div>
+</div>
+<div class="field">
+    <span class="field-label">Proposed Completion To:</span>
+    <div class="field-value">{{ disposition.ProposedCompletionPeriod.proposedCompletionTo }}</div>
+</div>
+<br>
+<label class="field-label">Disposition Proposal:</label>
+<br>
+<div class="field">
+    <span class="field-label">Disposition Type:</span>
+    <div class="field-value">{{ disposition.dispositionType }}</div>
+</div>
+<div class="field">
+    <span class="field-label">Decision Reason:</span>
+    <div class="field-value">{{ disposition.decisionReason }}</div>
+</div>
+{% endif %}
+{% endmacro %}
+
+{#
+  Everything else about a disposition that is NOT part of the diffed sections —
+  rendered plainly (no highlighting) in every card variant.
+#}
+{% macro disposition_common_fields(disposition) %}
+<div class="field">
+    <span class="field-label">Creation Timestamp:</span>
+    <div class="field-value">{{ disposition.transactionTimeStamp }}</div>
+</div>
+<div class="field">
+    <span class="field-label">Disposition Creator:</span>
+    <div class="field-value">{{ disposition.dispositionCreator }}</div>
+</div>
+<br>
+<label class="field-label">Contact Person Details</label>
+<br>
+<div class="field">
+    <span class="field-label">Contact Person Party:</span>
+    <div class="field-value">{{ (disposition.ContactPersonInfo or [{}])[0].contactPartyType }}</div>
+</div>
+<div class="field">
+    <span class="field-label">Name:</span>
+    <div class="field-value">{{ (disposition.ContactPersonInfo or [{}])[0].contactPersonName }}</div>
+</div>
+<div class="field">
+    <span class="field-label">Email:</span>
+    <div class="field-value">{{ (disposition.ContactPersonInfo or [{}])[0].contactPersonEmail }}</div>
+</div>
+<div class="field">
+    <span class="field-label">Phone Number:</span>
+    <div class="field-value">{{ (disposition.ContactPersonInfo or [{}])[0].contactPersonPhoneNumber }}</div>
+</div>
+<div class="field">
+    <span class="field-label">Comment:</span>
+    <div class="field-value">{{ disposition.Comment.commentContent }}</div>
+</div>
+<br>
+<label class="field-label">Additional Information</label>
+<br>
+<div class="field">
+    <span class="field-label">Additional Information:</span>
+    <div class="field-value">{{ (disposition.AdditionalInformation or [{}])[0].additionalInformationText }}</div>
+</div>
+{% if (disposition.AdditionalInformation or [{}])[0].additionalDocument %}
+<div class="field">
+    <span class="field-label">Additional Documents:</span>
+    <div class="field-value">
+        {% for document in (disposition.AdditionalInformation or [{}])[0].additionalDocument %}
+        <div>
+            <a href="{{ attachment_url(document) }}" target="_blank" download style="color: #009de0;">
+                📄 {{ document.filename or document.url }}
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+<br>
+<label class="field-label">Request For More Information</label>
+<br>
+<div class="field">
+    <span class="field-label">Request Description:</span>
+    <div class="field-value">{{ (disposition.RequestForMoreInformation or [{}])[0].requestDescription }}</div>
+</div>
+<div class="field">
+    <span class="field-label">Information Data Format:</span>
+    <div class="field-value">{{ (disposition.RequestForMoreInformation or [{}])[0].informationDataFormat }}</div>
+</div>
+{% endmacro %}
+
+{#
+  Accept/Reject buttons for a still-pending, counterparty-authored disposition,
+  wired to the same EDC progress-bar mechanism as the rest of the app
+  (attachExchangeProgress in nq_detail.html reads these
+  ids by convention: respond-form-{index}-accept/reject,
+  respond-btn-{index}-accept/reject, respond-progress-{index}-accept/reject).
+#}
+{% macro respond_buttons(nq_id, index, endpoint) %}
+<div style="margin-top: 15px; display: flex; gap: 10px;">
+    <form method="post" action="{{ url_for(endpoint, nq_id=nq_id, index=index) }}" id="respond-form-{{ index }}-accept">
+        <input type="hidden" name="decision" value="accepted">
+        <button type="submit" id="respond-btn-{{ index }}-accept" style="padding: 10px 20px; background-color: #1e7e34; color: white; border: none; border-radius: 6px; cursor: pointer;">Accept</button>
+    </form>
+    <form method="post" action="{{ url_for(endpoint, nq_id=nq_id, index=index) }}" id="respond-form-{{ index }}-reject">
+        <input type="hidden" name="decision" value="rejected">
+        <button type="submit" id="respond-btn-{{ index }}-reject" style="padding: 10px 20px; background-color: #a71d2a; color: white; border: none; border-radius: 6px; cursor: pointer;">Reject</button>
+    </form>
+</div>
+{#
+  Five step slots even though a status update usually reuses an existing
+  contract (3 steps): the FIRST time a side publishes for this NQ — e.g. the
+  supplier accepting the customer's disposition before it has offered anything
+  of its own — the offer is new and streams all 5 steps (asset/policy/contract
+  creation). updateScopedProgress hides slots 4-5 when total is 3.
+#}
+{% for suffix in ['accept', 'reject'] %}
+<div id="respond-progress-{{ index }}-{{ suffix }}" class="progress-container" style="display:none;">
+    <div class="progress-bar">
+        <div class="progress-step"><div class="step-circle"></div><div class="step-label">Data Endpoint Creation</div></div>
+        <div class="progress-step"><div class="step-circle"></div><div class="step-label">Asset Creation</div></div>
+        <div class="progress-step"><div class="step-circle"></div><div class="step-label">Policy Creation</div></div>
+        <div class="progress-step"><div class="step-circle"></div><div class="step-label">Contract Creation</div></div>
+        <div class="progress-step"><div class="step-circle"></div><div class="step-label">Notification Delivery</div></div>
+        <div class="step-progress"></div>
+    </div>
+</div>
+{% endfor %}
+{% endmacro %}

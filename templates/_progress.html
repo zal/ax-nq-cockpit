@@ -1,0 +1,201 @@
+{# SPDX-FileCopyrightText: 2026 ZAL GmbH #}
+{# SPDX-License-Identifier: Apache-2.0 #}
+{#
+  Shared scoped progress bar (styles + markup + JS), used by every page that
+  drives a dataspace publish/pull over SSE.
+
+  Usage:
+    {% from "_progress.html" import progress_styles, progress_bar, progress_scripts %}
+    ... in <head> ...        {{ progress_styles() }}
+    ... near a form ...      {{ progress_bar('my-progress', ['Step A', 'Step B']) }}
+    ... in scripts ...       {{ progress_scripts() }}
+                             attachExchangeProgress(form, 'submit-btn', 'my-progress', url)
+
+  attachExchangeProgress streams {step, message, total} events onto one scoped
+  container. `total` picks the pre-completion label set (see PROGRESS_LABELS):
+  a fresh offer walks 5 EDC steps, an update to an already-offered asset reuses
+  the policy/contract and only re-publishes 3, and a pull is 4. Slots beyond
+  `total` are hidden. Pass `successUrl` to override where a successful submit
+  navigates (defaults to the POST response URL).
+#}
+
+{% macro progress_styles() %}
+<style>
+    .progress-container {
+        width: 100%;
+        max-width: 800px;
+        margin: 20px 0;
+        position: relative;
+    }
+    .progress-bar {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        margin-bottom: 30px;
+    }
+    .progress-bar::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background-color: #ddd;
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+    .progress-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 2;
+    }
+    .step-circle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        position: relative;
+        border: 2px solid #ddd;
+    }
+    .step-circle.completed {
+        background-color: #4CAF50;
+        border-color: #4CAF50;
+    }
+    .step-circle.completed::after {
+        content: "✓";
+        color: white;
+        font-weight: bold;
+    }
+    .step-label {
+        font-size: 0.8em;
+        text-align: center;
+        max-width: 100px;
+    }
+    .step-label.completed {
+        color: #4CAF50;
+        font-weight: bold;
+    }
+    .step-progress {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        height: 4px;
+        background-color: #4CAF50;
+        transform: translateY(-50%);
+        z-index: 0;
+        transition: width 0.3s ease;
+    }
+    /* Buttons attachExchangeProgress locks while an exchange is in flight —
+       they keep their own background colour, so grey them out explicitly. */
+    button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+</style>
+{% endmacro %}
+
+{% macro progress_bar(container_id, labels) %}
+<div id="{{ container_id }}" class="progress-container" style="display:none;">
+    <div class="progress-bar">
+        {% for label in labels %}
+        <div class="progress-step">
+            <div class="step-circle"></div>
+            <div class="step-label">{{ label }}</div>
+        </div>
+        {% endfor %}
+        <div class="step-progress"></div>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro progress_scripts() %}
+<script>
+    // Static, pre-completion labels vary with `total`, so a not-yet-reached
+    // step always shows text that matches what it is about to do rather than
+    // the other flow's default. A fresh asset walks 5 EDC steps; an update to
+    // an already-offered asset reuses the policy/contract and re-publishes 3;
+    // a pull is 4.
+    const PROGRESS_LABELS = {
+        5: ['Data Endpoint Creation', 'Asset Creation', 'Policy Creation', 'Contract Creation', 'Notification Delivery'],
+        4: ['Catalog Query', 'Contract Negotiation', 'Start Data Transfer', 'Fetch NQ Data'],
+        3: ['Data Endpoint Creation', 'Asset Update', 'Notification Delivery'],
+    };
+
+    function updateScopedProgress(containerId, step, total) {
+        const c = document.getElementById(containerId);
+        if (!c) return;
+        const steps = c.querySelectorAll('.progress-step');
+        const circles = c.querySelectorAll('.step-circle');
+        const labels = c.querySelectorAll('.step-label');
+        const pb = c.querySelector('.step-progress');
+        const staticLabels = PROGRESS_LABELS[total] || PROGRESS_LABELS[5];
+        steps.forEach(function(el, i) { el.style.display = i < total ? '' : 'none'; });
+        circles.forEach(function(el, i) { el.classList.toggle('completed', i < step); });
+        labels.forEach(function(el, i) {
+            el.classList.toggle('completed', i < step);
+            if (i >= step && i < total) el.textContent = staticLabels[i];
+        });
+        if (pb) pb.style.width = ((step - 1) / (total - 1) * 100) + '%';
+    }
+
+    // One exchange at a time per page: every attached form publishes through
+    // the same progress queue, and two overlapping publishes on the same NQ
+    // race each other on the server (clicking Reject while an Accept is still
+    // in flight would decide the same disposition twice). So a submit locks
+    // EVERY attached button, not just its own; a failed submit unlocks them.
+    const exchangeButtons = [];
+    let exchangeInProgress = false;
+
+    function setExchangeLock(locked) {
+        exchangeInProgress = locked;
+        exchangeButtons.forEach(function(b) { b.disabled = locked; });
+    }
+
+    function attachExchangeProgress(formEl, submitBtnId, progressContainerId, progressUrl, successUrl) {
+        if (!formEl) return;
+        const registeredBtn = document.getElementById(submitBtnId);
+        if (registeredBtn && exchangeButtons.indexOf(registeredBtn) === -1) {
+            exchangeButtons.push(registeredBtn);
+        }
+        formEl.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (exchangeInProgress) return;
+            const btn = document.getElementById(submitBtnId);
+            const orig = btn.textContent;
+            setExchangeLock(true);
+            btn.textContent = 'Processing...';
+            document.getElementById(progressContainerId).style.display = 'block';
+            const es = new EventSource(progressUrl);
+            es.onmessage = function(ev) {
+                const d = JSON.parse(ev.data);
+                updateScopedProgress(progressContainerId, d.step, d.total || 5);
+                const lbls = document.getElementById(progressContainerId).querySelectorAll('.step-label');
+                if (lbls[d.step - 1]) lbls[d.step - 1].textContent = d.message;
+            };
+            es.onerror = function() {
+                // The SSE stream closes normally once the server finishes sending
+                // progress events; that's not a submission failure, so don't
+                // re-enable the button here (that reopens a window for a duplicate
+                // submit before the fetch() below redirects).
+                es.close();
+            };
+            fetch(formEl.action || window.location.href, { method: 'POST', body: new FormData(formEl) })
+                .then(function(r) {
+                    es.close();
+                    if (r.ok || r.redirected) { window.location.href = successUrl || r.url; }
+                    else { throw new Error('failed'); }
+                })
+                .catch(function() {
+                    es.close();
+                    setExchangeLock(false);
+                    btn.textContent = orig;
+                });
+        });
+    }
+</script>
+{% endmacro %}

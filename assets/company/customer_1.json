@@ -1,0 +1,19 @@
+{
+  "company_name": "Aero Engine GmbH (Customer)",
+  "company_id": "CUST123",
+  "description": "Leading manufacturer of aerospace engines.",
+  "partners": ["SUPP456"],
+  "address": {
+    "street": "Industriestraße 10",
+    "zip": "21129",
+    "city": "Hamburg",
+    "country": "Germany"
+  },
+  "collaboration_partners":
+    {
+      "group_name": "Aero Engine GmbH",
+      "organization_name": "Aero Engine GmbH",
+      "plant_code": "PLT007",
+      "plant_name": "Highrise Hub"
+    }
+}

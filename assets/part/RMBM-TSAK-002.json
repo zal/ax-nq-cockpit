@@ -1,0 +1,35 @@
+{
+  "PartIdentification": {
+    "customerPartNumber": "RMBM-TSAK-002",
+    "customerPartName": "Wing Rib Bracket",
+    "partClass": "Primary Structure",
+    "DigitalNameplate": "https://digitalnameplate.example.com/wing/rib-bracket/S31-2025-RB02B2G3",
+    "traceabilityType": "Serial Number",
+    "traceabilityNumber": "S/N-11072024-2002"
+  },
+  "NonQualityDiscovery": {
+    "stepOfProduction": "Incoming inspection",
+    "msn": "2047",
+    "versionOfAircraft": "D320",
+    "ataSection": "ATA-57"
+  },
+  "ImpactedPurchaseOrder": {
+    "affectedPurchaseOrderNumber": "SPA-0112",
+    "purchaseOrderPositionNumber": "11"
+  },
+  "PartnerCollaboration": {
+    "customerACAGECode": "AX_0046",
+    "customerGroupName": "Aero Structures GmbH",
+    "customerOrganizationName": "Aero Structures Operations GmbH",
+    "customerPlantCode": "PLT-041",
+    "customerPlantName": "Coastline Works",
+    "supplierACAGECode": "AX_0205"
+  },
+  "ProductScope": {
+    "airlineCustomer": "Christiana Airways",
+    "finalCustomer": "Skybound Aircraft Corporation",
+    "commodity": "Structures",
+    "subCommodity": "Wing",
+    "program": "SA Series"
+  }
+}

@@ -1,0 +1,1516 @@
+{
+  "assetAdministrationShells": [
+    {
+      "modelType": "AssetAdministrationShell",
+      "assetInformation": {
+        "assetKind": "Type"
+      },
+      "submodels": [
+        {
+          "keys": [
+            {
+              "type": "Submodel",
+              "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ContainmentAction/submodel"
+            }
+          ],
+          "type": "ModelReference"
+        }
+      ],
+      "administration": {},
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ContainmentAction",
+      "description": [
+        {
+          "language": "en",
+          "text": "defaultAdminShell"
+        }
+      ],
+      "idShort": "defaultAdminShell"
+    }
+  ],
+  "conceptDescriptions": [
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Eine einzelne Eindämmungsmaßnahme, die ergriffen wird, um die Ausbreitung nichtkonformer Teile zu verhindern und die Auswirkungen einer erkannten Non-Quality bis zu einer endgültigen Disposition zu mildern. Jede Maßnahme (z.B. Bestand quarantänieren, nachgelagerte Kunden benachrichtigen, Produktion stoppen) wird einzeln mit verantwortlicher Partei, Datum und Status verfolgt; für eine Non-Quality können mehrere Maßnahmen gelten."
+              },
+              {
+                "language": "en",
+                "text": "A single containment action taken to prevent the spread of non-conforming parts and mitigate the impact of a detected non-quality, pending a permanent disposition. Each action (e.g. quarantine stock, notify downstream customers, halt production) is tracked individually with a responsible party, dates, and status; multiple actions may apply to one non-quality."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Containment Action"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "ContainmentAction"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ContainmentAction",
+      "category": "APPLICATION_CLASS",
+      "description": [
+        {
+          "language": "de",
+          "text": "Eine einzelne Eindämmungsmaßnahme, die ergriffen wird, um die Ausbreitung nichtkonformer Teile zu verhindern und die Auswirkungen einer erkannten Non-Quality bis zu einer endgültigen Disposition zu mildern. Jede Maßnahme (z.B. Bestand quarantänieren, nachgelagerte Kunden benachrichtigen, Produktion stoppen) wird einzeln mit verantwortlicher Partei, Datum und Status verfolgt; für eine Non-Quality können mehrere Maßnahmen gelten."
+        },
+        {
+          "language": "en",
+          "text": "A single containment action taken to prevent the spread of non-conforming parts and mitigate the impact of a detected non-quality, pending a permanent disposition. Each action (e.g. quarantine stock, notify downstream customers, halt production) is tracked individually with a responsible party, dates, and status; multiple actions may apply to one non-quality."
+        }
+      ],
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Containment Action"
+        }
+      ],
+      "idShort": "ContainmentAction"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Global eindeutige Kennung (UUID) des Non-Quality Berichts zur Referenzierung über alle zugehörigen Datensätze hinweg während seines gesamten Lebenszyklus."
+              },
+              {
+                "language": "en",
+                "text": "Globally unique identifier (UUID) of the non-quality report, used to reference it across all related records throughout its lifecycle."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Non Quality Id"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "nonQualityId"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityId",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Non Quality Id"
+        }
+      ],
+      "idShort": "nonQualityId"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Unique identifier (e.g. UUID) of the containment action, enabling individual tracking and reference."
+              },
+              {
+                "language": "de",
+                "text": "Eindeutige Kennung (z.B. UUID) der Eindämmungsmaßnahme zur individuellen Verfolgung und Referenzierung."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Action Id"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "actionId"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#actionId",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Action Id"
+        }
+      ],
+      "idShort": "actionId"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Die Partei (Kunde oder Lieferant), die für die Ausführung der Eindämmungsmaßnahme verantwortlich ist; manche Maßnahmen erfordern die gemeinsame Ausführung durch beide."
+              },
+              {
+                "language": "en",
+                "text": "The party (Customer or Supplier) responsible for executing the containment action; some actions require joint execution by both."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Action Party"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "actionParty"
+              }
+            ],
+            "valueList": {
+              "valueReferencePairs": [
+                {
+                  "value": "Customer",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ActionPartyType:_Customerbf376338"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "Supplier",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ActionPartyType:_Supplier72e2f033"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "Both",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ActionPartyType:_Bothb6c1d862"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#actionParty",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Action Party"
+        }
+      ],
+      "idShort": "actionParty"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Short, descriptive title of the containment action (e.g. 'Quarantine raw material stock', 'Halt shipment of batch XYZ')."
+              },
+              {
+                "language": "de",
+                "text": "Kurzer, beschreibender Titel der Eindämmungsmaßnahme (z.B. 'Rohmaterialbestand quarantänieren', 'Versand von Charge XYZ stoppen')."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Title"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "title"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#title",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Title"
+        }
+      ],
+      "idShort": "title"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Detailed description of the containment action: the steps to perform, affected parts/batches/lots, location, and any special instructions or constraints."
+              },
+              {
+                "language": "de",
+                "text": "Detaillierte Beschreibung der Eindämmungsmaßnahme: durchzuführende Schritte, betroffene Teile/Chargen/Lose, Ort sowie besondere Anweisungen oder Einschränkungen."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Description"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "description"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#description",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Description"
+        }
+      ],
+      "idShort": "description"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Die Einzelperson oder Funktion, die mit der Ausführung der Eindämmungsmaßnahme beauftragt ist (z.B. 'Qualitätsingenieur - Eingang', 'Werksleiter')."
+              },
+              {
+                "language": "en",
+                "text": "The individual or job role assigned to execute the containment action (e.g. 'Quality Engineer - Incoming', 'Plant Manager')."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Responsible"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "responsible"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#responsible",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Responsible"
+        }
+      ],
+      "idShort": "responsible"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "DATE",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Das Zieldatum, bis zu dem die Eindämmungsmaßnahme abgeschlossen sein muss. Bei sicherheitskritischen Problemen kann dies innerhalb von Stunden oder Tagen nach der Meldung liegen."
+              },
+              {
+                "language": "en",
+                "text": "The target date by which the containment action must be completed. For safety-critical issues this may be within hours or days of the report."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Planned Implementation Date"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "plannedImplementationDate"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#plannedImplementationDate",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Planned Implementation Date"
+        }
+      ],
+      "idShort": "plannedImplementationDate"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Der aktuelle Zustand der Eindämmungsmaßnahme. Werte: Planned (zugewiesen, noch nicht begonnen), InProgress (in Ausführung), Completed (ausgeführt und verifiziert), Cancelled (nicht mehr erforderlich), Blocked (durch eine Abhängigkeit verzögert)."
+              },
+              {
+                "language": "en",
+                "text": "The current state of the containment action. Values: Planned (assigned, not yet started), InProgress (being executed), Completed (executed and verified), Cancelled (no longer required), Blocked (delayed by a dependency)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Status"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "status"
+              }
+            ],
+            "valueList": {
+              "valueReferencePairs": [
+                {
+                  "value": "Planned",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ContainmentActionStatus:_Plannedfb6f7c93"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "InProgress",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ContainmentActionStatus:_InProgress8de4716d"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "Completed",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ContainmentActionStatus:_Completed22a970d2"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "Cancelled",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ContainmentActionStatus:_Cancelledd353a99e"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "Blocked",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ContainmentActionStatus:_Blocked18f2a094"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#status",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Status"
+        }
+      ],
+      "idShort": "status"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "TIMESTAMP",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Das tatsächliche Datum und die Uhrzeit, zu der die Eindämmungsmaßnahme abgeschlossen und verifiziert wurde."
+              },
+              {
+                "language": "en",
+                "text": "The actual date and time when the containment action was completed and verified."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Actual Implementation Date"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "actualImplementationDate"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#actualImplementationDate",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Actual Implementation Date"
+        }
+      ],
+      "idShort": "actualImplementationDate"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "The type of supporting documentation or tracking mechanism for the containment action. Values: ShipmentTracking, RepairOrder, ReworkProcedure, ReplacementPO, InspectionReport, DeviationRequest, QuarantineOrder, PackingList, TestReport, Other."
+              },
+              {
+                "language": "de",
+                "text": "Die Art der unterstützenden Dokumentation oder des Tracking-Mechanismus für die Eindämmungsmaßnahme. Werte: ShipmentTracking, RepairOrder, ReworkProcedure, ReplacementPO, InspectionReport, DeviationRequest, QuarantineOrder, PackingList, TestReport, Other."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Reference Type"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "referenceType"
+              }
+            ],
+            "valueList": {
+              "valueReferencePairs": [
+                {
+                  "value": "ShipmentTracking",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ReferenceType:_ShipmentTracking2718bd48"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "RepairOrder",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ReferenceType:_RepairOrder26a0a9af"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "ReworkProcedure",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ReferenceType:_ReworkProcedure39578340"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "ReplacementPO",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ReferenceType:_ReplacementPOa8f1131b"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "InspectionReport",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ReferenceType:_InspectionReport9220004f"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "DeviationRequest",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ReferenceType:_DeviationRequest208f1f44"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "QuarantineOrder",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ReferenceType:_QuarantineOrdera1d25012"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "PackingList",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ReferenceType:_PackingList527c5cb6"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "TestReport",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ReferenceType:_TestReportada39a3c"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "Other",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ReferenceType:_Otherf97e9da0"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#referenceType",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Reference Type"
+        }
+      ],
+      "idShort": "referenceType"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "The identifier of the referenced document or tracking mechanism (e.g. a shipment tracking number, repair order number, or quarantine order ID)."
+              },
+              {
+                "language": "de",
+                "text": "Die Kennung des referenzierten Dokuments oder Tracking-Mechanismus (z.B. eine Sendungsverfolgungsnummer, Reparaturauftragsnummer oder Quarantäneauftrags-ID)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Reference Number"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "referenceNumber"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#referenceNumber",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Reference Number"
+        }
+      ],
+      "idShort": "referenceNumber"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "IRI",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Eine digitale Datei, die als Nachweis der Eindämmungsmaßnahme angehängt ist, z.B. ein unterzeichneter Quarantänebefehl, ein Foto des quarantänierten Bestands, ein Versandetikett oder eine ausgefüllte Inspektionscheckliste. Modelliert als Ressourcenverweis (Pfad oder URL)."
+              },
+              {
+                "language": "en",
+                "text": "A digital file attached as evidence of the containment action, e.g. a signed quarantine order, photo of quarantined stock, shipping label, or completed inspection checklist. Modeled as a resource reference (path or URL)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Reference File"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "referenceFile"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#referenceFile",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Reference File"
+        }
+      ],
+      "idShort": "referenceFile"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Supporting documentation and tracking information evidencing execution of the containment action: reference type, reference number, and attached file."
+              },
+              {
+                "language": "de",
+                "text": "Unterstützende Dokumentation und Tracking-Informationen als Nachweis der Ausführung der Eindämmungsmaßnahme: Referenztyp, Referenznummer und angehängte Datei."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Action Reference"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "actionReference"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#actionReference",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Action Reference"
+        }
+      ],
+      "idShort": "actionReference"
+    }
+  ],
+  "submodels": [
+    {
+      "modelType": "Submodel",
+      "kind": "Template",
+      "semanticId": {
+        "keys": [
+          {
+            "type": "GlobalReference",
+            "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ContainmentAction"
+          }
+        ],
+        "type": "ExternalReference"
+      },
+      "administration": {},
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#ContainmentAction/submodel",
+      "description": [
+        {
+          "language": "de",
+          "text": "Eine einzelne Eindämmungsmaßnahme, die ergriffen wird, um die Ausbreitung nichtkonformer Teile zu verhindern und die Auswirkungen einer erkannten Non-Quality bis zu einer endgültigen Disposition zu mildern. Jede Maßnahme (z.B. Bestand quarantänieren, nachgelagerte Kunden benachrichtigen, Produktion stoppen) wird einzeln mit verantwortlicher Partei, Datum und Status verfolgt; für eine Non-Quality können mehrere Maßnahmen gelten."
+        },
+        {
+          "language": "en",
+          "text": "A single containment action taken to prevent the spread of non-conforming parts and mitigate the impact of a detected non-quality, pending a permanent disposition. Each action (e.g. quarantine stock, notify downstream customers, halt production) is tracked individually with a responsible party, dates, and status; multiple actions may apply to one non-quality."
+        }
+      ],
+      "idShort": "ContainmentAction",
+      "submodelElements": [
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityId"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:string",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Non Quality Id"
+            }
+          ],
+          "idShort": "nonQualityId",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#actionId"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:string",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Action Id"
+            }
+          ],
+          "idShort": "actionId",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#actionParty"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:string",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Action Party"
+            }
+          ],
+          "idShort": "actionParty",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#title"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:string",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Title"
+            }
+          ],
+          "idShort": "title",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#description"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:string",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Description"
+            }
+          ],
+          "idShort": "description",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#responsible"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:string",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Responsible"
+            }
+          ],
+          "idShort": "responsible",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#plannedImplementationDate"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:date",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Planned Implementation Date"
+            }
+          ],
+          "idShort": "plannedImplementationDate",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#status"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:string",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Status"
+            }
+          ],
+          "idShort": "status",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#actualImplementationDate"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:dateTime",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Actual Implementation Date"
+            }
+          ],
+          "idShort": "actualImplementationDate",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "ZeroToOne",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "SubmodelElementList",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#actionReference"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "description": [
+            {
+              "language": "en",
+              "text": "Supporting documentation and tracking information evidencing execution of the containment action: reference type, reference number, and attached file."
+            },
+            {
+              "language": "de",
+              "text": "Unterstützende Dokumentation und Tracking-Informationen als Nachweis der Ausführung der Eindämmungsmaßnahme: Referenztyp, Referenznummer und angehängte Datei."
+            }
+          ],
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Action Reference"
+            }
+          ],
+          "idShort": "ActionReference",
+          "orderRelevant": false,
+          "typeValueListElement": "SubmodelElementCollection",
+          "value": [
+            {
+              "modelType": "SubmodelElementCollection",
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Supporting documentation and tracking information evidencing execution of the containment action: reference type, reference number, and attached file."
+                },
+                {
+                  "language": "de",
+                  "text": "Unterstützende Dokumentation und Tracking-Informationen als Nachweis der Ausführung der Eindämmungsmaßnahme: Referenztyp, Referenznummer und angehängte Datei."
+                }
+              ],
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Action Reference"
+                }
+              ],
+              "idShort": "ActionReference",
+              "value": [
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#referenceType"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Reference Type"
+                    }
+                  ],
+                  "idShort": "referenceType",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#referenceNumber"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Reference Number"
+                    }
+                  ],
+                  "idShort": "referenceNumber",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#referenceFile"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:anyURI",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Reference File"
+                    }
+                  ],
+                  "idShort": "referenceFile",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "ZeroToOne",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "ZeroToMany",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

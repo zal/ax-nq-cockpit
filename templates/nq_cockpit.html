@@ -1,0 +1,183 @@
+{# SPDX-FileCopyrightText: 2026 ZAL GmbH #}
+{# SPDX-License-Identifier: Apache-2.0 #}
+{% extends "base.html" %}
+{% from "_notifications.html" import notification_script %}
+{% block title %}Non-Quality Data Exchange Cockpit{% endblock %}
+
+{% block head %}
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* ---------- MAIN CONTENT ---------- */
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 200px;
+        min-height: calc(100vh - 60px);
+        padding-top: 80px;
+        background-color: #fafafa;
+    }
+
+    .option {
+        border-radius: 20px;
+        width: 600px;
+        height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.25s ease;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        cursor: pointer;
+    }
+    .option:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+    .option a {
+        text-decoration: none;
+        color: black;
+        font-size: 2.0em;
+        font-weight: 600;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+    }
+
+    .left {
+        background-color: rgba(60, 68, 93, 0.1);
+    }
+    .left:hover {
+        background-color: rgba(60, 68, 93, 0.2);
+    }
+    .right {
+        background-color: rgba(140, 158, 173, 0.1);
+    }
+    .right:hover {
+        background-color: rgba(140, 158, 173, 0.2);
+    }
+
+    /* ---------- NOTIFICATION POPUPS ---------- */
+    .notification-popup-customer,
+    .notification-popup-supplier {
+        position: fixed;
+        top: 90px;
+        width: 35%;
+        background-color: #ff9800;
+        color: white;
+        padding: 12px 15px;
+        text-align: center;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        display: none;
+        border-radius: 4px;
+    }
+    .notification-popup-customer { left: 10%; }
+    .notification-popup-supplier { right: 10%; }
+
+    .notification-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .notification-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 0 10px;
+    }
+    .notification-messages {
+        flex-grow: 1;
+        text-align: left;
+    }
+    .notification-message {
+        margin-left: 10px;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+        .option {
+            width: 90%;
+            padding: 20px;
+        }
+        .option a {
+            font-size: 1.4em;
+            padding: 25px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<!-- Notification Popup -->
+{% if notifications.notifications_customer %}
+<div id="notificationPopup" class="notification-popup-customer">
+    <div class="notification-content">
+        <div class="notification-messages">
+            <strong>Notifications:</strong>
+            {% for nq_id, notif in notifications.notifications_customer.items() %}
+                <span class="notification-message">
+                    <a href="{{ url_for('customer.view_nq', nq_id=nq_id) }}" style="color: inherit; text-decoration: underline;">{{ notif.message }}</a>
+                </span>
+            {% endfor %}
+        </div>
+        <button onclick="closeNotification()" class="notification-close">&times;</button>
+    </div>
+</div>
+{% endif %}
+
+{% if notifications.notifications_supplier %}
+<div id="notificationPopup" class="notification-popup-supplier">
+    <div class="notification-content">
+        <div class="notification-messages">
+            <strong>Notifications:</strong>
+            {% for nq_id, notif in notifications.notifications_supplier.items() %}
+                <span class="notification-message">
+                    <a href="{{ url_for('supplier.supplier_inbox') }}" style="color: inherit; text-decoration: underline;">{{ notif.message }}</a>
+                </span>
+            {% endfor %}
+        </div>
+        <button onclick="closeNotification()" class="notification-close">&times;</button>
+    </div>
+</div>
+{% endif %}
+
+<div class="container">
+    <div class="option left">
+        {% if role == 'supplier' %}
+        <a href="#" onclick="alert('Only a customer can create and send Non Qualities in this demo.'); return false;">
+            Create and View Non Qualities
+        </a>
+        {% else %}
+        <a href="{{ url_for('customer.customer_home') }}">
+            Create and View Non Qualities
+        </a>
+        {% endif %}
+    </div>
+    <div class="option right">
+        {% if role == 'customer' %}
+        <a href="#" onclick="alert('Customers can only create Non Qualities in this demo. Opening a received Non-Quality from a customer is only possible on the supplier side of the demo.'); return false;">
+            View Received Non Qualities
+        </a>
+        {% else %}
+        <a href="{{ url_for('supplier.supplier_inbox') }}">
+            View Received Non Qualities
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ notification_script() }}
+{% endblock %}

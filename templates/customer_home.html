@@ -1,0 +1,128 @@
+{# SPDX-FileCopyrightText: 2026 ZAL GmbH #}
+{# SPDX-License-Identifier: Apache-2.0 #}
+{% extends "base.html" %}
+{% from "_list_table.html" import list_table_styles, sortable_table_script %}
+{% block title %}Customer Dashboard{% endblock %}
+
+{% block head %}
+{{ list_table_styles() }}
+<style>
+    /* ---------- MAIN CONTAINER ---------- */
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 120px; /* moved down to make space for the fixed header */
+    }
+
+    h2 {
+        margin-bottom: 30px;
+    }
+    h2.page-title {
+        margin-top: 20px;
+        margin-bottom: 35px;
+    }
+
+    /* ---------- TABLE AND BUTTONS ---------- */
+    .table-container {
+        width: 100%;
+        max-width: 1200px;
+        overflow-x: auto;
+    }
+
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        margin-bottom: 30px;
+    }
+    .page-title {
+        margin: 0;
+        padding: 0;
+        font-size: 1.5em;
+        font-weight: 600;
+    }
+
+    .new-nq-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #009de0;
+        color: white;
+        padding: 14px 28px;
+        text-decoration: none;
+        border-radius: 8px;
+        margin-top: 15px;
+        text-align: center;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border: none;
+    }
+    .new-nq-button:hover {
+        background-color: #007bb3;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    .new-nq-button::before {
+        content: "+ ";
+        font-size: 1.3em;
+        margin-right: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="header-section">
+        <h2 class="page-title">Status of NQs created by {{ current_user.username }}</h2>
+        <a href="{{ url_for('customer.customer_form') }}" class="new-nq-button">New NQ</a>
+    </div>
+
+    <div class="table-container">
+        <table class="sortable-table">
+            <thead>
+                <tr>
+                    <th>Non-Quality ID</th>
+                    <th>Title</th>
+                    <th>Customer Name</th>
+                    <th>Commodity</th>
+                    <th>Problem Short Description</th>
+                    <th>Creation Date</th>
+                    <th>Last Updated</th>
+                    <th>Status</th>
+                    <th class="no-sort">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for nq_id, nq in nqs.items() %}
+                <tr class="{% if nq.NonQualityHeader.nonQualityStatus == 'CLOSED' %}closed-row{% endif %}">
+                    <td>{{ nq.NonQualityHeader.nonQualityId }}</td>
+                    <td>{{ nq.NonQualityHeader.nonQualityTitle }}</td>
+                    <td>{{ nq.CollaborationPartners.CustomerSite.customerGroupName }}</td>
+                    <td>{{ nq.ProductScope.commodity }}</td>
+                    <td>{{ nq.NonQualityDescription.problemShortDescription }}</td>
+                    <td>{{ nq.NonQualityHeader.nonQualityCreationDate[:10] }} {{ nq.NonQualityHeader.nonQualityCreationDate[11:16] }}</td>
+                    <td>{{ nq.NonQualityHeader.nonQualityLastUpdateDate[:10] }} {{ nq.NonQualityHeader.nonQualityLastUpdateDate[11:16] if nq.NonQualityHeader.nonQualityLastUpdateDate else 'N/A' }}</td>
+                    <td class="status-{{ nq.NonQualityHeader.nonQualityStatus }}">{{ nq.NonQualityHeader.nonQualityStatus.title() }}</td>
+                    <td>
+                        <a href="{{ url_for('customer.view_nq', nq_id=nq_id) }}" class="action-link">View Details</a>
+                        {% if nq.PartnerUpdatePending %}<span class="update-badge" title="An update from the supplier is available to fetch">Update available</span>{% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if not nqs %}
+    <p>No Non-Quality reports found.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ sortable_table_script() }}
+{% endblock %}

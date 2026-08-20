@@ -1,0 +1,143 @@
+{# SPDX-FileCopyrightText: 2026 ZAL GmbH #}
+{# SPDX-License-Identifier: Apache-2.0 #}
+{#
+  Shared page skeleton: doctype, <head> with the common body + header styling,
+  and the fixed top header markup used by every full page. Child templates
+  extend "base.html" and fill four blocks:
+    - title    : browser tab text (defaults to the header text)
+    - head     : page-specific styles/scripts injected into <head>
+    - body     : page content below the header
+    - scripts  : page-specific scripts at the end of <body>
+
+  The visible header text is fixed on purpose — every page reads
+  "Aerospace-X Non-Quality Data Exchange Cockpit".
+#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Aerospace-X Non-Quality Data Exchange Cockpit{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+        /* ---------- HEADER ---------- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            padding: 15px 25px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 60px;
+        }
+        .home-button {
+            background-color: rgb(0, 157, 224);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            font-size: 1.8em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        .header-text {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+        }
+        .logout-button {
+            background-color: #c0392b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 0.85em;
+            cursor: pointer;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .logout-button:hover {
+            background-color: #a93226;
+        }
+        .logged-in-card {
+            background-color: #f0f8ff;
+            color: #333;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-right: 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            white-space: nowrap;
+        }
+        .logo-container {
+            width: 120px;
+            height: auto;
+        }
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ---------- RESPONSIVE HEADER ---------- */
+        @media (max-width: 768px) {
+            .header {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 10px;
+            }
+            .header-text {
+                flex-basis: 100%;
+                text-align: center;
+                margin: 10px 0;
+            }
+            .logged-in-card {
+                margin: 10px auto;
+                font-size: 0.9em;
+                padding: 8px 14px;
+            }
+            .logo-container {
+                width: 80px;
+            }
+            .home-button {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5em;
+            }
+        }
+    </style>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% block header %}
+    <div class="header">
+        <a href="{{ url_for('nq.portal') }}" class="home-button" title="Back to Portal Home">&#8962;</a>
+        <div class="header-text">Aerospace-X Non-Quality Data Exchange Cockpit</div>
+        <div class="logged-in-card">
+            Logged in as {{ current_user.username }}
+        </div>
+        <a href="{{ url_for('nq.logout') }}" class="logout-button">Logout</a>
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='logo/zal_logo_transparent.svg') }}" alt="Company Logo" class="logo">
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block body %}{% endblock %}
+    {% block scripts %}{% endblock %}
+</body>
+</html>

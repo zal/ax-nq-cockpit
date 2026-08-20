@@ -1,0 +1,13 @@
+# runtime data (SQLite DBs + uploaded defect files)
+instance/
+*.db
+*.db.bak
+
+# python
+__pycache__/
+*.pyc
+.venv/
+.python-version
+
+# local env overrides
+.env

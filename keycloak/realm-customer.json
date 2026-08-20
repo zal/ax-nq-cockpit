@@ -1,0 +1,35 @@
+{
+  "realm": "aerospace-x",
+  "enabled": true,
+  "sslRequired": "none",
+  "loginTheme": "keycloak",
+  "clients": [
+    {
+      "clientId": "nq-cockpit",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "secret": "nq-cockpit-demo-secret",
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "redirectUris": ["http://localhost:5001/*"],
+      "webOrigins": ["+"],
+      "attributes": {
+        "post.logout.redirect.uris": "http://localhost:5001/*"
+      }
+    }
+  ],
+  "users": [
+    {
+      "username": "customer",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Demo",
+      "lastName": "Customer",
+      "email": "customer@example.com",
+      "credentials": [
+        { "type": "password", "value": "customer", "temporary": false }
+      ]
+    }
+  ]
+}

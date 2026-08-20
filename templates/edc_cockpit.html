@@ -1,0 +1,856 @@
+{# SPDX-FileCopyrightText: 2026 ZAL GmbH #}
+{# SPDX-License-Identifier: Apache-2.0 #}
+{% extends "base.html" %}
+{% block title %}EDC Management Cockpit{% endblock %}
+
+{% block head %}
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    html, body {
+        height: 100%;
+        background-color: #f0f2f5;
+    }
+
+    /* ---------- PAGE LAYOUT ---------- */
+    .page-content {
+        padding: 100px 40px 40px;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    .page-title {
+        font-size: 1.6em;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin-bottom: 30px;
+    }
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+    }
+
+    /* ---------- CARDS ---------- */
+    .card {
+        background: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+    .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 2px solid #f0f2f5;
+        padding-bottom: 14px;
+    }
+    .card-title {
+        font-size: 1.15em;
+        font-weight: 700;
+        color: #1a1a2e;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .card-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0,157,224,0.15);
+        color: rgb(0, 157, 224);
+        flex-shrink: 0;
+    }
+    .card-icon svg {
+        width: 17px;
+        height: 17px;
+        stroke: rgb(0, 157, 224);
+    }
+
+    /* ---------- CONNECTOR STATUS ---------- */
+    .status-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .status-indicator {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background-color: #bdc3c7;
+        flex-shrink: 0;
+        transition: background-color 0.4s ease;
+        box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
+    }
+    .status-indicator.online {
+        background-color: #27ae60;
+        box-shadow: 0 0 0 4px rgba(39,174,96,0.2);
+    }
+    .status-indicator.offline {
+        background-color: #e74c3c;
+        box-shadow: 0 0 0 4px rgba(231,76,60,0.2);
+    }
+    .status-label {
+        font-weight: 600;
+        font-size: 0.95em;
+        color: #555;
+    }
+    .status-label span {
+        font-weight: 700;
+    }
+    .status-label.online span {
+        color: #27ae60;
+    }
+    .status-label.offline span {
+        color: #e74c3c;
+    }
+    .info-field {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .info-label {
+        font-size: 0.75em;
+        font-weight: 600;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .info-value {
+        font-size: 0.95em;
+        color: #222;
+        background: #f7f8fa;
+        border: 1px solid #e0e3e8;
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-family: monospace;
+        word-break: break-all;
+    }
+    .connector-fields {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+    .btn-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .btn {
+        padding: 9px 20px;
+        border: none;
+        border-radius: 7px;
+        font-size: 0.9em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s, transform 0.1s;
+    }
+    .btn:active {
+        transform: scale(0.97);
+    }
+    .btn-primary {
+        background-color: rgb(0, 157, 224);
+        color: white;
+    }
+    .btn-primary:hover {
+        background-color: rgb(0, 130, 190);
+    }
+    .btn-secondary {
+        background-color: #ecf0f1;
+        color: #333;
+    }
+    .btn-secondary:hover {
+        background-color: #dde1e3;
+    }
+    .btn-danger {
+        background-color: #e74c3c;
+        color: white;
+    }
+    .btn-danger:hover {
+        background-color: #c0392b;
+    }
+    .btn-check {
+        background-color: rgb(0, 157, 224);
+        color: white;
+    }
+    .btn-check:hover {
+        background-color: rgb(0, 130, 190);
+    }
+
+    /* ---------- EDIT MODAL ---------- */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+    }
+    .modal-overlay.active {
+        display: flex;
+    }
+    .modal {
+        background: white;
+        border-radius: 14px;
+        padding: 32px;
+        width: 480px;
+        max-width: 95vw;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .modal-title {
+        font-size: 1.1em;
+        font-weight: 700;
+        color: #1a1a2e;
+    }
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .form-group label {
+        font-size: 0.8em;
+        font-weight: 600;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+    .form-group input {
+        padding: 10px 12px;
+        border: 1px solid #d0d5dd;
+        border-radius: 7px;
+        font-size: 0.95em;
+        font-family: monospace;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+    .form-group input:focus {
+        border-color: rgb(0,157,224);
+    }
+
+    /* ---------- CATALOG SECTION ---------- */
+    .response-box {
+        background: #1e1e2e;
+        color: #cdd6f4;
+        border-radius: 8px;
+        padding: 16px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.82em;
+        min-height: 200px;
+        max-height: 360px;
+        overflow-y: auto;
+        white-space: pre-wrap;
+        word-break: break-all;
+        border: 1px solid #313244;
+    }
+    .response-placeholder {
+        color: #585b70;
+        font-style: italic;
+    }
+    .spinner {
+        display: none;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #e0e3e8;
+        border-top-color: rgb(0,157,224);
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* ---------- PLACEHOLDER SECTIONS ---------- */
+    .placeholder-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 30px 0;
+        color: #aab;
+    }
+    .placeholder-icon svg {
+        width: 48px;
+        height: 48px;
+        stroke: rgb(0, 157, 224);
+        opacity: 0.35;
+    }
+    .placeholder-text {
+        font-size: 0.95em;
+        font-weight: 500;
+        color: #bbc;
+    }
+    .badge-soon {
+        background: #ecf0f1;
+        color: #777;
+        font-size: 0.72em;
+        font-weight: 600;
+        padding: 3px 9px;
+        border-radius: 20px;
+        letter-spacing: 0.03em;
+    }
+
+    /* ---------- TRANSPORT TOGGLE ---------- */
+    .transport-row {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+    }
+    .transport-label {
+        font-size: 0.95em;
+        color: #444;
+        font-weight: 400;
+        transition: font-weight 0.15s;
+    }
+    .transport-label.active {
+        font-weight: 700;
+        color: #1a1a2e;
+    }
+    .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 52px;
+        height: 28px;
+        flex-shrink: 0;
+    }
+    .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    .toggle-track {
+        position: absolute;
+        inset: 0;
+        background-color: #ccc;
+        border-radius: 28px;
+        cursor: pointer;
+        transition: background-color 0.25s;
+    }
+    .toggle-switch input:checked + .toggle-track {
+        background-color: rgb(0, 157, 224);
+    }
+    .toggle-thumb {
+        position: absolute;
+        height: 22px;
+        width: 22px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        border-radius: 50%;
+        transition: transform 0.25s;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+    .toggle-switch input:checked + .toggle-track .toggle-thumb {
+        transform: translateX(24px);
+    }
+    .mode-badge {
+        font-size: 0.78em;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: 20px;
+        letter-spacing: 0.03em;
+    }
+    .mode-badge.mode-mock {
+        background: #ecf0f1;
+        color: #555;
+    }
+    .mode-badge.mode-edc {
+        background: rgba(0,157,224,0.15);
+        color: rgb(0,130,190);
+    }
+    .prereq-list {
+        background: #fff8f8;
+        border: 1px solid #f5c6cb;
+        border-radius: 8px;
+        padding: 12px 16px;
+        font-size: 0.85em;
+    }
+    .prereq-list ul {
+        margin: 6px 0 0 18px;
+        color: #c0392b;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 960px) {
+        .dashboard-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    @media (max-width: 600px) {
+        .page-content {
+            padding: 90px 16px 30px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<!-- ===== EDIT CONNECTOR MODAL ===== -->
+<div class="modal-overlay" id="editModal">
+    <div class="modal">
+        <div class="modal-title">Edit Connector Settings</div>
+        <div class="form-group">
+            <label>Connector Base URL</label>
+            <input type="text" id="editUrl" placeholder="http://localhost:29192">
+        </div>
+        <div class="form-group">
+            <label>Identity Hub Base URL</label>
+            <input type="text" id="editIdentityHostname" placeholder="http://localhost:8080">
+        </div>
+        <div class="form-group">
+            <label>Legal Entity ID</label>
+            <input type="text" id="editBpn" placeholder="ZAL GmbH">
+        </div>
+        <div class="form-group">
+            <label>API Key</label>
+            <input type="text" id="editApiKey" placeholder="Please enter connector API Key here">
+        </div>
+        <div class="btn-row">
+            <button class="btn btn-primary" onclick="saveConnectorSettings()">Save</button>
+            <button class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="page-content">
+    <div class="page-title">EDC Management Cockpit</div>
+
+    <div class="dashboard-grid">
+
+        <!-- ===== 0. TRANSPORT MODE TOGGLE ===== -->
+        <div class="card" style="grid-column: 1 / -1;">
+            <div class="card-header">
+                <div class="card-title">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+                            <polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+                        </svg>
+                    </div>
+                    Data Exchange Mode
+                </div>
+                <span id="modeBadge" class="mode-badge mode-mock">Mock</span>
+            </div>
+
+            <div class="transport-row">
+                <span class="transport-label active" id="lblMock">Mock (demo)</span>
+                <label class="toggle-switch" title="Switch data exchange backend">
+                    <input type="checkbox" id="transportToggle">
+                    <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                </label>
+                <span class="transport-label" id="lblEdc">EDC (live)</span>
+            </div>
+
+            <div id="transportMsg" style="font-size:0.88em;min-height:1.2em;"></div>
+
+            <div id="prerequisiteBox" class="prereq-list" style="display:none;">
+                <strong style="color:#c0392b;">Cannot enable EDC — fill in the required fields first:</strong>
+                <ul id="missingList"></ul>
+            </div>
+        </div>
+
+        <!-- ===== 1. CONNECTOR STATUS ===== -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/>
+                            <line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+                        </svg>
+                    </div>
+                    Connector Status
+                </div>
+                <button class="btn btn-secondary" style="font-size:0.8em; padding:6px 14px;"
+                        onclick="openEditModal()">Edit</button>
+            </div>
+
+            <div class="status-row">
+                <div class="status-indicator" id="statusDot"></div>
+                <div class="status-label" id="statusLabel">
+                    Status: <span id="statusText">Checking…</span>
+                </div>
+            </div>
+
+            <div class="connector-fields">
+                <div class="info-field">
+                    <div class="info-label">Connector Base URL</div>
+                    <div class="info-value" id="displayUrl">{{ connector.connector_hostname }}</div>
+                </div>
+                <div class="info-field">
+                    <div class="info-label">Identity Hub Base URL</div>
+                    <div class="info-value" id="displayIdentityHostname">{{ connector.identity_hostname if connector.identity_hostname else '— not set —' }}</div>
+                </div>
+                <div class="info-field">
+                    <div class="info-label">Legal Entity ID</div>
+                    <div class="info-value" id="displayBpn">
+                        {{ connector.legal_entity_id if connector.legal_entity_id else '— not set —' }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button class="btn btn-check" onclick="checkConnectorStatus()">
+                    <span id="statusBtnText">Check Status</span>
+                </button>
+                <div class="spinner" id="statusSpinner"></div>
+            </div>
+        </div>
+
+        <!-- ===== 2. EDC CATALOG ===== -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/>
+                            <line x1="10" y1="12" x2="14" y2="12"/>
+                        </svg>
+                    </div>
+                    EDC Catalog
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button class="btn btn-primary" onclick="queryCatalog()">
+                    <span id="catalogBtnText">Query Catalog</span>
+                </button>
+                <div class="spinner" id="catalogSpinner"></div>
+            </div>
+
+            <div class="response-box" id="catalogResponse">
+                <span class="response-placeholder">Response will appear here after querying the catalog…</span>
+            </div>
+        </div>
+
+        <!-- ===== 3+4. PARTNER MANAGEMENT (spans both columns) ===== -->
+        <div class="card" style="grid-column: 1 / -1;">
+            <div class="card-header">
+                <div class="card-title">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.85"/>
+                        </svg>
+                    </div>
+                    Partner Management
+                </div>
+            </div>
+
+            <!-- Partner list -->
+            <div id="partnerList" style="display:flex;flex-direction:column;gap:10px;min-height:60px;">
+                <span style="color:#aaa;font-style:italic;">Loading…</span>
+            </div>
+
+            <!-- Add partner form -->
+            <details style="margin-top:4px;">
+                <summary style="cursor:pointer;font-weight:600;font-size:0.9em;color:rgb(0,157,224);user-select:none;">
+                    + Add partner
+                </summary>
+                <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px;">
+                    <div class="form-group">
+                        <label>EDC Connector DID</label>
+                        <input type="text" id="newPartnerEdcDid" placeholder="did:web:zal-partner.identity.axdata.space">
+                    </div>
+                    <div class="form-group">
+                        <label>EDC Connector Hostname (required for cross-org EDC fetch)</label>
+                        <input type="text" id="newPartnerEdcHost" placeholder="https://zal-partner.edc.axdata.space">
+                    </div>
+                    <div class="form-group">
+                        <label>Label (optional)</label>
+                        <input type="text" id="newPartnerLabel" placeholder="e.g. ZAL Supplier" style="font-family:Arial,sans-serif;">
+                    </div>
+                    <div class="btn-row">
+                        <button class="btn btn-primary" onclick="addPartner()">Add Partner</button>
+                        <span id="partnerAddMsg" style="font-size:0.85em;align-self:center;"></span>
+                    </div>
+                </div>
+            </details>
+        </div>
+
+    </div><!-- end dashboard-grid -->
+</div><!-- end page-content -->
+{% endblock %}
+
+{% block scripts %}
+<script>
+// ---- State ----
+    let currentUrl      = {{ connector.connector_hostname | tojson }};
+    let currentIdentity = {{ connector.identity_hostname | tojson }};
+    let currentBpn      = {{ connector.legal_entity_id | tojson }};
+    let currentApiKey   = {{ connector.x_api_key | tojson }};
+
+    // ---- Connector Status ----
+    function checkConnectorStatus() {
+        const dot    = document.getElementById('statusDot');
+        const label  = document.getElementById('statusLabel');
+        const text   = document.getElementById('statusText');
+        const btn    = document.getElementById('statusBtnText');
+        const spin   = document.getElementById('statusSpinner');
+
+        dot.className = 'status-indicator';
+        text.textContent = 'Checking…';
+        label.className  = 'status-label';
+        btn.textContent  = 'Checking…';
+        spin.style.display = 'block';
+
+        fetch("{{ url_for('edc.connector_status') }}")
+            .then(r => r.json())
+            .then(data => {
+                spin.style.display = 'none';
+                btn.textContent = 'Check Status';
+                console.log(data)
+                if (data.online) {
+                    dot.classList.add('online');
+                    label.classList.add('online');
+                    text.textContent = 'Online';
+                } else {
+                    dot.classList.add('offline');
+                    label.classList.add('offline');
+                    text.textContent = 'Offline';
+                }
+            })
+            .catch(() => {
+                spin.style.display = 'none';
+                btn.textContent = 'Check Status';
+                dot.classList.add('offline');
+                label.classList.add('offline');
+                text.textContent = 'Unreachable';
+            });
+    }
+
+    // ---- Edit Modal ----
+    function openEditModal() {
+        document.getElementById('editUrl').value = currentUrl;
+        document.getElementById('editIdentityHostname').value = currentIdentity;
+        document.getElementById('editBpn').value = currentBpn;
+        document.getElementById('editApiKey').value = '';
+        document.getElementById('editModal').classList.add('active');
+    }
+
+    function closeEditModal() {
+        document.getElementById('editModal').classList.remove('active');
+    }
+
+    function saveConnectorSettings() {
+        const url = document.getElementById('editUrl').value.trim();
+        const identity = document.getElementById('editIdentityHostname').value.trim();
+        const bpn = document.getElementById('editBpn').value.trim();
+        const api_key = document.getElementById('editApiKey').value.trim();
+
+        fetch("{{ url_for('edc.update_connector_settings') }}", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ url: url, identity_hostname: identity, legal_entity_id: bpn, api_key: api_key })
+        })
+        .then(r => r.json())
+        .then(data => {
+            if (data.success) {
+                currentUrl = data.connector.connector_hostname;
+                currentIdentity = data.connector.identity_hostname;
+                currentBpn = data.connector.legal_entity_id;
+                document.getElementById('displayUrl').textContent = currentUrl;
+                document.getElementById('displayIdentityHostname').textContent = currentIdentity || '— not set —';
+                document.getElementById('displayBpn').textContent = currentBpn || '— not set —';
+                closeEditModal();
+                // Re-check status after URL change
+                checkConnectorStatus();
+            }
+        })
+        .catch(err => console.error('Failed to save settings:', err));
+    }
+
+    // Close modal when clicking overlay background
+    document.getElementById('editModal').addEventListener('click', function(e) {
+        if (e.target === this) closeEditModal();
+    });
+
+    // ---- EDC Catalog ----
+    function queryCatalog() {
+        const box  = document.getElementById('catalogResponse');
+        const btn  = document.getElementById('catalogBtnText');
+        const spin = document.getElementById('catalogSpinner');
+
+        btn.textContent = 'Querying…';
+        spin.style.display = 'block';
+        box.innerHTML = '<span class="response-placeholder">Querying EDC catalog…</span>';
+
+        fetch("{{ url_for('edc.query_catalog') }}", { method: 'POST' })
+            .then(r => r.json())
+            .then(data => {
+                spin.style.display = 'none';
+                btn.textContent = 'Query Catalog';
+                if (data.success) {
+                    box.textContent = JSON.stringify(data.data, null, 2);
+                } else {
+                    box.textContent = 'Error: ' + (data.error || 'Unknown error') +
+                        (data.detail ? '\n\n' + data.detail : '');
+                }
+            })
+            .catch(err => {
+                spin.style.display = 'none';
+                btn.textContent = 'Query Catalog';
+                box.textContent = 'Request failed: ' + err.message;
+            });
+    }
+
+    // Auto-check on page load
+    checkConnectorStatus();
+
+    // ---- Partner Management ----
+    const PARTNERS_URL        = "{{ url_for('edc.list_partners') }}";
+    const PARTNERS_DELETE_URL = "{{ url_for('edc.delete_partner', edc_connector_did='__DID__') }}";
+
+    function loadPartners() {
+        const list = document.getElementById('partnerList');
+        list.innerHTML = '<span style="color:#aaa;font-style:italic;">Loading…</span>';
+        fetch(PARTNERS_URL)
+            .then(r => r.json())
+            .then(data => renderPartners(data.partners || []))
+            .catch(() => { list.innerHTML = '<span style="color:#e74c3c;">Failed to load partners.</span>'; });
+    }
+
+    function renderPartners(partners) {
+        const list = document.getElementById('partnerList');
+        if (!partners.length) {
+            list.innerHTML = '<span style="color:#aaa;font-style:italic;">No partners registered yet.</span>';
+            return;
+        }
+        list.innerHTML = partners.map(p => `
+            <div style="display:flex;align-items:center;gap:12px;background:#f7f8fa;
+                        border:1px solid #e0e3e8;border-radius:8px;padding:12px 16px;">
+                <div style="flex:1;min-width:0;">
+                    <div style="font-weight:600;font-size:0.95em;color:#1a1a2e;margin-bottom:2px;">
+                        ${p.label ? escHtml(p.label) : '<span style="color:#888;">unlabelled</span>'}
+                    </div>
+                    <div style="font-family:monospace;font-size:0.82em;color:#555;
+                                white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                        EDC: ${escHtml(p.edc_connector_did)}
+                    </div>
+                    ${p.edc_hostname ? `<div style="font-size:0.8em;color:#888;margin-top:2px;
+                                white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                        ${escHtml(p.edc_hostname)}</div>` : ''}
+                </div>
+                <button class="btn btn-danger"
+                        style="font-size:0.8em;padding:6px 12px;flex-shrink:0;"
+                        data-did="${escHtml(p.edc_connector_did)}"
+                        onclick="deletePartner(this.dataset.did)">Remove</button>
+            </div>`).join('');
+    }
+
+    function addPartner() {
+        const ids = ['newPartnerEdcDid', 'newPartnerEdcHost', 'newPartnerLabel'];
+        const [edcDid, edcHost, label] =
+            ids.map(id => document.getElementById(id).value.trim());
+        const msg = document.getElementById('partnerAddMsg');
+        if (!edcDid) { msg.textContent = 'EDC Connector DID is required.'; msg.style.color='#e74c3c'; return; }
+        fetch(PARTNERS_URL, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                edc_connector_did: edcDid,
+                edc_hostname: edcHost || null,
+                label: label || null,
+            })
+        })
+        .then(r => r.json())
+        .then(() => {
+            ids.forEach(id => { document.getElementById(id).value = ''; });
+            msg.textContent = 'Partner added.';
+            msg.style.color = '#27ae60';
+            setTimeout(() => { msg.textContent = ''; }, 3000);
+            loadPartners();
+        })
+        .catch(() => { msg.textContent = 'Failed to add partner.'; msg.style.color='#e74c3c'; });
+    }
+
+    function deletePartner(did) {
+        if (!confirm(`Remove partner ${did}?`)) return;
+        fetch(PARTNERS_DELETE_URL.replace('__DID__', encodeURIComponent(did)), { method: 'DELETE' })
+            .then(() => loadPartners())
+            .catch(() => alert('Failed to remove partner.'));
+    }
+
+    function escHtml(s) {
+        return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    loadPartners();
+
+    // ---- Transport Mode Toggle ----
+    const TRANSPORT_MODE_URL = "{{ url_for('edc.transport_mode') }}";
+
+    function applyTransportUI(mode) {
+        const isEdc = mode === 'edc';
+        document.getElementById('transportToggle').checked = isEdc;
+        document.getElementById('modeBadge').textContent = isEdc ? 'EDC Live' : 'Mock';
+        document.getElementById('modeBadge').className = 'mode-badge ' + (isEdc ? 'mode-edc' : 'mode-mock');
+        document.getElementById('lblMock').classList.toggle('active', !isEdc);
+        document.getElementById('lblEdc').classList.toggle('active', isEdc);
+    }
+
+    function loadTransportMode() {
+        fetch(TRANSPORT_MODE_URL)
+            .then(r => r.json())
+            .then(data => applyTransportUI(data.mode || 'mock'))
+            .catch(() => {});
+    }
+
+    document.getElementById('transportToggle').addEventListener('change', function () {
+        const targetMode = this.checked ? 'edc' : 'mock';
+        const msg  = document.getElementById('transportMsg');
+        const box  = document.getElementById('prerequisiteBox');
+        msg.textContent = 'Switching…';
+        msg.style.color = '#888';
+        box.style.display = 'none';
+
+        fetch(TRANSPORT_MODE_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ mode: targetMode }),
+        })
+        .then(r => r.json())
+        .then(data => {
+            if (data.success) {
+                applyTransportUI(targetMode);
+                msg.textContent = 'Switched to ' + (targetMode === 'edc' ? 'EDC (live)' : 'Mock (demo)') + ' mode.';
+                msg.style.color = '#27ae60';
+                setTimeout(() => { msg.textContent = ''; }, 3500);
+                if (targetMode === 'edc') checkConnectorStatus();
+            } else {
+                // Revert the toggle visually
+                this.checked = !this.checked;
+                if (data.missing && data.missing.length) {
+                    document.getElementById('missingList').innerHTML =
+                        data.missing.map(m => '<li>' + escHtml(m) + '</li>').join('');
+                    box.style.display = 'block';
+                }
+                msg.textContent = data.error || 'Failed to switch mode.';
+                msg.style.color = '#e74c3c';
+            }
+        })
+        .catch(err => {
+            this.checked = !this.checked;
+            msg.textContent = 'Request failed: ' + err.message;
+            msg.style.color = '#e74c3c';
+        });
+    });
+
+    loadTransportMode();
+</script>
+{% endblock %}

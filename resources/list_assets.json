@@ -1,0 +1,15 @@
+{
+  "@type": "",
+  "filterExpression": [
+    {
+      "@type": "",
+      "operandLeft": {},
+      "operandRight": {},
+      "operator": ""
+    }
+  ],
+  "limit": 0,
+  "offset": 0,
+  "sortField": "",
+  "sortOrder": ""
+}

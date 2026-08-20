@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
+  },
+  "@type": "PolicyDefinition",
+  "@id": "some-id",
+  "policy": {
+    "@context": "http://www.w3.org/ns/odrl.jsonld",
+    "@type": "Set",
+    "conflict": "perm",
+    "permission": [],
+    "prohibition": [],
+    "obligation": []
+  }
+}

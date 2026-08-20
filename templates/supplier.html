@@ -1,0 +1,220 @@
+{# SPDX-FileCopyrightText: 2026 ZAL GmbH #}
+{# SPDX-License-Identifier: Apache-2.0 #}
+{% extends "base.html" %}
+{% from "_list_table.html" import list_table_styles, sortable_table_script %}
+{% from "_progress.html" import progress_styles, progress_bar, progress_scripts %}
+{% from "_notifications.html" import notification_script %}
+{% set pull_steps = ['Catalog Query', 'Contract Negotiation', 'Start Data Transfer', 'Fetch NQ Data'] %}
+{% block title %}Supplier Inbox{% endblock %}
+
+{% block head %}
+{{ list_table_styles() }}
+{{ progress_styles() }}
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 80px;
+    }
+    h2 {
+        margin-bottom: 30px;
+    }
+    .table-container {
+        width: 100%;
+        max-width: 1200px;
+        overflow-x: auto;
+    }
+
+    /* ---------- NOTIFICATION POPUP ---------- */
+    .notification-popup {
+        position: fixed;
+        top: 0;
+        left: 30%;
+        width: 35%;
+        background-color: #ff9800;
+        color: white;
+        padding: 12px 15px;
+        text-align: center;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        display: none;
+    }
+    .notification-content {
+        max-width: 900px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .notification-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 0 10px;
+    }
+    .notification-messages {
+        flex-grow: 1;
+    }
+    .notification-message {
+        margin-left: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<!-- Notification Popup -->
+{% if notifications %}
+<div id="notificationPopup" class="notification-popup">
+    <div class="notification-content">
+        <div class="notification-messages">
+            <strong>Notifications:</strong>
+            {% for nq_id, notif in notifications.items() %}
+                <span class="notification-message">{{ notif.message }}</span>
+            {% endfor %}
+        </div>
+        <button onclick="closeNotification()" class="notification-close">&times;</button>
+    </div>
+</div>
+{% endif %}
+
+<div class="container">
+    <h2>Status of NQs received by {{ current_user.username }}</h2>
+
+    <div class="table-container">
+        {% if notifications %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Non-Quality ID</th>
+                    <th>Message</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for nq_id, notif in notifications.items() %}
+                <tr>
+                    <td>{{ nq_id }}</td>
+                    <td>{{ notif.message }}</td>
+                    <td>
+                        <form action="{{ url_for('supplier.fetch_nq_data', nq_id=nq_id) }}" method="post" class="fetch-form" style="display:inline;">
+                            <button type="submit" class="action-link fetch-btn">Fetch asset</button>
+                        </form>
+                        <form action="{{ url_for('supplier.dismiss_notification', nq_id=nq_id) }}" method="post" class="dismiss-form" style="display:inline; margin-left: 10px;">
+                            <button type="submit" class="dismiss-btn" style="background:none; border:none; color:#999; font-size:1.1em; cursor:pointer;" title="Dismiss notification">&times;</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- Progress bar -->
+        {{ progress_bar('fetch-progress', pull_steps) }}
+        {% endif %}
+        {% if nq %}
+        <table class="sortable-table">
+            <thead>
+                <tr>
+                    <th>Non-Quality ID</th>
+                    <th>Title</th>
+                    <th>Customer Name</th>
+                    <th>Commodity</th>
+                    <th>Problem Short Description</th>
+                    <th>Creation Date</th>
+                    <th>Last Updated</th>
+                    <th>Status</th>
+                    <th class="no-sort">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for nq_id, nq in nq.items() %}
+                <tr class="{% if nq.NonQualityHeader.nonQualityStatus == 'CLOSED' %}closed-row{% endif %}">
+                    <td>{{ nq.NonQualityHeader.nonQualityId }}</td>
+                    <td>{{ nq.NonQualityHeader.nonQualityTitle }}</td>
+                    <td>{{ nq.CollaborationPartners.CustomerSite.customerGroupName }}</td>
+                    <td>{{ nq.ProductScope.commodity }}</td>
+                    <td>{{ nq.NonQualityDescription.problemShortDescription }}</td>
+                    <td>{{ nq.NonQualityHeader.nonQualityCreationDate[:10] }} {{ nq.NonQualityHeader.nonQualityCreationDate[11:16] }}</td>
+                    <td>{{ nq.NonQualityHeader.nonQualityLastUpdateDate[:10] }} {{ nq.NonQualityHeader.nonQualityLastUpdateDate[11:16] if nq.NonQualityHeader.nonQualityLastUpdateDate else 'N/A' }}</td>
+                    <td class="status-{{ nq.NonQualityHeader.nonQualityStatus }}">{{ nq.NonQualityHeader.nonQualityStatus.title() }}</td>
+                    <td>
+                        <a href="{{ url_for('supplier.view_nq', nq_id=nq_id) }}" class="action-link">View Details</a>
+                        {% if nq.PartnerUpdatePending %}<span class="update-badge" title="An update from the customer is available to fetch">Update available</span>{% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+
+    {% if not nq and not notifications %}
+        <p>No Non-Quality reports or notifications found.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ notification_script() }}
+{{ progress_scripts() }}
+<script>
+    // Handle "Fetch asset" submissions with the shared scoped progress bar.
+    // The server streams progress through a single queue (one pull at a time),
+    // so every fetch/dismiss button on the page is disabled while a fetch is in
+    // flight — otherwise a second row's pull interleaves its events into the
+    // same queue and scrambles the displayed steps. A pull is always 4 steps.
+    let fetchInProgress = false;
+
+    document.querySelectorAll('form.fetch-form').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (fetchInProgress) return;
+            fetchInProgress = true;
+
+            const actionButtons = document.querySelectorAll('.fetch-btn, .dismiss-btn');
+            actionButtons.forEach(btn => btn.disabled = true);
+
+            const submitBtn = form.querySelector('.fetch-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Processing...';
+
+            document.getElementById('fetch-progress').style.display = 'block';
+
+            const eventSource = new EventSource('{{ url_for("supplier.progress_stream_nq") }}');
+            eventSource.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                updateScopedProgress('fetch-progress', data.step, data.total || 4);
+                const labels = document.getElementById('fetch-progress').querySelectorAll('.step-label');
+                if (labels[data.step - 1]) labels[data.step - 1].textContent = data.message;
+            };
+            eventSource.onerror = function() {
+                // The SSE stream closes normally once the server finishes sending
+                // progress events; that's not a submission failure, so don't
+                // re-enable the buttons here (that reopens a window for a
+                // duplicate submit before the fetch() below redirects).
+                eventSource.close();
+            };
+            fetch(form.action, { method: 'POST' })
+                .then(response => {
+                    if (response.ok || response.redirected) {
+                        eventSource.close();
+                        // fetch_nq_data redirects to the fetched NQ's detail page.
+                        window.location.href = response.url;
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                })
+                .catch(error => {
+                    console.error('Form submission error:', error);
+                    eventSource.close();
+                    fetchInProgress = false;
+                    actionButtons.forEach(btn => btn.disabled = false);
+                    submitBtn.textContent = originalText;
+                });
+        });
+    });
+</script>
+{{ sortable_table_script() }}
+{% endblock %}

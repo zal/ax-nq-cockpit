@@ -1,0 +1,8 @@
+{
+  "@context": {},
+  "@type": "CatalogRequest",
+  "additionalScopes": [],
+  "counterPartyAddress": "https://{{counterPartyConnectorHostname}}/api/v1/dsp",
+  "counterPartyId": "did:web:{{counterPartyIdentityHubHostname}}",
+  "protocol": "dataspace-protocol-http"
+}

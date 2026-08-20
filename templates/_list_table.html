@@ -1,0 +1,127 @@
+{# SPDX-FileCopyrightText: 2026 ZAL GmbH #}
+{# SPDX-License-Identifier: Apache-2.0 #}
+{#
+  Shared NQ list-table styling + click-to-sort behaviour, used by the customer
+  dashboard and the supplier inbox.
+
+  Usage:
+    {% from "_list_table.html" import list_table_styles, sortable_table_script %}
+    ... in <head> ...       {{ list_table_styles() }}
+    ... markup ...          <table class="sortable-table"> ... </table>
+                            (add class="no-sort" to a <th> to exclude it)
+    ... in scripts ...      {{ sortable_table_script() }}
+#}
+
+{% macro list_table_styles() %}
+<style>
+    .closed-row {
+        opacity: 0.5;                  /* Makes it look faded */
+        background-color: #f0f0f0;     /* Light gray background */
+        font-style: italic;            /* Optional: italic text */
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        color: #333;
+    }
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+    .status-OPEN {
+        color: red;
+        font-weight: bold;
+    }
+    .status-CANCELLED {
+        color: red;
+        font-weight: bold;
+    }
+    .status-CLOSED {
+        color: green;
+        font-weight: bold;
+    }
+    .action-link {
+        text-decoration: none;
+        color: #009de0;
+        font-weight: bold;
+    }
+    .action-link:hover {
+        text-decoration: underline;
+    }
+    .update-badge {
+        display: inline-block;
+        margin-left: 10px;
+        padding: 3px 10px;
+        background-color: #ff9800;
+        color: white;
+        border-radius: 12px;
+        font-size: 0.75em;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+    th.sortable {
+        cursor: pointer;
+        user-select: none;
+    }
+    th.sortable:hover {
+        background-color: #e9ecef;
+    }
+    .sort-indicator {
+        opacity: 0.5;
+        font-size: 0.8em;
+        margin-left: 4px;
+    }
+    th.sortable[data-sort-dir] .sort-indicator {
+        opacity: 1;
+    }
+</style>
+{% endmacro %}
+
+{% macro sortable_table_script() %}
+<script>
+    document.querySelectorAll('table.sortable-table').forEach(table => {
+        const headers = table.querySelectorAll('thead th');
+        headers.forEach((th, idx) => {
+            if (th.classList.contains('no-sort')) return;
+            th.classList.add('sortable');
+            const indicator = document.createElement('span');
+            indicator.className = 'sort-indicator';
+            indicator.textContent = '⇅';
+            th.appendChild(document.createTextNode(' '));
+            th.appendChild(indicator);
+            th.addEventListener('click', () => {
+                const tbody = table.querySelector('tbody');
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+                const asc = th.dataset.sortDir !== 'asc';
+                headers.forEach(h => {
+                    delete h.dataset.sortDir;
+                    const ind = h.querySelector('.sort-indicator');
+                    if (ind) ind.textContent = '⇅';
+                });
+                th.dataset.sortDir = asc ? 'asc' : 'desc';
+                indicator.textContent = asc ? '▲' : '▼';
+                rows.sort((a, b) => {
+                    const aText = a.children[idx].textContent.trim();
+                    const bText = b.children[idx].textContent.trim();
+                    const aNum = Number(aText);
+                    const bNum = Number(bText);
+                    const numeric = aText !== '' && bText !== '' && !isNaN(aNum) && !isNaN(bNum);
+                    const cmp = numeric ? aNum - bNum : aText.localeCompare(bText);
+                    return asc ? cmp : -cmp;
+                });
+                rows.forEach(r => tbody.appendChild(r));
+            });
+        });
+    });
+</script>
+{% endmacro %}

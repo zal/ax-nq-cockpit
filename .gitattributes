@@ -1,0 +1,7 @@
+# Force LF on checkout so scripts/entrypoints work inside Linux containers even
+# when the repo is cloned on Windows (Docker Desktop test machines).
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.aasx binary

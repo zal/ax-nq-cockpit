@@ -1,0 +1,35 @@
+{
+  "PartIdentification": {
+    "customerPartNumber": "RMBM-TSAK-003",
+    "customerPartName": "Fuselage Frame Bracket",
+    "partClass": "Primary Structure",
+    "DigitalNameplate": "https://digitalnameplate.example.com/fuselage/frame-bracket/S31-2025-FB03C3H4",
+    "traceabilityType": "Serial Number",
+    "traceabilityNumber": "S/N-11072024-2003"
+  },
+  "NonQualityDiscovery": {
+    "stepOfProduction": "Incoming inspection",
+    "msn": "2051",
+    "versionOfAircraft": "D320",
+    "ataSection": "ATA-53"
+  },
+  "ImpactedPurchaseOrder": {
+    "affectedPurchaseOrderNumber": "SPA-0118",
+    "purchaseOrderPositionNumber": "4"
+  },
+  "PartnerCollaboration": {
+    "customerACAGECode": "AX_0046",
+    "customerGroupName": "Aero Structures GmbH",
+    "customerOrganizationName": "Aero Structures Operations GmbH",
+    "customerPlantCode": "PLT-041",
+    "customerPlantName": "Coastline Works",
+    "supplierACAGECode": "AX_0205"
+  },
+  "ProductScope": {
+    "airlineCustomer": "Christiana Airways",
+    "finalCustomer": "Skybound Aircraft Corporation",
+    "commodity": "Structures",
+    "subCommodity": "Fuselage",
+    "program": "SA Series"
+  }
+}

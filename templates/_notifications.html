@@ -1,0 +1,31 @@
+{# SPDX-FileCopyrightText: 2026 ZAL GmbH #}
+{# SPDX-License-Identifier: Apache-2.0 #}
+{#
+  Shared show/auto-hide behaviour for a notification popup. The popup markup and
+  CSS stay page-specific (the cockpit shows two side-by-side popups, the supplier
+  inbox one centered), but every popup uses id="notificationPopup" and an
+  onclick="closeNotification()" close button, so the script is common.
+
+  Usage:
+    {% from "_notifications.html" import notification_script %}
+    ... in scripts ...   {{ notification_script() }}
+
+  Must be the only window.onload on the page.
+#}
+
+{% macro notification_script() %}
+<script>
+    window.onload = function() {
+        var popup = document.getElementById('notificationPopup');
+        if (popup) {
+            popup.style.display = 'block';
+            setTimeout(closeNotification, 10000);  // auto-hide after 10s
+        }
+    };
+
+    function closeNotification() {
+        var popup = document.getElementById('notificationPopup');
+        if (popup) popup.style.display = 'none';
+    }
+</script>
+{% endmacro %}

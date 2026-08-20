@@ -1,0 +1,2528 @@
+{
+  "assetAdministrationShells": [
+    {
+      "modelType": "AssetAdministrationShell",
+      "assetInformation": {
+        "assetKind": "Type"
+      },
+      "submodels": [
+        {
+          "keys": [
+            {
+              "type": "Submodel",
+              "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#Disposition/submodel"
+            }
+          ],
+          "type": "ModelReference"
+        }
+      ],
+      "administration": {},
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#Disposition",
+      "description": [
+        {
+          "language": "en",
+          "text": "defaultAdminShell"
+        }
+      ],
+      "idShort": "defaultAdminShell"
+    }
+  ],
+  "conceptDescriptions": [
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Die Entscheidung des Kunden über den Umgang mit den nichtkonformen Teilen, einschließlich der zugehörigen Abstimmung zwischen Kunde und Lieferant. Umfasst den Dispositionstyp, den Abschlusszeitraum, Kontaktdaten, den Kommentarverlauf und die Akzeptanz durch beide Parteien."
+              },
+              {
+                "language": "en",
+                "text": "The customer's decision on how to handle the non-conforming parts, together with the supporting negotiation between customer and supplier. Covers the disposition type, completion timeframe, contact details, comment thread, and acceptance by both parties."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Disposition"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "Disposition"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#Disposition",
+      "category": "APPLICATION_CLASS",
+      "description": [
+        {
+          "language": "de",
+          "text": "Die Entscheidung des Kunden über den Umgang mit den nichtkonformen Teilen, einschließlich der zugehörigen Abstimmung zwischen Kunde und Lieferant. Umfasst den Dispositionstyp, den Abschlusszeitraum, Kontaktdaten, den Kommentarverlauf und die Akzeptanz durch beide Parteien."
+        },
+        {
+          "language": "en",
+          "text": "The customer's decision on how to handle the non-conforming parts, together with the supporting negotiation between customer and supplier. Covers the disposition type, completion timeframe, contact details, comment thread, and acceptance by both parties."
+        }
+      ],
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Disposition"
+        }
+      ],
+      "idShort": "Disposition"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Global eindeutige Kennung (UUID) des Non-Quality Berichts zur Referenzierung über alle zugehörigen Datensätze hinweg während seines gesamten Lebenszyklus."
+              },
+              {
+                "language": "en",
+                "text": "Globally unique identifier (UUID) of the non-quality report, used to reference it across all related records throughout its lifecycle."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Non Quality Id"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "nonQualityId"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityId",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Non Quality Id"
+        }
+      ],
+      "idShort": "nonQualityId"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "TIMESTAMP",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Datum und Uhrzeit, zu der der Dispositionseintrag erstellt oder zuletzt geändert wurde."
+              },
+              {
+                "language": "en",
+                "text": "Date and time when the disposition record was created or last modified."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Transaction Time Stamp"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "transactionTimeStamp"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#transactionTimeStamp",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Transaction Time Stamp"
+        }
+      ],
+      "idShort": "transactionTimeStamp"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "The party (Customer or Supplier) that created the disposition proposal. A customer-created disposition is typically directive; a supplier-created one is a proposal requiring customer approval."
+              },
+              {
+                "language": "de",
+                "text": "Die Partei (Kunde oder Lieferant), die den Dispositionsvorschlag erstellt hat. Eine vom Kunden erstellte Disposition ist in der Regel weisend; eine vom Lieferanten erstellte ist ein Vorschlag, der die Zustimmung des Kunden erfordert."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Disposition Creator"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "dispositionCreator"
+              }
+            ],
+            "valueList": {
+              "valueReferencePairs": [
+                {
+                  "value": "Customer",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#PartyType:_Customerbf376338"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "Supplier",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#PartyType:_Supplier72e2f033"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#dispositionCreator",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Disposition Creator"
+        }
+      ],
+      "idShort": "dispositionCreator"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "TIMESTAMP",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Das Startdatum des vorgeschlagenen Abschlussfensters für die Dispositionsmaßnahme."
+              },
+              {
+                "language": "en",
+                "text": "The start date of the proposed completion window for the disposition action."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Proposed Completion From"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "proposedCompletionFrom"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#proposedCompletionFrom",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Proposed Completion From"
+        }
+      ],
+      "idShort": "proposedCompletionFrom"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "TIMESTAMP",
+            "definition": [
+              {
+                "language": "en",
+                "text": "The end date by which the disposition action must be completed."
+              },
+              {
+                "language": "de",
+                "text": "Das Enddatum, bis zu dem die Dispositionsmaßnahme abgeschlossen sein muss."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Proposed Completion To"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "proposedCompletionTo"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#proposedCompletionTo",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Proposed Completion To"
+        }
+      ],
+      "idShort": "proposedCompletionTo"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "The proposed timeframe (from/to dates) within which the responsible party commits to completing the disposition action (e.g. rework, replacement, return)."
+              },
+              {
+                "language": "de",
+                "text": "Der vorgeschlagene Zeitraum (Von-/Bis-Datum), innerhalb dessen sich die verantwortliche Partei zum Abschluss der Dispositionsmaßnahme (z.B. Nacharbeit, Ersatz, Rückgabe) verpflichtet."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Proposed Completion Period"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "proposedCompletionPeriod"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#proposedCompletionPeriod",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Proposed Completion Period"
+        }
+      ],
+      "idShort": "proposedCompletionPeriod"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Indicates whether the contact person belongs to the Customer or Supplier organisation."
+              },
+              {
+                "language": "de",
+                "text": "Gibt an, ob die Kontaktperson zur Kunden- oder Lieferantenorganisation gehört."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Contact Party Type"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "contactPartyType"
+              }
+            ],
+            "valueList": {
+              "valueReferencePairs": [
+                {
+                  "value": "Customer",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#PartyType:_Customerbf376338"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "Supplier",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#PartyType:_Supplier72e2f033"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#contactPartyType",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Contact Party Type"
+        }
+      ],
+      "idShort": "contactPartyType"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Vollständiger Name der Kontaktperson, die die Disposition koordiniert."
+              },
+              {
+                "language": "en",
+                "text": "Full name of the contact person coordinating the disposition."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Contact Person Name"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "contactPersonName"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#contactPersonName",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Contact Person Name"
+        }
+      ],
+      "idShort": "contactPersonName"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "E-Mail-Adresse der Kontaktperson, die für dispositionsbezogene Korrespondenz und Benachrichtigungen verwendet wird."
+              },
+              {
+                "language": "en",
+                "text": "Email address of the contact person, used for disposition-related correspondence and notifications."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Contact Person Email"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "contactPersonEmail"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#contactPersonEmail",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Contact Person Email"
+        }
+      ],
+      "idShort": "contactPersonEmail"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Phone number of the contact person for urgent disposition matters, in international dialing format."
+              },
+              {
+                "language": "de",
+                "text": "Telefonnummer der Kontaktperson für dringende Dispositionsangelegenheiten, im internationalen Wählformat."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Contact Person Phone Number"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "contactPersonPhoneNumber"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#contactPersonPhoneNumber",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Contact Person Phone Number"
+        }
+      ],
+      "idShort": "contactPersonPhoneNumber"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Kontaktdaten der Ansprechperson für die Koordinierung der Disposition: Name, E-Mail, Telefonnummer und Partei (Kunde oder Lieferant)."
+              },
+              {
+                "language": "en",
+                "text": "Contact details of the point of contact for coordinating the disposition: name, email, phone number, and party (Customer or Supplier)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Contact Person Info"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "contactPersonInfo"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#contactPersonInfo",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Contact Person Info"
+        }
+      ],
+      "idShort": "contactPersonInfo"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Die Partei (Kunde oder Lieferant), die den Kommentar verfasst hat."
+              },
+              {
+                "language": "en",
+                "text": "The party (Customer or Supplier) that authored the comment."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Comment Issuer"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "commentIssuer"
+              }
+            ],
+            "valueList": {
+              "valueReferencePairs": [
+                {
+                  "value": "Customer",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#PartyType:_Customerbf376338"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "Supplier",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#PartyType:_Supplier72e2f033"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#commentIssuer",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Comment Issuer"
+        }
+      ],
+      "idShort": "commentIssuer"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "TIMESTAMP",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Date and time when the comment was posted."
+              },
+              {
+                "language": "de",
+                "text": "Datum und Uhrzeit, zu der der Kommentar veröffentlicht wurde."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Comment Date"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "commentDate"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#commentDate",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Comment Date"
+        }
+      ],
+      "idShort": "commentDate"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "The text content of the comment, e.g. technical discussion, negotiation position, clarification, or approval."
+              },
+              {
+                "language": "de",
+                "text": "Der Textinhalt des Kommentars, z.B. technische Diskussion, Verhandlungsposition, Klärung oder Zustimmung."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Comment Content"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "commentContent"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#commentContent",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Comment Content"
+        }
+      ],
+      "idShort": "commentContent"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "A single comment within the disposition communication thread, capturing its author (CommentIssuer), date (CommentDate), and text (CommentContent)."
+              },
+              {
+                "language": "de",
+                "text": "Ein einzelner Kommentar im Kommunikationsverlauf der Disposition, mit Autor (CommentIssuer), Datum (CommentDate) und Text (CommentContent)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Comment"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "comment"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#comment",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Comment"
+        }
+      ],
+      "idShort": "comment"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Die Klassifizierung der Dispositionsentscheidung für die nichtkonformen Teile. Standardtypen: AcceptAsIs (Teil weicht von der Spezifikation ab, ist aber funktionell akzeptabel und beeinträchtigt nicht die Lufttüchtigkeit); RejectionReworkOnSite (Teil muss an seinem aktuellen Standort nachgearbeitet werden); RejectionReworkOffSite (Teil muss zur Nacharbeit an eine bestimmte Einrichtung zurückgegeben werden); RejectionReplacement (Teil ist unbrauchbar und muss ersetzt werden)."
+              },
+              {
+                "language": "en",
+                "text": "The classification of the disposition decision for the non-conforming parts. Standard types: AcceptAsIs (part deviates from specification but is functionally acceptable and does not compromise airworthiness); RejectionReworkOnSite (part must be reworked at its current location); RejectionReworkOffSite (part must be returned to a designated facility for rework); RejectionReplacement (part is unusable and must be replaced)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Disposition Type"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "dispositionType"
+              }
+            ],
+            "valueList": {
+              "valueReferencePairs": [
+                {
+                  "value": "AcceptAsIs",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#DispositionType:_AcceptAsIs7552f70b"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "RejectionReworkOnSite",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#DispositionType:_RejectionReworkOnSite024f2028"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "RejectionReworkOffSite",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#DispositionType:_RejectionReworkOffSite5cc03633"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "RejectionReplacement",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#DispositionType:_RejectionReplacement9b5940bc"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#dispositionType",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Disposition Type"
+        }
+      ],
+      "idShort": "dispositionType"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Begründung für den ausgewählten Dispositionstyp, z.B. ingenieurtechnische Rechtfertigung, Lufttüchtigkeitsbewertung, Ursache oder Korrekturmaßnahme."
+              },
+              {
+                "language": "en",
+                "text": "Explanation of the rationale behind the selected disposition type, e.g. engineering justification, airworthiness assessment, root cause, or corrective action."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Decision Reason"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "decisionReason"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#decisionReason",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Decision Reason"
+        }
+      ],
+      "idShort": "decisionReason"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Free-text description of the additional information requested by the supplier."
+              },
+              {
+                "language": "de",
+                "text": "Freitextbeschreibung der vom Lieferanten angeforderten zusätzlichen Information."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Additional Information Text"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "additionalInformationText"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#additionalInformationText",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Additional Information Text"
+        }
+      ],
+      "idShort": "additionalInformationText"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "IRI",
+            "definition": [
+              {
+                "language": "en",
+                "text": "A document attached to support the additional-information request, e.g. a data-collection template, form, or reference specification. Modeled as a resource reference (path or URL)."
+              },
+              {
+                "language": "de",
+                "text": "Ein Dokument, das die Anfrage nach zusätzlichen Informationen unterstützt, z.B. eine Datenerfassungsvorlage, ein Formular oder eine Referenzspezifikation. Modelliert als Ressourcenverweis (Pfad oder URL)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Additional Document"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "additionalDocument"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#additionalDocument",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Additional Document"
+        }
+      ],
+      "idShort": "additionalDocument"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "Captures the supplier's request for additional data, documentation, or clarification needed to execute the disposition."
+              },
+              {
+                "language": "de",
+                "text": "Erfasst die Anfrage des Lieferanten nach zusätzlichen Daten, Dokumentationen oder Klärungen, die zur Ausführung der Disposition benötigt werden."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Additional Information"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "additionalInformation"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#additionalInformation",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Additional Information"
+        }
+      ],
+      "idShort": "additionalInformation"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Detaillierte Beschreibung der angeforderten Information, einschließlich ihrer Relevanz für die Dispositionsentscheidung."
+              },
+              {
+                "language": "en",
+                "text": "Detailed description of the specific information being requested, including its relevance to the disposition decision."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Request Description"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "requestDescription"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#requestDescription",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Request Description"
+        }
+      ],
+      "idShort": "requestDescription"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "en",
+                "text": "The required format or file type for the requested information (e.g. PDF, Excel/CSV, CAD (STEP, IGES), image, or AS9102 first-article inspection form)."
+              },
+              {
+                "language": "de",
+                "text": "Das erforderliche Format oder der Dateityp für die angeforderte Information (z.B. PDF, Excel/CSV, CAD (STEP, IGES), Bild oder AS9102-Erstmusterprüfformular)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Information Data Format"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "informationDataFormat"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#informationDataFormat",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Information Data Format"
+        }
+      ],
+      "idShort": "informationDataFormat"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Eine formale Anfrage des Lieferanten nach zusätzlichen Informationen vom Kunden, die angibt, was benötigt wird und in welchem Format."
+              },
+              {
+                "language": "en",
+                "text": "A formal request from the supplier for additional information from the customer, specifying what is needed and in what format."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Request For More Information"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "requestForMoreInformation"
+              }
+            ]
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#requestForMoreInformation",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Request For More Information"
+        }
+      ],
+      "idShort": "requestForMoreInformation"
+    },
+    {
+      "modelType": "ConceptDescription",
+      "embeddedDataSpecifications": [
+        {
+          "dataSpecification": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "https://admin-shell.io/DataSpecificationTemplates/DataSpecificationIec61360/3/0"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "dataSpecificationContent": {
+            "modelType": "DataSpecificationIec61360",
+            "dataType": "STRING",
+            "definition": [
+              {
+                "language": "de",
+                "text": "Der aktuelle Akzeptanzstatus der Disposition in der Abstimmung zwischen Kunde und Lieferant. Werte: pending (vorgeschlagen, Entscheidung der Gegenseite ausstehend); accepted (die Disposition ist von beiden Parteien einvernehmlich angenommen); rejected (die Disposition ist abgelehnt und kann überarbeitet oder als Gegenvorschlag eingebracht werden)."
+              },
+              {
+                "language": "en",
+                "text": "The current acceptance state of the disposition in the negotiation between customer and supplier. Values: pending (proposed, awaiting a decision by the counterparty); accepted (the disposition is agreed by both parties); rejected (the disposition is declined and may be revised or counter-proposed)."
+              }
+            ],
+            "preferredName": [
+              {
+                "language": "en",
+                "text": "Acceptance Status"
+              }
+            ],
+            "shortName": [
+              {
+                "language": "en",
+                "text": "acceptanceStatus"
+              }
+            ],
+            "valueList": {
+              "valueReferencePairs": [
+                {
+                  "value": "pending",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#AcceptanceStatus:_pending62a2fed3"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "accepted",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#AcceptanceStatus:_accepted070c160a"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                },
+                {
+                  "value": "rejected",
+                  "valueId": {
+                    "keys": [
+                      {
+                        "type": "DataElement",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#AcceptanceStatus:_rejected20cd938a"
+                      }
+                    ],
+                    "type": "ModelReference"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#acceptanceStatus",
+      "displayName": [
+        {
+          "language": "en",
+          "text": "Acceptance Status"
+        }
+      ],
+      "idShort": "acceptanceStatus"
+    }
+  ],
+  "submodels": [
+    {
+      "modelType": "Submodel",
+      "kind": "Template",
+      "semanticId": {
+        "keys": [
+          {
+            "type": "GlobalReference",
+            "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#Disposition"
+          }
+        ],
+        "type": "ExternalReference"
+      },
+      "administration": {},
+      "id": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#Disposition/submodel",
+      "description": [
+        {
+          "language": "de",
+          "text": "Die Entscheidung des Kunden über den Umgang mit den nichtkonformen Teilen, einschließlich der zugehörigen Abstimmung zwischen Kunde und Lieferant. Umfasst den Dispositionstyp, den Abschlusszeitraum, Kontaktdaten, den Kommentarverlauf und die Akzeptanz durch beide Parteien."
+        },
+        {
+          "language": "en",
+          "text": "The customer's decision on how to handle the non-conforming parts, together with the supporting negotiation between customer and supplier. Covers the disposition type, completion timeframe, contact details, comment thread, and acceptance by both parties."
+        }
+      ],
+      "idShort": "Disposition",
+      "submodelElements": [
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#nonQualityId"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:string",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Non Quality Id"
+            }
+          ],
+          "idShort": "nonQualityId",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#transactionTimeStamp"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:dateTime",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Transaction Time Stamp"
+            }
+          ],
+          "idShort": "transactionTimeStamp",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#dispositionCreator"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:string",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Disposition Creator"
+            }
+          ],
+          "idShort": "dispositionCreator",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "SubmodelElementCollection",
+          "description": [
+            {
+              "language": "en",
+              "text": "The proposed timeframe (from/to dates) within which the responsible party commits to completing the disposition action (e.g. rework, replacement, return)."
+            },
+            {
+              "language": "de",
+              "text": "Der vorgeschlagene Zeitraum (Von-/Bis-Datum), innerhalb dessen sich die verantwortliche Partei zum Abschluss der Dispositionsmaßnahme (z.B. Nacharbeit, Ersatz, Rückgabe) verpflichtet."
+            }
+          ],
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Proposed Completion Period"
+            }
+          ],
+          "idShort": "ProposedCompletionPeriod",
+          "value": [
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#proposedCompletionFrom"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:dateTime",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Proposed Completion From"
+                }
+              ],
+              "idShort": "proposedCompletionFrom",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#proposedCompletionTo"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:dateTime",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Proposed Completion To"
+                }
+              ],
+              "idShort": "proposedCompletionTo",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "ZeroToOne",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "SubmodelElementList",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#contactPersonInfo"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "description": [
+            {
+              "language": "de",
+              "text": "Kontaktdaten der Ansprechperson für die Koordinierung der Disposition: Name, E-Mail, Telefonnummer und Partei (Kunde oder Lieferant)."
+            },
+            {
+              "language": "en",
+              "text": "Contact details of the point of contact for coordinating the disposition: name, email, phone number, and party (Customer or Supplier)."
+            }
+          ],
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Contact Person Info"
+            }
+          ],
+          "idShort": "ContactPersonInfo",
+          "orderRelevant": false,
+          "typeValueListElement": "SubmodelElementCollection",
+          "value": [
+            {
+              "modelType": "SubmodelElementCollection",
+              "description": [
+                {
+                  "language": "de",
+                  "text": "Kontaktdaten der Ansprechperson für die Koordinierung der Disposition: Name, E-Mail, Telefonnummer und Partei (Kunde oder Lieferant)."
+                },
+                {
+                  "language": "en",
+                  "text": "Contact details of the point of contact for coordinating the disposition: name, email, phone number, and party (Customer or Supplier)."
+                }
+              ],
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Contact Person Info"
+                }
+              ],
+              "idShort": "ContactPersonInfo",
+              "value": [
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#contactPartyType"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Contact Party Type"
+                    }
+                  ],
+                  "idShort": "contactPartyType",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#contactPersonName"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Contact Person Name"
+                    }
+                  ],
+                  "idShort": "contactPersonName",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "One",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#contactPersonEmail"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Contact Person Email"
+                    }
+                  ],
+                  "idShort": "contactPersonEmail",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "ZeroToOne",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#contactPersonPhoneNumber"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Contact Person Phone Number"
+                    }
+                  ],
+                  "idShort": "contactPersonPhoneNumber",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "ZeroToOne",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "OneToMany",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "SubmodelElementCollection",
+          "description": [
+            {
+              "language": "en",
+              "text": "A single comment within the disposition communication thread, capturing its author (CommentIssuer), date (CommentDate), and text (CommentContent)."
+            },
+            {
+              "language": "de",
+              "text": "Ein einzelner Kommentar im Kommunikationsverlauf der Disposition, mit Autor (CommentIssuer), Datum (CommentDate) und Text (CommentContent)."
+            }
+          ],
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Comment"
+            }
+          ],
+          "idShort": "Comment",
+          "value": [
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#commentIssuer"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Comment Issuer"
+                }
+              ],
+              "idShort": "commentIssuer",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#commentDate"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:dateTime",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Comment Date"
+                }
+              ],
+              "idShort": "commentDate",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "modelType": "Property",
+              "semanticId": {
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#commentContent"
+                  }
+                ],
+                "type": "ExternalReference"
+              },
+              "valueType": "xs:string",
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Comment Content"
+                }
+              ],
+              "idShort": "commentContent",
+              "qualifiers": [
+                {
+                  "kind": "TemplateQualifier",
+                  "type": "SMT/Cardinality",
+                  "valueType": "xs:string",
+                  "value": "One",
+                  "semanticId": {
+                    "type": "ExternalReference",
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "ZeroToOne",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#dispositionType"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:string",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Disposition Type"
+            }
+          ],
+          "idShort": "dispositionType",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#decisionReason"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:string",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Decision Reason"
+            }
+          ],
+          "idShort": "decisionReason",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "One",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "SubmodelElementList",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#additionalInformation"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "description": [
+            {
+              "language": "en",
+              "text": "Captures the supplier's request for additional data, documentation, or clarification needed to execute the disposition."
+            },
+            {
+              "language": "de",
+              "text": "Erfasst die Anfrage des Lieferanten nach zusätzlichen Daten, Dokumentationen oder Klärungen, die zur Ausführung der Disposition benötigt werden."
+            }
+          ],
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Additional Information"
+            }
+          ],
+          "idShort": "AdditionalInformation",
+          "orderRelevant": false,
+          "typeValueListElement": "SubmodelElementCollection",
+          "value": [
+            {
+              "modelType": "SubmodelElementCollection",
+              "description": [
+                {
+                  "language": "en",
+                  "text": "Captures the supplier's request for additional data, documentation, or clarification needed to execute the disposition."
+                },
+                {
+                  "language": "de",
+                  "text": "Erfasst die Anfrage des Lieferanten nach zusätzlichen Daten, Dokumentationen oder Klärungen, die zur Ausführung der Disposition benötigt werden."
+                }
+              ],
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Additional Information"
+                }
+              ],
+              "idShort": "AdditionalInformation",
+              "value": [
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#additionalInformationText"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Additional Information Text"
+                    }
+                  ],
+                  "idShort": "additionalInformationText",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "ZeroToOne",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "SubmodelElementList",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#additionalDocument"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "description": [
+                    {
+                      "language": "en",
+                      "text": "A document attached to support the additional-information request, e.g. a data-collection template, form, or reference specification. Modeled as a resource reference (path or URL)."
+                    },
+                    {
+                      "language": "de",
+                      "text": "Ein Dokument, das die Anfrage nach zusätzlichen Informationen unterstützt, z.B. eine Datenerfassungsvorlage, ein Formular oder eine Referenzspezifikation. Modelliert als Ressourcenverweis (Pfad oder URL)."
+                    }
+                  ],
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Additional Document"
+                    }
+                  ],
+                  "idShort": "additionalDocument",
+                  "orderRelevant": false,
+                  "typeValueListElement": "SubmodelElementCollection",
+                  "value": [
+                    {
+                      "modelType": "Property",
+                      "semanticId": {
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#additionalDocument"
+                          }
+                        ],
+                        "type": "ExternalReference"
+                      },
+                      "valueType": "xs:anyURI",
+                      "displayName": [
+                        {
+                          "language": "en",
+                          "text": "Additional Document"
+                        }
+                      ],
+                      "idShort": "additionalDocument"
+                    }
+                  ],
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "ZeroToMany",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "ZeroToMany",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "SubmodelElementList",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#requestForMoreInformation"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "description": [
+            {
+              "language": "de",
+              "text": "Eine formale Anfrage des Lieferanten nach zusätzlichen Informationen vom Kunden, die angibt, was benötigt wird und in welchem Format."
+            },
+            {
+              "language": "en",
+              "text": "A formal request from the supplier for additional information from the customer, specifying what is needed and in what format."
+            }
+          ],
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Request For More Information"
+            }
+          ],
+          "idShort": "RequestForMoreInformation",
+          "orderRelevant": false,
+          "typeValueListElement": "SubmodelElementCollection",
+          "value": [
+            {
+              "modelType": "SubmodelElementCollection",
+              "description": [
+                {
+                  "language": "de",
+                  "text": "Eine formale Anfrage des Lieferanten nach zusätzlichen Informationen vom Kunden, die angibt, was benötigt wird und in welchem Format."
+                },
+                {
+                  "language": "en",
+                  "text": "A formal request from the supplier for additional information from the customer, specifying what is needed and in what format."
+                }
+              ],
+              "displayName": [
+                {
+                  "language": "en",
+                  "text": "Request For More Information"
+                }
+              ],
+              "idShort": "RequestForMoreInformation",
+              "value": [
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#requestDescription"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Request Description"
+                    }
+                  ],
+                  "idShort": "requestDescription",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "ZeroToOne",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "modelType": "Property",
+                  "semanticId": {
+                    "keys": [
+                      {
+                        "type": "GlobalReference",
+                        "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#informationDataFormat"
+                      }
+                    ],
+                    "type": "ExternalReference"
+                  },
+                  "valueType": "xs:string",
+                  "displayName": [
+                    {
+                      "language": "en",
+                      "text": "Information Data Format"
+                    }
+                  ],
+                  "idShort": "informationDataFormat",
+                  "qualifiers": [
+                    {
+                      "kind": "TemplateQualifier",
+                      "type": "SMT/Cardinality",
+                      "valueType": "xs:string",
+                      "value": "ZeroToOne",
+                      "semanticId": {
+                        "type": "ExternalReference",
+                        "keys": [
+                          {
+                            "type": "GlobalReference",
+                            "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "ZeroToMany",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "modelType": "Property",
+          "semanticId": {
+            "keys": [
+              {
+                "type": "GlobalReference",
+                "value": "urn:samm:org.w3id.aerospace-x.data-product-model.eNQ:1.0.0#acceptanceStatus"
+              }
+            ],
+            "type": "ExternalReference"
+          },
+          "valueType": "xs:string",
+          "displayName": [
+            {
+              "language": "en",
+              "text": "Acceptance Status"
+            }
+          ],
+          "idShort": "acceptanceStatus",
+          "qualifiers": [
+            {
+              "kind": "TemplateQualifier",
+              "type": "SMT/Cardinality",
+              "valueType": "xs:string",
+              "value": "ZeroToOne",
+              "semanticId": {
+                "type": "ExternalReference",
+                "keys": [
+                  {
+                    "type": "GlobalReference",
+                    "value": "https://admin-shell.io/SubmodelTemplates/Cardinality/1/0"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "@context": {
+    "@vocab": "https://w3id.org/edc/v0.0.1/ns/"
+  },
+  "@type": "TransferRequestDto",
+  "connectorId": "did:web:{{identityHubHostname}}",
+  "counterPartyAddress": "{{counterpartyConnectorHostname}}/api/v1/dsp",
+  "contractId": "some-id",
+  "protocol": "dataspace-protocol-http",
+  "transferType": "HttpData-PULL"
+}

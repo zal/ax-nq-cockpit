@@ -1,0 +1,111 @@
+# SPDX-FileCopyrightText: 2026 ZAL GmbH
+# SPDX-License-Identifier: Apache-2.0
+# Two full stacks (customer + supplier) on one host. `docker compose up` then:
+#   Customer portal   http://localhost:5001   (login: customer / customer)
+#   Supplier portal   http://localhost:5002   (login: supplier / supplier)
+#   Customer AAS GUI  http://localhost:3001     Supplier AAS GUI  http://localhost:3002
+#   Customer Keycloak http://localhost:8180     Supplier Keycloak http://localhost:8280
+#
+# BaSyx AAS environment + GUI run open (no auth) and in-memory (state resets on
+# restart). Keycloak runs in dev mode and is used only for the app login.
+# NOTE: the aas-gui env vars below assume the Web UI can target an AAS
+# environment without registries; if your image needs registries, add an
+# in-memory aas-registry + submodel-registry per side.
+
+x-app-build: &app-build
+  build:
+    context: .
+    dockerfile: docker/Dockerfile
+
+services:
+  # ───────────────────────────── customer ──────────────────────────────
+  app-customer:
+    <<: *app-build
+    environment:
+      ROLE: customer
+      PARTNER_URL: http://app-supplier:5000
+      PARTNER_PUBLIC_URL: http://localhost:5002
+      OWN_URL: http://app-customer:5000
+      PUBLIC_URL: http://localhost:5001
+      OIDC_ISSUER: http://localhost:8180/realms/aerospace-x
+      OIDC_INTERNAL_ISSUER: http://keycloak-customer:8080/realms/aerospace-x
+      OIDC_CLIENT_ID: nq-cockpit
+      OIDC_CLIENT_SECRET: ${OIDC_CLIENT_SECRET:-nq-cockpit-demo-secret}
+      BASYX_ENV_URL: http://aas-environment-customer:8081
+      SECRET_KEY: ${SECRET_KEY:-change-me}
+    ports: ["5001:5000"]
+    depends_on: [keycloak-customer, aas-environment-customer]
+
+  keycloak-customer:
+    image: quay.io/keycloak/keycloak:26.1
+    command: ["start-dev", "--import-realm"]
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_HOSTNAME: http://localhost:8180
+    volumes:
+      - ./keycloak/realm-customer.json:/opt/keycloak/data/import/realm.json:ro
+    ports: ["8180:8080"]
+
+  aas-environment-customer:
+    image: eclipsebasyx/aas-environment:2.0.0-milestone-11
+    environment:
+      BASYX_BACKEND: InMemory
+      BASYX_CORS_ALLOWED_ORIGINS: "*"
+      BASYX_CORS_ALLOWED_METHODS: GET,POST,PATCH,DELETE,PUT,OPTIONS,HEAD
+    ports: ["8181:8081"]
+
+  aas-gui-customer:
+    image: eclipsebasyx/aas-gui:SNAPSHOT
+    environment:
+      AAS_REPO_PATH: http://localhost:8181
+      SUBMODEL_REPO_PATH: http://localhost:8181
+      CD_REPO_PATH: http://localhost:8181
+    ports: ["3001:3000"]
+    depends_on: [aas-environment-customer]
+
+  # ───────────────────────────── supplier ──────────────────────────────
+  app-supplier:
+    <<: *app-build
+    environment:
+      ROLE: supplier
+      PARTNER_URL: http://app-customer:5000
+      PARTNER_PUBLIC_URL: http://localhost:5001
+      OWN_URL: http://app-supplier:5000
+      PUBLIC_URL: http://localhost:5002
+      OIDC_ISSUER: http://localhost:8280/realms/aerospace-x
+      OIDC_INTERNAL_ISSUER: http://keycloak-supplier:8080/realms/aerospace-x
+      OIDC_CLIENT_ID: nq-cockpit
+      OIDC_CLIENT_SECRET: ${OIDC_CLIENT_SECRET:-nq-cockpit-demo-secret}
+      BASYX_ENV_URL: http://aas-environment-supplier:8081
+      SECRET_KEY: ${SECRET_KEY:-change-me}
+    ports: ["5002:5000"]
+    depends_on: [keycloak-supplier, aas-environment-supplier]
+
+  keycloak-supplier:
+    image: quay.io/keycloak/keycloak:26.1
+    command: ["start-dev", "--import-realm"]
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+      KC_HOSTNAME: http://localhost:8280
+    volumes:
+      - ./keycloak/realm-supplier.json:/opt/keycloak/data/import/realm.json:ro
+    ports: ["8280:8080"]
+
+  aas-environment-supplier:
+    image: eclipsebasyx/aas-environment:2.0.0-milestone-11
+    environment:
+      BASYX_BACKEND: InMemory
+      BASYX_CORS_ALLOWED_ORIGINS: "*"
+      BASYX_CORS_ALLOWED_METHODS: GET,POST,PATCH,DELETE,PUT,OPTIONS,HEAD
+    ports: ["8281:8081"]
+
+  aas-gui-supplier:
+    image: eclipsebasyx/aas-gui:SNAPSHOT
+    environment:
+      AAS_REPO_PATH: http://localhost:8281
+      SUBMODEL_REPO_PATH: http://localhost:8281
+      CD_REPO_PATH: http://localhost:8281
+    ports: ["3002:3000"]
+    depends_on: [aas-environment-supplier]
