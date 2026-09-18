@@ -11,7 +11,10 @@ from db import db
 from transport.base import get_transport
 
 _SM_ID = "urn:aerospace-x:nq:{nq_id}:sm:{kind}"
+_DECIDED = ("accepted", "rejected")
 
+def _disposition_key(d):
+    return (d.get("nonQualityId"), d.get("transactionTimeStamp"))
 
 def asset_id_for(nq_id):
     return f"asset_nq_{nq_id}"
@@ -184,12 +187,30 @@ def ingest(nq_id, bundle):
         d for d in remote_dispositions if d.get("dispositionCreator") == own_role
     ]
 
+    # Decisions THIS side made on the partner's dispositions. The partner keeps
+    # sending its own items as authoritative, still "pending" until it pulls our
+    # response, so without this the merge below would roll our decision back.
+    local_decisions = {
+        _disposition_key(d): d
+        for d in (local.get("Disposition", []) or [])
+        if d.get("dispositionCreator") == partner_author
+        and (d.get("acceptanceStatus") or "pending") in _DECIDED
+    }
+
     merged["Disposition"] = aas_utils.merge_remote_authored(
         local.get("Disposition", []),
         genuine_remote,
         "dispositionCreator",
         partner_author,
     )
+
+    for item in merged["Disposition"]:
+        if (item.get("acceptanceStatus") or "pending") in _DECIDED:
+            continue  # an incoming decision may supersede; pending may not
+        prior = local_decisions.get(_disposition_key(item))
+        if prior:
+            item["acceptanceStatus"] = prior["acceptanceStatus"]
+            item["_statusUpdatedBy"] = prior.get("_statusUpdatedBy", own_role)
 
     for patch in status_patches:
         for item in merged["Disposition"]:
