@@ -25,7 +25,7 @@ def _sm_id(kind, nq_id, suffix=None):
 def build_offer_bundle(nq_id, nq, author_role):
     """Author-scoped bundle: only the submodels THIS side authors. It is what we
     mirror into our OWN BaSyx (each side stores just its own work) AND what the
-    partner pulls. The consumer merges it without clobbering its own work
+    partner pulls and if we update the received disposition. The consumer merges it without clobbering its own work
     (a customer pulling the supplier's bundle keeps its own dispositions, etc.).
     The customer owns ShareNonQuality; both sides may author dispositions/actions.
     idShort/id are stamped per instance so submodels don't collide and stay
@@ -43,6 +43,7 @@ def build_offer_bundle(nq_id, nq, author_role):
     for i, disposition in enumerate(nq.get("Disposition", []) or []):
         if (
             disposition.get("dispositionCreator") == author
+            or disposition.get("_statusUpdatedBy") == author
         ):
             sm = aas_utils.create_aas_instance_disposition(disposition)["submodels"][0]
             sm["id"] = _sm_id("Disposition", nq_id, f"{author_role}-{i}")
